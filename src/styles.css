@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+.crossword-grid {
+    /* display: grid; */
+    /* grid-template-columns: repeat(3, 1fr); */
+    /* grid-gap: 10px; */
+}
+
+.cell {
+    background-color: #ccc;
+    padding: 10px;
+    border: 1px solid #666;
+}
+
+.clues {
+    margin-top: 20px;
+}
+
+.clue {
+    margin-bottom: 10px;
+}

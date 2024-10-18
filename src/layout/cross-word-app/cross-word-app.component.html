@@ -1,0 +1,13 @@
+<div class="crossword-grid">
+    <div class="row" *ngFor="let row of grid; let i = index">
+        <div class="col-1 cell" *ngFor="let cell of row; let j = index">
+            {{ cell }}
+        </div>
+    </div>
+</div>
+
+<!-- <div class="clues">
+    <div class="clue" *ngFor="let clue of clues; let i = index">
+        {{ clue }}
+    </div>
+</div> -->
