@@ -12,7 +12,7 @@ export class CommonApiService {
   constructor(private http: HttpClient) { }
 
   isLoggedIn() {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('g-max-token');
     return token ? true : false;
   }
 
