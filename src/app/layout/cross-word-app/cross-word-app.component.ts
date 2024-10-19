@@ -9,6 +9,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cross-word-app.component.css'
 })
 export class CrossWordAppComponent {
-  @Input() grid!: string[][];
-  @Input() clues!: string[];
+  @Input() grid!: any[][];
+  @Input() clues!: any[];
+
+  selectedQ: any;
+  selectedCell: any;
+
+  clickonCell(cell: any) {
+    cell.showQH = !cell.showQH;
+    this.selectedCell = cell;
+    // if (cell.showQH) {
+    // } else {
+    //   this.selectedQ = cell.VendCell;
+
+    // }
+  }
 }
