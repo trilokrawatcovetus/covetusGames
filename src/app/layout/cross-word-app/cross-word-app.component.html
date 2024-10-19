@@ -1,57 +1,72 @@
 <div class="crossword-grid">
     <div class="row crossword-board" *ngFor="let row of grid; let i = index">
-        <div class="col-1 cell crossword-board__item" *ngFor="let cell of row; let j = index">
-            {{ cell }}
+        <div class="col-1 cell crossword-board__item" *ngFor="let cell of row; let j = index"
+            [ngClass]="{'crossword-board__item--blank': cell.isBlanckdCell, 'activeCell': selectedCell && selectedCell.cellId == cell.cellId, 'cmpleteCell': cell.isCompleteCell}"
+            (click)="clickonCell(cell)">
+            @if(cell['qnumber']) {
+            <span> {{cell['qnumber']}}</span>
+            }
+            {{ cell['value'] }}
         </div>
     </div>
     <div class="que-hint-wrapper">
         <p class="que-hint-text">
-            what is your name ?
+            {{completed}}
+            @if(selectedCell && selectedCell.Hquestion) {
+            <span>बाएँ से दाएँ: {{selectedCell.Hquestion}}</span>
+            }
+
+
+
+        </p>
+        <p class="que-hint-text">
+            @if(selectedCell && selectedCell.Vquestion) {
+            <span> ऊपर से नीचे: {{selectedCell.Vquestion}}</span>
+            }
+
+
         </p>
     </div>
 
     <div class="keyboard-section-wrapper">
-         <div class="base">
-		<div class="line1">
-			<span>Q</span>
-			<span>W</span>
-			<span>E</span>
-			<span>R</span>
-			<span>T</span>
-			<span>Y</span>
-			<span>U</span>
-			<span>I</span>
-			<span>O</span>
-			<span>P</span>
-		</div>
-		<div class="line2">
-			<span>A</span>
-			<span>S</span>
-			<span>D</span>
-			<span>F</span>
-			<span>G</span>
-			<span>H</span>
-			<span>J</span>
-			<span>K</span>
-			<span>L</span>
-		</div>
-		<div class="line3">
-			<span><svg enable-background="new 0 0 500 500" id="arrow" version="1.1" viewBox="0 0 500 500" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M433.704,237.465c4.456,6.086,7.092,13.539,7.092,21.622  c0,20.079-16.266,36.341-36.344,36.341h-36.341c-9.991,0-18.173,8.18-18.173,18.172v109.025c0,20.079-16.262,36.341-36.341,36.341  H186.4c-20.079,0-36.34-16.262-36.34-36.341V313.6c0-9.992-8.181-18.172-18.172-18.172H95.547  c-20.079,0-36.342-16.262-36.342-36.341c0-8.083,2.635-15.536,7.08-21.622L217.747,54.388c17.807-17.808,46.695-17.808,64.505,0  L433.704,237.465z"/></svg></span>
-			<span>Z</span>
-			<span>X</span>
-			<span>C</span>
-			<span>V</span>
-			<span>B</span>
-			<span>N</span>
-			<span>M</span>
-			<span><svg baseProfile="tiny" id="backspace" version="1.2" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M19.5,5h-10C8.234,5,6.666,5.807,5.93,6.837L3.32,10.49c-0.642,0.898-1.182,1.654-1.199,1.679  C2,12.344,1.999,12.661,2.124,12.833c0.023,0.033,0.555,0.777,1.188,1.664l2.619,3.667C6.666,19.193,8.233,20,9.5,20h10  c1.379,0,2.5-1.122,2.5-2.5v-10C22,6.122,20.879,5,19.5,5z M17.207,14.793c0.391,0.391,0.391,1.023,0,1.414  C17.012,16.402,16.756,16.5,16.5,16.5s-0.512-0.098-0.707-0.293L13.5,13.914l-2.293,2.293C11.012,16.402,10.756,16.5,10.5,16.5  s-0.512-0.098-0.707-0.293c-0.391-0.391-0.391-1.023,0-1.414l2.293-2.293l-2.293-2.293c-0.391-0.391-0.391-1.023,0-1.414  s1.023-0.391,1.414,0l2.293,2.293l2.293-2.293c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L14.914,12.5L17.207,14.793z"/></svg></span>
-		</div>
-		
-	</div>
+        <div class="base">
+            <div class="line1">
+                @for (item of keyWord; track item; let i = $index) {
+                @if(i < 9){ <span (click)="onCLickvalue(item)">{{item}}</span>
+                    }
+                    }
+            </div>
+            <div class="line2">
+                @for (item of keyWord; track item;let i = $index ) {
+                @if(i >= 9 && i < 17) { <span (click)="onCLickvalue(item)">{{item}}</span>
+                    }
+                    }
+            </div>
+            <div class="line3">
+                <span><svg enable-background="new 0 0 500 500" id="arrow" version="1.1" viewBox="0 0 500 500"
+                        xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path clip-rule="evenodd"
+                            d="M433.704,237.465c4.456,6.086,7.092,13.539,7.092,21.622  c0,20.079-16.266,36.341-36.344,36.341h-36.341c-9.991,0-18.173,8.18-18.173,18.172v109.025c0,20.079-16.262,36.341-36.341,36.341  H186.4c-20.079,0-36.34-16.262-36.34-36.341V313.6c0-9.992-8.181-18.172-18.172-18.172H95.547  c-20.079,0-36.342-16.262-36.342-36.341c0-8.083,2.635-15.536,7.08-21.622L217.747,54.388c17.807-17.808,46.695-17.808,64.505,0  L433.704,237.465z" />
+                    </svg></span>
+                @for (item of keyWord; track item; let i = $index) {
+                @if(i >= 17) {
+                <span (click)="onCLickvalue(item)">{{item}}</span>
+                }
+
+                }
+                <span><svg baseProfile="tiny" id="backspace" version="1.2" viewBox="0 0 24 24" xml:space="preserve"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M19.5,5h-10C8.234,5,6.666,5.807,5.93,6.837L3.32,10.49c-0.642,0.898-1.182,1.654-1.199,1.679  C2,12.344,1.999,12.661,2.124,12.833c0.023,0.033,0.555,0.777,1.188,1.664l2.619,3.667C6.666,19.193,8.233,20,9.5,20h10  c1.379,0,2.5-1.122,2.5-2.5v-10C22,6.122,20.879,5,19.5,5z M17.207,14.793c0.391,0.391,0.391,1.023,0,1.414  C17.012,16.402,16.756,16.5,16.5,16.5s-0.512-0.098-0.707-0.293L13.5,13.914l-2.293,2.293C11.012,16.402,10.756,16.5,10.5,16.5  s-0.512-0.098-0.707-0.293c-0.391-0.391-0.391-1.023,0-1.414l2.293-2.293l-2.293-2.293c-0.391-0.391-0.391-1.023,0-1.414  s1.023-0.391,1.414,0l2.293,2.293l2.293-2.293c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L14.914,12.5L17.207,14.793z" />
+                    </svg></span>
+            </div>
+
+        </div>
 
     </div>
-   
-<!-- <div class="clues">
+
+    <!-- <div class="clues">
     <div class="clue" *ngFor="let clue of clues; let i = index">
         {{ clue }}
     </div>

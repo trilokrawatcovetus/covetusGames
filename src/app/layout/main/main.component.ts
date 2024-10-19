@@ -13,12 +13,6 @@ export class MainComponent {
   gridSize = 10; // 10x10 grid
   grid: any[][] = [];
   blankCells: any[] = [];
-  ngOnInit(): void {
-    this.initializeGrid();
-    // this.populateGrid();
-    // this.findBlankCells();
-  }
-
   clues: any = {
     "across": [
       {
@@ -196,11 +190,11 @@ export class MainComponent {
       },
       {
         "number": 15,
-        "cell": "4,8",
+        "cell": "5,1",
         "clue": "विदित, अवगत, वाकिफ",
-        "answer": "करम",
-        "answerArray": ["क", "र", "म"],
-        "endCell": "7,8",
+        "answer": "मालूम",
+        "answerArray": ["मा", "लू", "म"],
+        "endCell": "7,1",
         "orientation": "vertical"
       },
       {
@@ -232,6 +226,39 @@ export class MainComponent {
       }
     ]
   }
+  ngOnInit(): void {
+    this.initializeGrid();
+    // this.populateGrid();
+    // this.findBlankCells();
+    this.clues.across.map((f: any) => {
+      f['completed'] = false;
+      let length = f['answerArray'].length;
+      f['allCellList'] = [];
+      let k = parseInt(f.cell.split(',')[1])
+      let i = parseInt(f.cell.split(',')[0])
+      console.log(k, 1)
+      for (let x = 0; x <= length - 1; x++) {
+
+        let str = i + ',' + (k + x);
+        f['allCellList'].push(str)
+
+      }
+    })
+    this.clues.down.map((f: any) => {
+      f['completed'] = false;
+      let length = f['answerArray'].length;
+      f['allCellList'] = [];
+      let k = parseInt(f.cell.split(',')[1])
+      let i = parseInt(f.cell.split(',')[0])
+      for (let x = 0; x <= length - 1; x++) {
+
+        let str = (i + x) + ',' + k
+        f['allCellList'].push(str)
+
+      }
+    })
+  }
+
 
   submitAnswer() {
 
@@ -254,7 +281,9 @@ export class MainComponent {
           HendCell: null,
           VendCell: null,
           isActive: true,
-          showQH: false
+          showQH: false,
+          cellId: i + ',' + j,
+
         });
         if ((i + 1) == 10 && (j + 1) == 10) {
           this.checkAnswer()
@@ -311,6 +340,8 @@ export class MainComponent {
             this.grid[i][k + x]['isBlanckdCell'] = false;
             // this.grid[i][k + x]['Vquestion'] = false;
             this.grid[i][k + x]['Hquestion'] = this.clues.across[index]['clue'];
+            this.grid[i][k + x]['HanswerArray'] = this.clues.across[index]['answerArray'];
+            this.grid[i][k + x]['nextHCell'] = (x == length - 1) ? null : x + 1;
             j['qnumber'] = this.clues.across[index]['number']
           }
 
@@ -323,7 +354,10 @@ export class MainComponent {
             this.grid[i + x][k]['answer'] = this.clues.down[index2]['answerArray'][x]
             this.grid[i + x][k]['isBlanckdCell'] = false;
             this.grid[i + x][k]['Vquestion'] = this.clues.down[index2]['clue'];
+            this.grid[i + x][k]['VanswerArray'] = this.clues.down[index2]['answerArray'];
+            this.grid[i + x][k]['nextVCell'] = (x == length - 1) ? null : x + 1;
             j['qnumber'] = this.clues.down[index2]['number'];
+
           }
 
         }
