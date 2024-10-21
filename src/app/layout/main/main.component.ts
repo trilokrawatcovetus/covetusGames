@@ -2,14 +2,19 @@ import { Component, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CrossWordAppComponent } from '../cross-word-app/cross-word-app.component';
+import { AlphabetGameComponent } from '../alphabet-game/alphabet-game.component';
+import { SocketService } from '../../services/socket.service'
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CrossWordAppComponent],
+  imports: [CrossWordAppComponent, AlphabetGameComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
 export class MainComponent {
+  constructor(private sokect: SocketService) {
+
+  }
   gridSize = 10; // 10x10 grid
   grid: any[][] = [];
   blankCells: any[] = [];
@@ -248,6 +253,192 @@ export class MainComponent {
       }
     ]
   }
+  alphabetQuestion: any = [
+    {
+      lable: 'A',
+      image: 'assets/images/apple.png',
+      clue: 'Which of these fruits is red and starts with A?',
+      answers: ['Apple', 'Avocado', 'Apricot', 'Almond', 'Acai'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'B',
+      image: 'assets/images/ball.png',
+      clue: 'Which of these is round and starts with B?',
+      answers: ['Ball', 'Banana', 'Bat', 'Bottle', 'Bag'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'C',
+      image: 'assets/images/cat.png',
+      clue: 'Which of these is a domestic animal and starts with C?',
+      answers: ['Cat', 'Cow', 'Camel', 'Cheetah', 'Crane'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'D',
+      image: 'assets/images/dog.png',
+      clue: 'Which of these is man’s best friend and starts with D?',
+      answers: ['Dog', 'Duck', 'Deer', 'Dolphin', 'Dragonfly'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'E',
+      image: 'assets/images/elephant.png',
+      clue: 'Which of these is the largest land animal and starts with E?',
+      answers: ['Elephant', 'Eagle', 'Emu', 'Eel', 'Elk'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'F',
+      image: 'assets/images/fish.png',
+      clue: 'Which of these animals lives in water and starts with F?',
+      answers: ['Fish', 'Falcon', 'Frog', 'Fox', 'Ferret'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'G',
+      image: 'assets/images/grapes.png',
+      clue: 'Which of these is a fruit and starts with G?',
+      answers: ['Grapes', 'Goose', 'Garlic', 'Ginger', 'Giraffe'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'H',
+      image: 'assets/images/horse.png',
+      clue: 'Which of these animals is known for racing and starts with H?',
+      answers: ['Horse', 'Hawk', 'Hamster', 'Hedgehog', 'Heron'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'I',
+      image: 'assets/images/icecream.png',
+      clue: 'Which of these is a frozen dessert and starts with I?',
+      answers: ['Ice cream', 'Igloo', 'Insect', 'Ink', 'Iron'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'J',
+      image: 'assets/images/jellyfish.png',
+      clue: 'Which of these is a sea creature and starts with J?',
+      answers: ['Jellyfish', 'Jaguar', 'Jacket', 'Jungle', 'Jeep'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'K',
+      image: 'assets/images/kangaroo.png',
+      clue: 'Which of these is a jumping marsupial and starts with K?',
+      answers: ['Kangaroo', 'Koala', 'Kite', 'Kiwi', 'Knife'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'L',
+      image: 'assets/images/lion.png',
+      clue: 'Which of these is the king of the jungle and starts with L?',
+      answers: ['Lion', 'Leopard', 'Lobster', 'Lizard', 'Lynx'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'M',
+      image: 'assets/images/monkey.png',
+      clue: 'Which of these animals loves to swing on trees and starts with M?',
+      answers: ['Monkey', 'Moose', 'Mule', 'Mouse', 'Mantis'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'N',
+      image: 'assets/images/nest.png',
+      clue: 'Which of these is a home for birds and starts with N?',
+      answers: ['Nest', 'Net', 'Noodles', 'Notebook', 'Necklace'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'O',
+      image: 'assets/images/octopus.png',
+      clue: 'Which of these sea creatures has eight arms and starts with O?',
+      answers: ['Octopus', 'Owl', 'Ostrich', 'Otter', 'Orca'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'P',
+      image: 'assets/images/penguin.png',
+      clue: 'Which of these is a bird that cannot fly and starts with P?',
+      answers: ['Penguin', 'Parrot', 'Peacock', 'Pigeon', 'Puma'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'Q',
+      image: 'assets/images/queen.png',
+      clue: 'Which of these is a royal female leader and starts with Q?',
+      answers: ['Queen', 'Quail', 'Question', 'Quilt', 'Quarter'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'R',
+      image: 'assets/images/rabbit.png',
+      clue: 'Which of these is a small, fluffy animal that hops and starts with R?',
+      answers: ['Rabbit', 'Raccoon', 'Rat', 'Raven', 'Reindeer'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'S',
+      image: 'assets/images/sun.png',
+      clue: 'Which of these is a star at the center of our solar system and starts with S?',
+      answers: ['Sun', 'Snake', 'Star', 'Swan', 'Spider'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'T',
+      image: 'assets/images/tiger.png',
+      clue: 'Which of these is a large wild cat with stripes and starts with T?',
+      answers: ['Tiger', 'Turtle', 'Tuna', 'Toucan', 'Termite'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'U',
+      image: 'assets/images/unicorn.png',
+      clue: 'Which of these is a mythical horse with a horn and starts with U?',
+      answers: ['Unicorn', 'Urchin', 'Umbrella', 'UFO', 'Unicycle'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'V',
+      image: 'assets/images/violin.png',
+      clue: 'Which of these is a string instrument and starts with V?',
+      answers: ['Violin', 'Vase', 'Van', 'Vulture', 'Viper'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'W',
+      image: 'assets/images/whale.png',
+      clue: 'Which of these is a large marine mammal and starts with W?',
+      answers: ['Whale', 'Wolf', 'Worm', 'Walrus', 'Woodpecker'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'X',
+      image: 'assets/images/xylophone.png',
+      clue: 'Which of these is a musical instrument that starts with X?',
+      answers: ['Xylophone', 'Xerox', 'X-ray', 'Xylograph', 'Xenon'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'Y',
+      image: 'assets/images/yak.png',
+      clue: 'Which of these is an animal with long hair and starts with Y?',
+      answers: ['Yak', 'Yacht', 'Yam', 'Yo-yo', 'Yellowtail'],
+      value: '', // Correct answer is now empty
+    },
+    {
+      lable: 'Z',
+      image: 'assets/images/zebra.png',
+      clue: 'Which of these is an animal with black-and-white stripes and starts with Z?',
+      answers: ['Zebra', 'Zucchini', 'Zero', 'Zodiac', 'Zone'],
+      value: '', // Correct answer is now empty
+    },
+  ];
+
+
   ngOnInit(): void {
     this.initializeGrid();
     // this.populateGrid();
