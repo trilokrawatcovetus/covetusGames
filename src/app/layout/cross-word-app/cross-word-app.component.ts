@@ -198,7 +198,6 @@ export class CrossWordAppComponent {
     let nexCellIndex = this.clues['across'][index]['allCellList'].findIndex((f: any) => f == nextCellaPath);
     if (nexCellIndex != -1) {
       let cellItem = this.grid[row][col + 1];
-      console.log('dffdf', cellItem)
       if (cellItem.isCompleteCell) {
         this.checkNextCellHorizonatal(index, row, col + 1)
       } else {
@@ -209,7 +208,6 @@ export class CrossWordAppComponent {
   checkNextCellVertical(Vindex: any, row: any, col: any) {
     let nextCellaPath = (row + 1) + ',' + (col)
     let nexCellIndex = this.clues['down'][Vindex]['allCellList'].findIndex((f: any) => f == nextCellaPath);
-    console.log(nexCellIndex)
     if (nexCellIndex != -1) {
       let cellItem = this.grid[row + 1][col]
       if (cellItem.isCompleteCell) {
