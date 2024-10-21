@@ -81,13 +81,13 @@ export class CrossWordAppComponent {
 
         }
 
-        this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 26)
+        this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
       }
     } else {
       console.log(key)
       cell.showQH = key;
       this.selectedCell = cell;
-      this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 26)
+      this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
     }
 
   }
