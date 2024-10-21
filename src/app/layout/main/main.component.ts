@@ -22,7 +22,8 @@ export class MainComponent {
         "answer": "दावा",
         "answerArray": ["दा", "वा"],
         "endCell": "0,3",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 3,
@@ -31,7 +32,8 @@ export class MainComponent {
         "answer": "आसपास",
         "answerArray": ["आ", "स", "पा", "स"],
         "endCell": "0,9",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 5,
@@ -40,7 +42,8 @@ export class MainComponent {
         "answer": "देश",
         "answerArray": ["दे", "श"],
         "endCell": "1,1",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 7,
@@ -49,7 +52,8 @@ export class MainComponent {
         "answer": "रसोईघर",
         "answerArray": ["र", "सो", "ई", "घ", "र"],
         "endCell": "2,5",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 9,
@@ -58,7 +62,8 @@ export class MainComponent {
         "answer": "नुकिला",
         "answerArray": ["नु", "कि", "ला"],
         "endCell": "2,9",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 10,
@@ -67,7 +72,7 @@ export class MainComponent {
         "answer": "रण",
         "answerArray": ["र", "ण"],
         "endCell": "3,1",
-        "orientation ": "horizontal"
+        "orientation ": "across"
       },
       {
         "number": 11,
@@ -76,7 +81,8 @@ export class MainComponent {
         "answer": "जया",
         "answerArray": ["ज", "या"],
         "endCell": "3,4",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 12,
@@ -85,7 +91,8 @@ export class MainComponent {
         "answer": "अतिशय",
         "answerArray": ["अ", "ति", "श", "य"],
         "endCell": "4,9",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 14,
@@ -94,7 +101,8 @@ export class MainComponent {
         "answer": "कमाल",
         "answerArray": ["क", "मा", "ल"],
         "endCell": "5,2",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 17,
@@ -103,7 +111,8 @@ export class MainComponent {
         "answer": "रंक",
         "answerArray": ["रं", "क"],
         "endCell": "6,9",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 18,
@@ -112,7 +121,8 @@ export class MainComponent {
         "answer": "सोमवार",
         "answerArray": ["सो", "म", "वा", "र"],
         "endCell": "7,3",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       },
       {
         "number": 19,
@@ -121,7 +131,8 @@ export class MainComponent {
         "answer": "मजदूर",
         "answerArray": ["म", "ज", "दू", "र"],
         "endCell": "8,6",
-        "orientation": "horizontal"
+        "orientation": "across",
+        "type": "across"
       }
     ],
     "down": [
@@ -132,7 +143,8 @@ export class MainComponent {
         "answer": "वाकई",
         "answerArray": ["वा", "क", "ई"],
         "endCell": "2,3",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 4,
@@ -141,7 +153,8 @@ export class MainComponent {
         "answer": "सहानुभूति",
         "answerArray": ["स", "हा", "नु", "भू", "ति"],
         "endCell": "4,7",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 6,
@@ -150,7 +163,8 @@ export class MainComponent {
         "answer": "शरण",
         "answerArray": ["श", "र", "ण"],
         "endCell": "3,1",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 8,
@@ -159,7 +173,8 @@ export class MainComponent {
         "answer": "घसियार",
         "answerArray": ["घ", "सि", "या", "र"],
         "endCell": "5,4",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 10,
@@ -168,7 +183,8 @@ export class MainComponent {
         "answer": "रसिक",
         "answerArray": ["र", "सि", "क"],
         "endCell": "5,0",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 12,
@@ -177,7 +193,8 @@ export class MainComponent {
         "answer": "अधिकतर",
         "answerArray": ["अ", "धि", "क", "त", "र"],
         "endCell": "8,6",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 13,
@@ -186,7 +203,8 @@ export class MainComponent {
         "answer": "शतरंज",
         "answerArray": ["श", "त", "रं", "ज"],
         "endCell": "8,8",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 15,
@@ -195,7 +213,8 @@ export class MainComponent {
         "answer": "मालूम",
         "answerArray": ["मा", "लू", "म"],
         "endCell": "7,1",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 16,
@@ -204,7 +223,8 @@ export class MainComponent {
         "answer": "कर्म",
         "answerArray": ["क", "र", "म"],
         "endCell": "9,3",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 18,
@@ -213,7 +233,8 @@ export class MainComponent {
         "answer": "सोहन",
         "answerArray": ["सो", "ह", "न"],
         "endCell": "=9,0",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       },
       {
         "number": 20,
@@ -222,7 +243,8 @@ export class MainComponent {
         "answer": "दूरी",
         "answerArray": ["दू", "री"],
         "endCell": "9,5",
-        "orientation": "vertical"
+        "orientation": "down",
+        "type": "down"
       }
     ]
   }

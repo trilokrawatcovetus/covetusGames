@@ -2,7 +2,7 @@
     <div class="row crossword-board" *ngFor="let row of grid; let i = index">
         <div class="col-1 cell crossword-board__item" *ngFor="let cell of row; let j = index"
             [ngClass]="{'crossword-board__item--blank': cell.isBlanckdCell, 'activeCell': selectedCell && selectedCell.cellId == cell.cellId, 'cmpleteCell': cell.isCompleteCell}"
-            (click)="clickonCell(cell)">
+            (click)="clickonCell(cell,'')">
             @if(cell['qnumber']) {
             <span> {{cell['qnumber']}}</span>
             }
@@ -12,7 +12,7 @@
     <div class="que-hint-wrapper">
         <p class="que-hint-text">
             <!-- {{completed}} -->
-            @if(selectedCell && selectedCell.Hquestion) {
+            @if(selectedCell && selectedCell.showQH) {
             <span>बाएँ से दाएँ: {{selectedCell.Hquestion}}</span>
             }
 
@@ -20,7 +20,7 @@
 
         </p>
         <p class="que-hint-text">
-            @if(selectedCell && selectedCell.Vquestion) {
+            @if(selectedCell && !selectedCell.showQH) {
             <span> ऊपर से नीचे: {{selectedCell.Vquestion}}</span>
             }
 

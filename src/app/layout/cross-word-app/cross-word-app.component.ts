@@ -56,36 +56,44 @@ export class CrossWordAppComponent {
   selectedCell: any;
   keyWord: any = []
   completed: boolean = false;
-  clickonCell(cell: any) {
 
-    if ((cell.isCompleteCell == false || cell.isBlanckdCell == false) || this.completed == false) {
-
-      if (cell.Hquestion && cell.Vquestion) {
-        cell.showQH = !cell.showQH;
-        this.selectedCell = cell;
-      } else {
-        if (cell.Hquestion) {
-          cell.showQH = true;
+  clickonCell(cell: any, key: any) {
+    if (this.selectedCell && this.selectedCell.isBlanckdCell == true) {
+      return;
+    }
+    if (this.completed == true) {
+      return;
+    }
+    if (key === '') {
+      if ((cell.isCompleteCell == false)) {
+        if (cell.Hquestion && cell.Vquestion) {
+          cell.showQH = !cell.showQH;
           this.selectedCell = cell;
-        }
-        if (cell.Vquestion) {
-          cell.showQH = false;
-          this.selectedCell = cell;
+        } else {
+          if (cell.Hquestion) {
+            cell.showQH = true;
+            this.selectedCell = cell;
+          }
+          if (cell.Vquestion) {
+            cell.showQH = false;
+            this.selectedCell = cell;
+          }
+
         }
 
+        this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 26)
       }
+    } else {
+      console.log(key)
+      cell.showQH = key;
+      this.selectedCell = cell;
       this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 26)
     }
-    // if (cell.showQH) {
-    // } else {
-    //   this.selectedQ = cell.VendCell;
 
-    // }
-    // console.log(this.selectedCell.answer)
   }
 
-
   getRandomValues(barakhadi: any, answerArray: any, totalCount: any) {
+
 
     let resultArray = [...answerArray]; // Include all values from answerArray
 
@@ -110,15 +118,13 @@ export class CrossWordAppComponent {
   }
 
   onCLickvalue(value: any) {
-    this.selectedCell['value'] = value;
-    if ((this.selectedCell.isCompleteCell == false || this.selectedCell.isBlanckdCell == false) && this.completed == false) {
-
-      if (this.selectedCell.showQH || this.selectedCell.Hquestion) {
-        // VanswerArray
-        // HanswerArray
-        let index = this.clues['across'].findIndex((x: any) => x.clue == this.selectedCell.Hquestion);
-
-        // let tempStr = [];
+    if (this.selectedCell.isBlanckdCell == true) {
+      return;
+    }
+    if (this.selectedCell.isCompleteCell == false) {
+      this.selectedCell['value'] = value;
+      let index = this.clues['across'].findIndex((x: any) => x.clue == this.selectedCell.Hquestion);
+      if (index != -1) {
         let completedfalg = true;
         this.clues['across'][index]['allCellList'].map((f: any, index2: any) => {
           let i = f.split(',')[0]
@@ -138,36 +144,38 @@ export class CrossWordAppComponent {
             }
           }
         })
-
       }
-      if (!this.selectedCell.showQH || this.selectedCell.Vquestion) {
-        // VanswerArray
-        // HanswerArray
-        // console.log(this.clues['down']['clue'], this.selectedCell.Hquestion);
-        let index = this.clues['down'].findIndex((x: any) => x.clue == this.selectedCell.Vquestion);
+      let Vindex = this.clues['down'].findIndex((x: any) => x.clue == this.selectedCell.Vquestion);
+      if (Vindex != -1) {
 
-
-        // let tempStr = [];
         let completedfalg = true;
-        this.clues['down'][index]['allCellList'].map((f: any, index2: any) => {
+        this.clues['down'][Vindex]['allCellList'].map((f: any, index2: any) => {
           let i = f.split(',')[0]
           let j = f.split(',')[1]
           if (this.grid[i][j]['answer'] != this.grid[i][j]['value']) {
             completedfalg = false;
           }
-          if ((index2 + 1) == this.clues['down'][index]['allCellList'].length) {
+          if ((index2 + 1) == this.clues['down'][Vindex]['allCellList'].length) {
             if (completedfalg == true) {
-              this.clues['down'][index]['completed'] = true;
+              this.clues['down'][Vindex]['completed'] = true;
               this.checkIsCompleteCrossWord()
-              this.clues['down'][index]['allCellList'].map((f: any, index2: any) => {
+              this.clues['down'][Vindex]['allCellList'].map((f: any, index2: any) => {
                 let i = f.split(',')[0]
                 let j = f.split(',')[1]
                 this.grid[i][j]['isCompleteCell'] = true;
               })
             }
           }
-        })
+        });
+
       }
+
+      if (this.selectedCell.showQH && index != -1) {
+        this.checkNextCellHorizonatal(index, this.selectedCell.rowNumber, this.selectedCell.cellnumber)
+      } else
+        if (!this.selectedCell.showQH && Vindex != -1) {
+          this.checkNextCellVertical(Vindex, this.selectedCell.rowNumber, this.selectedCell.cellnumber)
+        }
     }
 
 
@@ -183,5 +191,32 @@ export class CrossWordAppComponent {
       }
 
     }, 500)
+  }
+
+  checkNextCellHorizonatal(index: any, row: any, col: any) {
+    let nextCellaPath = row + ',' + (col + 1)
+    let nexCellIndex = this.clues['across'][index]['allCellList'].findIndex((f: any) => f == nextCellaPath);
+    if (nexCellIndex != -1) {
+      let cellItem = this.grid[row][col + 1];
+      console.log('dffdf', cellItem)
+      if (cellItem.isCompleteCell) {
+        this.checkNextCellHorizonatal(index, row, col + 1)
+      } else {
+        this.clickonCell(cellItem, this.selectedCell.showQH);
+      }
+    }
+  }
+  checkNextCellVertical(Vindex: any, row: any, col: any) {
+    let nextCellaPath = (row + 1) + ',' + (col)
+    let nexCellIndex = this.clues['down'][Vindex]['allCellList'].findIndex((f: any) => f == nextCellaPath);
+    console.log(nexCellIndex)
+    if (nexCellIndex != -1) {
+      let cellItem = this.grid[row + 1][col]
+      if (cellItem.isCompleteCell) {
+        this.checkNextCellVertical(Vindex, row + 1, col);
+      } else {
+        this.clickonCell(cellItem, this.selectedCell.showQH);
+      }
+    }
   }
 }
