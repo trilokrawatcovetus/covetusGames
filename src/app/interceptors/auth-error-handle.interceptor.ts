@@ -10,12 +10,22 @@ export const authErrorHandleInterceptor: HttpInterceptorFn = (req, next) => {
   const toastr = inject(ToastrService);
   const Route = inject(Router);
   let authToken = localStorage.getItem('g-max-token');
-  const authReq = req.clone({
-    setHeaders: {
-      'x-access-token': `${authToken}`,
-      'Content-Type': 'application/json;',
-    }
+  console.log(req.url)
+
+  let authReq = req.clone({
+    // setHeaders: {
+    //   'x-access-token': `${authToken}`,
+    //   'Content-Type': 'application/json;',
+    // }
   });
+  if (!req.url.includes('login/login')) {
+    authReq = req.clone({
+      setHeaders: {
+        'x-access-token': `${authToken}`,
+        'Content-Type': 'application/json;',
+      }
+    });
+  }
   const STATUS_CODE = {
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,

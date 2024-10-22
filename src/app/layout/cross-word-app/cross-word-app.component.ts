@@ -82,6 +82,9 @@ export class CrossWordAppComponent {
       // Subscribe to the timer value
       this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
         this.timeRemaining = remainingTime;
+        if (this.timeRemaining < 1) {
+          this.isCompletd.emit(true);
+        }
       });
 
     }
@@ -94,6 +97,7 @@ export class CrossWordAppComponent {
       return;
     }
     if (key === '') {
+      cell.value = ''
       if ((cell.isCompleteCell == false)) {
         if (cell.Hquestion && cell.Vquestion) {
           cell.showQH = !cell.showQH;
@@ -280,6 +284,8 @@ export class CrossWordAppComponent {
   formatTime(): string {
     const minutes = Math.floor(this.timeRemaining / 60);
     const seconds = this.timeRemaining % 60;
+    let time: any = this.timeRemaining;
+
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 

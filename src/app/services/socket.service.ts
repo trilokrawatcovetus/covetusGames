@@ -30,6 +30,10 @@ export class SocketService {
     this.socket.emit('saveAnswer', obj);
   }
   // Send a message to the server
+  saveAlphabetAns(obj: any): void {
+    this.socket.emit('saveAlphabetAnswer', obj);
+  }
+  // Send a message to the server
   completeGame(obj: any): void {
     this.socket.emit('completeGame', obj);
   }

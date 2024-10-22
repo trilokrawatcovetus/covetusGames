@@ -1,16 +1,16 @@
 <section class="main-qustion-section">
+    @if(selecteQuestion) {
     <div class="image-content-wrapper">
         <div class="pre-btn-wrapper left" (click)="goToPreKey(currentIndex)">
             <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="center-container alpha-img-wrapper">
-            <img src="assets/images/fakeplaceholder.png" alt="Centered Image" class="center-image">
+            <img src="{{selecteQuestion.image}}" alt="Centered Image" class="center-image">
         </div>
         <div class="pre-btn-wrapper right" (click)="goToNextKey(currentIndex)">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
     </div>
-    @if(selecteQuestion) {
     <div class="form-group">
         <div class="button-group-wrapper">
             <!-- <div class="pre-btn-wrapper" (click)="goToPreKey(currentIndex)">
@@ -26,7 +26,8 @@
             <div class="input-answer">{{selecteQuestion.value}}</div>
             <!-- <input type="text" class="form-control input-answer" id="formGroupExampleInput" name="answer" placeholder="Example input"
                 [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }"> -->
-                <button class="button-74" type="button" [disabled]="!selecteQuestion.value" (click)="onSubmit()">Submit</button>
+            <button class="button-74" type="button" [disabled]="!selecteQuestion.value"
+                (click)="onSubmit()">Submit</button>
         </div>
     </div>
 

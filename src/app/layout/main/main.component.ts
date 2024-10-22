@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { CrossWordAppComponent } from '../cross-word-app/cross-word-app.component';
@@ -232,7 +232,8 @@ export class MainComponent {
                     ele['isComplete'] = true;
                     ele['value'] = ele.user_games_question_answers[0]['answer']
                   }
-                  this.alphabetQuestion.push(ele);
+                  let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+                  this.alphabetQuestion.push(obj);
                   // isComplete = true;
                 })
               } else {
@@ -293,6 +294,7 @@ export class MainComponent {
     this.startCrossWord = false;
   }
   onCompleteAlphabetGame(event: any) {
+    debugger;
     this.startAlphbetgame = false;
   }
 }
