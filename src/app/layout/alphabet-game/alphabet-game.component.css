@@ -107,3 +107,240 @@ div[class*='line'] span:active {
 #mic:hover {
     -webkit-filter: drop-shadow(0px 2px 15px #71D4FE) filter: drop-shadow(0px 2px 15px #71D4FE)
 } */
+
+.line3 span:last-of-type svg {
+    filter: contrast(0.1);
+}
+
+.alpha-img-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.alpha-img-wrapper > img {
+    height: 300px;
+    width: 300px;
+}
+
+.image-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-content-wrapper .pre-btn-wrapper.left {
+    margin-right: 10px;
+}
+
+.image-content-wrapper .pre-btn-wrapper.right {
+    margin-left: 10px;
+}
+
+.image-content-wrapper .pre-btn-wrapper.left i.fa-solid.fa-chevron-left {
+    font-size: 25px;
+    color: #989898;
+}
+
+.image-content-wrapper .pre-btn-wrapper.right i.fa-solid.fa-chevron-right {
+    font-size: 25px;
+    color: #989898;
+}
+
+.image-content-wrapper .pre-btn-wrapper.right i.fa-solid.fa-chevron-right:hover {
+    color: #0e0e0e;
+}
+
+.image-content-wrapper .pre-btn-wrapper.left i.fa-solid.fa-chevron-left:hover {
+    color: #0e0e0e;
+}
+
+.button-group-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #ffdfe7;
+    padding: 10px 0;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.button-group-wrapper label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #595959;
+    padding: 0 5px;
+}
+
+.input-answer {
+    border-radius: 11.9px;
+    background: #f8f8f8;
+    padding: 10px 19px;
+    color: #000 !important;
+    font-family: Quicksand;
+    font-size: 13.6px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.25px;
+    text-transform: capitalize;
+    border: 1px solid #d1d1d1;
+    width: 400px;
+}
+
+.button-74 {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    height: 36px;
+    display: flex;
+    align-items: center;
+  }
+
+  button.button-74 {
+    margin-left: 16px;
+}
+  
+  .button-74:hover {
+    background-color: #fff;
+  }
+  
+  .button-74:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-74 {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  }
+
+  .base {
+    margin-bottom: 10px;
+}
+
+/* for key board section*/
+@media only screen and (max-width: 768px){
+    div[class*=line] span {
+        width: 34px !important;
+        height: 34px;
+        font-size: 17px;
+        border-radius: 9px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .line3 span:last-of-type{
+        width: 34px;
+        height: 34px;
+      }
+
+      .base {
+        padding: 20px 0px !important;
+        width: 500px;
+      }
+
+      .line3 span:last-of-type svg {
+        width: 30px !important;
+    }
+    
+    .line3 span:last-of-type {
+        width: 34px;
+        height: 34px;
+        display: block;
+        padding: 7px 0 !important;
+    }
+    
+    .line3 span:last-of-type svg {
+        width: 22px !important;
+    }
+
+    button.button-74 {
+        font-size: 16px ;
+        margin-left: 10px;
+    }
+    
+    .input-answer {
+        width: 400px ;
+    }
+
+}
+
+@media only screen and (max-width: 576px){
+    .base {
+        padding: 20px 0px !important;
+        width: 440px;
+      }
+
+      button.button-74 {
+        padding: 0 10px;
+        font-size: 16px;
+        margin-left: 8px;
+    }
+    
+    .input-answer {
+        width: 260px;
+    }
+}
+
+
+@media only screen and (max-width: 376px){
+    div[class*=line] span {
+        width: 30px !important;
+        height: 30px;
+        font-size: 15px;
+        padding: 7px !important;
+        border-radius: 9px !important;
+    }
+    
+    .line3 span:last-of-type{
+      width: 30px;
+      height: 30px;
+      padding: 5px 0 !important;
+    }
+    
+    .base {
+      padding: 20px 0px !important;
+      width: 320px;
+    }
+    
+    .line1 {
+        padding: 0 7px !important;
+    }
+    
+    .line2 {
+        padding: 0 7px !important;
+    }
+    
+    .line3 {
+        padding: 0 7px !important;
+    }
+
+    button.button-74 {
+        padding: 0 10px;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+    
+    .input-answer {
+        width: 220px;
+    }
+}

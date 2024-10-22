@@ -1,21 +1,34 @@
 <section class="main-qustion-section">
-    <div class="center-container">
-        <img src="assets/images/fakeplaceholder.png" alt="Centered Image" class="center-image">
+    <div class="image-content-wrapper">
+        <div class="pre-btn-wrapper left" (click)="goToPreKey(currentIndex)">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="center-container alpha-img-wrapper">
+            <img src="assets/images/fakeplaceholder.png" alt="Centered Image" class="center-image">
+        </div>
+        <div class="pre-btn-wrapper right" (click)="goToNextKey(currentIndex)">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
     </div>
     @if(selecteQuestion) {
     <div class="form-group">
-        <label for="formGroupExampleInput">{{selecteQuestion.clue}}</label>
-        <button type="button" class="btn btn-primary" (click)="goToPreKey(currentIndex)">
-            Pre
-        </button>
-        <button type="button" class="btn btn-primary" (click)="goToNextKey(currentIndex)">
-            Next
-        </button>
-        <input type="text" class="form-control" id="formGroupExampleInput" name="answer" placeholder="Example input"
-            [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }">
+        <div class="button-group-wrapper">
+            <!-- <div class="pre-btn-wrapper" (click)="goToPreKey(currentIndex)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div> -->
+            <label for="formGroupExampleInput">{{selecteQuestion.clue}}</label>
+            <!-- <div class="pre-btn-wrapper" (click)="goToNextKey(currentIndex)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div> -->
+        </div>
+
+        <div class="input-wrapper">
+            <div class="input-answer">{{selecteQuestion.value}}</div>
+            <!-- <input type="text" class="form-control input-answer" id="formGroupExampleInput" name="answer" placeholder="Example input"
+                [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }"> -->
+                <button class="button-74" type="button" [disabled]="!selecteQuestion.value" (click)="onSubmit()">Submit</button>
+        </div>
     </div>
-    <button type="button" class="btn btn-primary" [disabled]="!selecteQuestion.value" (click)="onSubmit()"> Submit
-    </button>
 
     <div class="keyboard-section-wrapper">
         <div class="base">
