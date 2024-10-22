@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="que-hint-wrapper">
-        <p class="que-hint-text">
+        <p class="que-hint-text"> {{timeRemaining}} {{ formatTime() }} {{completed}}
             <!-- {{completed}} -->
             @if(selectedCell && selectedCell.showQH) {
             <span>बाएँ से दाएँ: {{selectedCell.Hquestion}}</span>

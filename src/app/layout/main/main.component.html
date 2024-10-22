@@ -1,5 +1,12 @@
-@if(false) {
-<app-cross-word-app [grid]="grid" [clues]="clues"></app-cross-word-app>
+{{start_date | date :'medium'}}
+<!-- {{start_date }} -->
+
+@if(startAlphbetgame) {
+<app-alphabet-game [alphabetQuestion]="alphabetQuestion" [timer]="gameTime"
+    (isCompletd)="onComplete($event)"></app-alphabet-game>
 }
 
-<app-alphabet-game [alphabetQuestion]="alphabetQuestion"></app-alphabet-game>
+@if(startCrossWord){
+<app-cross-word-app [grid]="grid" [clues]="clues" [timer]="gameTime"
+    (isCompletd)="onCompleteAlphabetGame($event)"></app-cross-word-app>
+}

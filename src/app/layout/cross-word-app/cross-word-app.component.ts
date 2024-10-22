@@ -1,5 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, output, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SocketService } from '../../services/socket.service';
+import { TimerService } from '../../services/timer.service';
+import { Subscription } from 'rxjs';
+import { isFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cross-word-app',
@@ -13,6 +17,9 @@ import { CommonModule } from '@angular/common';
 export class CrossWordAppComponent {
   @Input() grid!: any[][];
   @Input() clues!: any;
+  @Input() timer!: any;
+  isCompletd = output<Boolean>();
+  userId: any = localStorage.getItem('userId')
   barakhadi: any = [
     "अ", "आ", "इ", "ई", "उ", "ऊ", "ए", "ऐ", "ओ", "औ", "अं", "अः", "ऋ",
     "क", "का", "कि", "की", "कु", "कू", "के", "कै", "को", "कौ", "कं", "कः",
@@ -56,7 +63,29 @@ export class CrossWordAppComponent {
   selectedCell: any;
   keyWord: any = []
   completed: boolean = false;
+  timeRemaining: number = 0; // In seconds
+  timerSubscription!: Subscription;
 
+  constructor(private socket: SocketService, private timerService: TimerService, private vcr: ViewContainerRef) {
+
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+
+      console.log(this.clues)
+    }, 10000)
+
+    if (this.timer) {
+      this.timerService.startTimer(this.timer);
+
+      // Subscribe to the timer value
+      this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
+        this.timeRemaining = remainingTime;
+      });
+
+    }
+  }
   clickonCell(cell: any, key: any) {
     if (this.selectedCell && this.selectedCell.isBlanckdCell == true) {
       return;
@@ -136,10 +165,12 @@ export class CrossWordAppComponent {
             if (completedfalg == true) {
               this.checkIsCompleteCrossWord()
               this.clues['across'][index]['completed'] = true;
+              this.saveAnswer(this.clues['across'][index]);
               this.clues['across'][index]['allCellList'].map((f: any, index2: any) => {
                 let i = f.split(',')[0]
                 let j = f.split(',')[1]
                 this.grid[i][j]['isCompleteCell'] = true;
+
               })
             }
           }
@@ -157,6 +188,7 @@ export class CrossWordAppComponent {
           }
           if ((index2 + 1) == this.clues['down'][Vindex]['allCellList'].length) {
             if (completedfalg == true) {
+              this.saveAnswer(this.clues['down'][Vindex]);
               this.clues['down'][Vindex]['completed'] = true;
               this.checkIsCompleteCrossWord()
               this.clues['down'][Vindex]['allCellList'].map((f: any, index2: any) => {
@@ -188,6 +220,13 @@ export class CrossWordAppComponent {
       console.log(index, index2, this.clues['across'], this.clues['down'])
       if (index == -1 && index2 == -1) {
         this.completed = true;
+        let obj = {
+          user_id: this.userId,
+          game_master_id: this.clues['across'][0]['game_master_id'],
+          completed: true
+        }
+        this.socket.completeGame(obj)
+        this.isCompletd.emit(true);
       }
 
     }, 500)
@@ -216,5 +255,35 @@ export class CrossWordAppComponent {
         this.clickonCell(cellItem, this.selectedCell.showQH);
       }
     }
+  }
+
+
+  saveAnswer(data: any) {
+    console.log(data)
+    let obj = {
+      user_id: this.userId,
+      game_master_id: data.game_master_id,
+      question_id: data.id,
+      answer: data.answer,
+
+    }
+    this.socket.saveCrossWordAns(obj);
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+
+  formatTime(): string {
+    const minutes = Math.floor(this.timeRemaining / 60);
+    const seconds = this.timeRemaining % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  destroyComponent(): void {
+    this.vcr.clear(); // This will destroy the component by clearing the ViewContainerRef
   }
 }
