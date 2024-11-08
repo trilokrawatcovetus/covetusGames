@@ -5,13 +5,13 @@ import { CrossWordAppComponent } from '../cross-word-app/cross-word-app.componen
 import { AlphabetGameComponent } from '../alphabet-game/alphabet-game.component';
 import { SocketService } from '../../services/socket.service'
 import { CommonApiService } from '../../services/common-api.service';
-import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CrossWordAppComponent, AlphabetGameComponent, DatePipe],
+  imports: [CrossWordAppComponent, AlphabetGameComponent, DatePipe, CommonModule, ToastrModule, NgxUiLoaderModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -19,7 +19,7 @@ export class MainComponent {
   constructor(private sokect: SocketService, private api: CommonApiService, private toastr: ToastrService, private loader: NgxUiLoaderService) {
 
   }
-  gridSize = 10; // 10x10 grid
+  gridSize = 9; // 10x10 grid
   grid: any[][] = [];
   blankCells: any[] = [];
   clues: any = {
@@ -33,10 +33,15 @@ export class MainComponent {
   startQuestionANswer: boolean = false;
   start_date: any;
   gameTime: any;
+  userName: any = localStorage.getItem('userName')
   private unsubscribe$ = new Subject<void>();
+  gameList: any = [];
+  userId: any = localStorage.getItem('userId');
 
   ngOnInit(): void {
-    this.getGamesDetail();
+
+    this.getAllGamesDetail();
+    // this.getGamesDetail();
     // this.initializeGrid();
     // this.populateGrid();
     // this.findBlankCells();
@@ -52,6 +57,61 @@ export class MainComponent {
         }
         if (data['type'] == "rapidfire") {
           this.startRapidFirgame = true;
+        }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+
+    this.sokect.getGameEndMessageByOwner().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        if (data['type'] == "crossword") {
+          this.startCrossWord = false
+          this.gameList[0]['start'] = 0;
+        }
+        if (data['type'] == "alphabet") {
+          this.startAlphbetgame = false;
+          this.gameList[1]['start'] = 0;
+        }
+        if (data['type'] == "rapidfire") {
+          this.startRapidFirgame = false;
+          this.gameList[2]['start'] = 0;
+        }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+
+    this.sokect.gameActivated().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        let x: any = this.gameList.findIndex((f: any) => f.id == data.id);
+        if (x != -1) {
+          this.gameList[x]['active'] = 1;
+        }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+    this.sokect.gameInActivated().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        let x: any = this.gameList.findIndex((f: any) => f.id == data.id);
+        if (x != -1) {
+          this.gameList[x]['active'] = 0;
         }
 
       },
@@ -91,7 +151,7 @@ export class MainComponent {
           cellId: i + ',' + j,
 
         });
-        if ((i + 1) == 10 && (j + 1) == 10) {
+        if ((i + 1) == this.gridSize && (j + 1) == this.gridSize) {
           this.checkAnswer()
         }
       }
@@ -157,90 +217,90 @@ export class MainComponent {
         if (res['error'] != true) {
           if (res.data && res.data.length > 0) {
             let gameDetail = res.data[0];
-            if (gameDetail && gameDetail.games_questions && gameDetail.type == 'crossword') {
-              this.start_date = gameDetail.start_time
-              if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
-                this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time)
-                let ifGameStarted = this.checkIfGameIsStarted(gameDetail.start_time, gameDetail.end_time)
-                if (ifGameStarted) {
-                  this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
-                  this.startCrossWord = true;
-                }
-                gameDetail.games_questions.forEach((ele: any, i: number) => {
-                  let value = null
-                  if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
-                    value = ele.user_games_question_answers[0]['answer'];
-                    ele.value = value;
-                    ele.isCompleteCell = true;
-                    ele.isCompleteQuestion = true;
-                  }
-                  if (ele.orientation == "down") {
-                    let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
-                    this.clues.down.push(obj);
-                  } else {
-                    let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
-                    this.clues.across.push(obj);
-                  }
+            // if (gameDetail && gameDetail.games_questions && gameDetail.type == 'crossword') {
+            //   this.start_date = gameDetail.start_time
+            //   if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
+            //     this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time)
+            //     let ifGameStarted = gameDetail.start
+            //     if (ifGameStarted) {
+            //       this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
+            //       this.startCrossWord = true;
+            //     }
+            //     gameDetail.games_questions.forEach((ele: any, i: number) => {
+            //       let value = null
+            //       if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
+            //         value = ele.user_games_question_answers[0]['answer'];
+            //         ele.value = value;
+            //         ele.isCompleteCell = true;
+            //         ele.isCompleteQuestion = true;
+            //       }
+            //       if (ele.orientation == "down") {
+            //         let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+            //         this.clues.down.push(obj);
+            //       } else {
+            //         let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+            //         this.clues.across.push(obj);
+            //       }
 
-                  if (gameDetail.games_questions.length == i + 1) {
-                    this.clues.across.map((f: any) => {
-                      f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
-                      let length = f['answerArray'].length;
-                      f['allCellList'] = [];
-                      let k = parseInt(f.cell.split(',')[1])
-                      let i = parseInt(f.cell.split(',')[0])
-                      for (let x = 0; x <= length - 1; x++) {
+            //       if (gameDetail.games_questions.length == i + 1) {
+            //         this.clues.across.map((f: any) => {
+            //           f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
+            //           let length = f['answerArray'].length;
+            //           f['allCellList'] = [];
+            //           let k = parseInt(f.cell.split(',')[1])
+            //           let i = parseInt(f.cell.split(',')[0])
+            //           for (let x = 0; x <= length - 1; x++) {
 
-                        let str = i + ',' + (k + x);
-                        f['allCellList'].push(str)
+            //             let str = i + ',' + (k + x);
+            //             f['allCellList'].push(str)
 
-                      }
-                    })
-                    this.clues.down.map((f: any) => {
-                      // f['completed'] = false;
-                      f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
-                      let length = f['answerArray'].length;
-                      f['allCellList'] = [];
-                      let k = parseInt(f.cell.split(',')[1])
-                      let i = parseInt(f.cell.split(',')[0])
-                      for (let x = 0; x <= length - 1; x++) {
-                        let str = (i + x) + ',' + k
-                        f['allCellList'].push(str);
+            //           }
+            //         })
+            //         this.clues.down.map((f: any) => {
+            //           // f['completed'] = false;
+            //           f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
+            //           let length = f['answerArray'].length;
+            //           f['allCellList'] = [];
+            //           let k = parseInt(f.cell.split(',')[1])
+            //           let i = parseInt(f.cell.split(',')[0])
+            //           for (let x = 0; x <= length - 1; x++) {
+            //             let str = (i + x) + ',' + k
+            //             f['allCellList'].push(str);
 
-                      }
-                    })
-                    this.initializeGrid()
-                  }
-                });
-              } else {
-                gameDetail['completed'];
-                this.startCrossWord = false;
-              }
-            }
-            if (gameDetail && gameDetail.games_questions && gameDetail.type == 'alphabet') {
-              this.start_date = gameDetail.start_time
-              if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
-                this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time)
-                let ifGameStarted = this.checkIfGameIsStarted(gameDetail.start_time, gameDetail.end_time)
-                if (ifGameStarted) {
-                  this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
-                  console.log('gametime', this.gameTime)
-                  this.startAlphbetgame = true;
-                }
-                gameDetail.games_questions.forEach((ele: any, i: number) => {
-                  if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
-                    ele['isComplete'] = true;
-                    ele['value'] = ele.user_games_question_answers[0]['answer']
-                  }
-                  let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
-                  this.alphabetQuestion.push(obj);
-                  // isComplete = true;
-                })
-              } else {
-                gameDetail['completed'];
-                this.startAlphbetgame = false;
-              }
-            }
+            //           }
+            //         })
+            //         this.initializeGrid()
+            //       }
+            //     });
+            //   } else {
+            //     gameDetail['completed'];
+            //     this.startCrossWord = false;
+            //   }
+            // }
+            // if (gameDetail && gameDetail.games_questions && gameDetail.type == 'alphabet') {
+            //   this.start_date = gameDetail.start_time
+            //   if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
+            //     this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time)
+            //     let ifGameStarted = this.checkIfGameIsStarted(gameDetail.start_time, gameDetail.end_time)
+            //     if (ifGameStarted) {
+            //       this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
+            //       console.log('gametime', this.gameTime)
+            //       this.startAlphbetgame = true;
+            //     }
+            //     gameDetail.games_questions.forEach((ele: any, i: number) => {
+            //       if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
+            //         ele['isComplete'] = true;
+            //         ele['value'] = ele.user_games_question_answers[0]['answer']
+            //       }
+            //       let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+            //       this.alphabetQuestion.push(obj);
+            //       // isComplete = true;
+            //     })
+            //   } else {
+            //     gameDetail['completed'];
+            //     this.startAlphbetgame = false;
+            //   }
+            // }
             // user_games_question_answers
           }
         }
@@ -294,7 +354,233 @@ export class MainComponent {
     this.startCrossWord = false;
   }
   onCompleteAlphabetGame(event: any) {
-    debugger;
     this.startAlphbetgame = false;
+  }
+
+
+  getAllGamesDetail() {
+
+    this.api.allgetMethod('user/getAllGamesDetail').subscribe({
+      next: (res: any) => {
+        this.loader.stopLoader('login');
+        if (res['error'] != true) {
+          if (res.data && res.data.length > 0) {
+            this.gameList = res.data;
+            // let gameDetail = res.data[0];
+            this.gameList.map((gameDetail: any) => {
+              if (gameDetail && gameDetail.games_questions && gameDetail.type == 'crossword') {
+                this.start_date = gameDetail.start_time
+                if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
+                  this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
+                  let ifGameStarted = gameDetail.start;
+                  if (ifGameStarted) {
+                    this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
+                    this.startCrossWord = true;
+                  }
+                  gameDetail.games_questions.forEach((ele: any, i: number) => {
+                    let value = null
+                    if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
+                      value = ele.user_games_question_answers[0]['answer'];
+                      ele.value = value;
+                      ele.isCompleteCell = true;
+                      ele.isCompleteQuestion = true;
+                    }
+                    if (ele.orientation == "down") {
+                      let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+                      this.clues.down.push(obj);
+                    } else {
+                      let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+                      this.clues.across.push(obj);
+                    }
+
+                    if (gameDetail.games_questions.length == i + 1) {
+                      this.clues.across.map((f: any) => {
+                        f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
+                        let length = f['answerArray'].length;
+                        f['allCellList'] = [];
+                        let k = parseInt(f.cell.split(',')[1])
+                        let i = parseInt(f.cell.split(',')[0])
+                        for (let x = 0; x <= length - 1; x++) {
+
+                          let str = i + ',' + (k + x);
+                          f['allCellList'].push(str)
+
+                        }
+                      })
+                      this.clues.down.map((f: any) => {
+                        // f['completed'] = false;
+                        f['completed'] = f['isCompleteQuestion'] ? f['isCompleteQuestion'] : false;
+                        let length = f['answerArray'].length;
+                        f['allCellList'] = [];
+                        let k = parseInt(f.cell.split(',')[1])
+                        let i = parseInt(f.cell.split(',')[0])
+                        for (let x = 0; x <= length - 1; x++) {
+                          let str = (i + x) + ',' + k
+                          f['allCellList'].push(str);
+
+                        }
+                      })
+                      this.initializeGrid()
+                    }
+                  });
+                } else {
+                  gameDetail['completed'];
+                  this.startCrossWord = false;
+                }
+              }
+              if (gameDetail && gameDetail.games_questions && gameDetail.type == 'alphabet') {
+                this.start_date = gameDetail.start_time
+                if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
+                  this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
+                  let ifGameStarted = gameDetail.start;
+                  // let ifGameStarted = this.checkIfGameIsStarted(gameDetail.start_time, gameDetail.end_time)
+                  if (ifGameStarted) {
+                    this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
+                    console.log('gametime', this.gameTime)
+                    this.startAlphbetgame = true;
+                  }
+                  gameDetail.games_questions.forEach((ele: any, i: number) => {
+                    if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
+                      ele['isComplete'] = true;
+                      ele['value'] = ele.user_games_question_answers[0]['answer']
+                    }
+                    let obj = Object.assign({}, ele, { answerArray: JSON.parse(ele.answerArray) })
+                    this.alphabetQuestion.push(obj);
+                    // isComplete = true;
+                  })
+                } else {
+                  gameDetail['completed'];
+                  this.startAlphbetgame = false;
+                }
+              }
+            })
+
+            // user_games_question_answers
+          }
+        }
+        else {
+          this.toastr.error(res.message || res.error, '');
+        }
+      },
+      error: (err: any) => {
+        this.loader.stopLoader('login');
+        this.toastr.error(err['message'], '');
+      },
+    });
+  }
+
+  startGame(item: any) {
+
+    this.api.allPostMethod('user/startGame', { id: item.id }).subscribe({
+      next: (res: any) => {
+        this.loader.stopLoader('login');
+        if (res['error'] != true) {
+          // this.sokect.startGame({ id: item.id })
+          console.log(res['data'])
+
+          let obj = {
+            id: res['data'].id,
+            type: res['data'].type,
+            start_time: res['data'].start_time,
+            end_time: res['data'].end_time,
+            active: res['data'].active,
+            start: res['data'].start,
+          }
+          this.sokect.startGame(obj);
+          item['start'] = 1;
+        }
+        else {
+          this.toastr.error(res.message || res.error, '');
+        }
+      },
+      error: (err: any) => {
+
+        this.loader.stopLoader('login');
+        if (err.error && err.error.error == true) {
+          this.toastr.error(err.error['message'], '');
+
+        } else {
+          this.toastr.error(err['message'], '');
+        }
+      },
+    });
+  }
+
+  stopGame(item: any) {
+    this.api.allPostMethod('user/stopGame', { id: item.id }).subscribe({
+      next: (res: any) => {
+        this.loader.stopLoader('login');
+        if (res['error'] != true) {
+          item['start'] = 0;
+          this.sokect.endGame(item);
+
+        }
+        else {
+          this.toastr.error(res.message || res.error, '');
+        }
+      },
+      error: (err: any) => {
+        console.log(err)
+        this.loader.stopLoader('login');
+        if (err.error && err.error.error == true) {
+          this.toastr.error(err.error['message'], '');
+
+        } else {
+          this.toastr.error(err['message'], '');
+        }
+      },
+    });
+  }
+
+  ActiveInActiveGame(item: any, active: boolean) {
+    if (active == true) {
+      this.api.allPostMethod('user/activeGame', { id: item.id }).subscribe({
+        next: (res: any) => {
+          this.loader.stopLoader('login');
+          if (res['error'] != true) {
+            this.sokect.activeGame({ id: item.id })
+            // item['active'] = 1;
+          }
+          else {
+            this.toastr.error(res.message || res.error, '');
+          }
+        },
+        error: (err: any) => {
+
+          this.loader.stopLoader('login');
+          if (err.error && err.error.error == true) {
+            this.toastr.error(err.error['message'], '');
+
+          } else {
+            this.toastr.error(err['message'], '');
+          }
+        },
+      });
+    } else {
+      this.api.allPostMethod('user/inActiveGame', { id: item.id }).subscribe({
+        next: (res: any) => {
+          this.loader.stopLoader('login');
+          if (res['error'] != true) {
+            this.sokect.inActiveGame({ id: item.id })
+            // this.sokect.startGame({ id: item.id })
+            // item['active'] = 0;
+          }
+          else {
+            this.toastr.error(res.message || res.error, '');
+          }
+        },
+        error: (err: any) => {
+
+          this.loader.stopLoader('login');
+          if (err.error && err.error.error == true) {
+            this.toastr.error(err.error['message'], '');
+
+          } else {
+            this.toastr.error(err['message'], '');
+          }
+        },
+      });
+    }
+
   }
 }

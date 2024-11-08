@@ -21,7 +21,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url("/assets/images/background-img.jpg"), #000;
+  background: url("/assets/images/login-img.jpeg"), #000;
   background-position: center;
   background-size: cover;
 }
@@ -134,4 +134,21 @@ button:hover {
   text-align: center;
   margin-top: 30px;
   color: #fff;
+}
+
+.required-valid-wrapper small {
+  color: red;
+  font-weight: 700;
+}
+
+.required-valid-wrapper {
+  display: flex;
+}
+
+.input-field {
+  margin-bottom: 5px !important;
+}
+
+.login-btn {
+  margin-top: 10px;
 }

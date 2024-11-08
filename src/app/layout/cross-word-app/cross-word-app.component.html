@@ -1,9 +1,18 @@
-<div class="container">
+<div class="container main-qustion-section">
+
+    <div id="countdown" class="countdown">
+        <div id="countdown-number">{{formatTime()}}</div>
+        <svg>
+            <circle r="18" cx="20" cy="20"></circle>
+        </svg>
+    </div>
+
     <div class="crossword-grid">
         <div class="row crossword-board" *ngFor="let row of grid; let i = index">
-            <div class="cell-box cell crossword-board__item" *ngFor="let cell of row; let j = index"
-                [ngClass]="{'crossword-board__item--blank': cell.isBlanckdCell, 'activeCell': selectedCell && selectedCell.cellId == cell.cellId, 'cmpleteCell': cell.isCompleteCell}"
-                (click)="clickonCell(cell,'')">
+            <div class="cell-box cell crossword-board__item" *ngFor="let cell of row; let j = index" [ngClass]="{'crossword-board__item--blank': cell.isBlanckdCell, 'activeCell': (selectedCell && selectedCell.cellId == cell.cellId)
+           ||  (selectedCell && selectedCell.showQH && selectedCell.Hquestion == cell.Hquestion) || ( selectedCell && !selectedCell.showQH && selectedCell.Vquestion == cell.Vquestion),
+            'c_activeCell': (selectedCell && selectedCell.cellId == cell.cellId),
+                'cmpleteCell': cell.isCompleteCell}" (click)="clickonCell(cell,'')">
                 @if(cell['qnumber']) {
                 <span> {{cell['qnumber']}}</span>
                 }
@@ -12,7 +21,7 @@
         </div>
     </div>
     <div class="que-hint-wrapper">
-        <p class="que-hint-text"> {{timeRemaining}} {{ formatTime() }} {{completed}}
+        <p class="que-hint-text">
             <!-- {{completed}} -->
             @if(selectedCell && selectedCell.showQH) {
             <span>बाएँ से दाएँ: {{selectedCell.Hquestion}}</span>

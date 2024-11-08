@@ -65,7 +65,7 @@ export class CrossWordAppComponent {
   completed: boolean = false;
   timeRemaining: number = 0; // In seconds
   timerSubscription!: Subscription;
-
+  previousQ: any = null;
   constructor(private socket: SocketService, private timerService: TimerService, private vcr: ViewContainerRef) {
 
   }
@@ -73,7 +73,8 @@ export class CrossWordAppComponent {
   ngOnInit() {
     setTimeout(() => {
 
-      console.log(this.clues)
+      console.log(JSON.stringify(this.clues))
+      console.log(JSON.stringify(this.grid))
     }, 10000)
 
     if (this.timer) {
@@ -82,7 +83,7 @@ export class CrossWordAppComponent {
       // Subscribe to the timer value
       this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
         this.timeRemaining = remainingTime;
-        if (this.timeRemaining < 1) {
+        if (this.timeRemaining != -1 && this.timeRemaining < 1) {
           this.isCompletd.emit(true);
         }
       });
@@ -90,14 +91,48 @@ export class CrossWordAppComponent {
     }
   }
   clickonCell(cell: any, key: any) {
-    if (this.selectedCell && this.selectedCell.isBlanckdCell == true) {
+    if (cell && cell.isBlanckdCell == true) {
       return;
     }
     if (this.completed == true) {
       return;
     }
     if (key === '') {
-      cell.value = ''
+      if (cell.isCompleteCell != true) {
+        cell.value = '';
+      }
+      if (cell.isCompleteCell) {
+
+        if (cell.Hquestion && cell.Vquestion) {
+          cell.showQH = !cell.showQH;
+          if (cell.Hquestion) {
+            cell.showQH = true;
+            let index = this.clues['across'].findIndex((x: any) => x.clue == cell.Hquestion);
+            this.checkNextCellHorizonatal(index, cell.rowNumber, cell.cellnumber);
+
+          }
+          if (cell.Vquestion) {
+            cell.showQH = false;
+            let Vindex = this.clues['down'].findIndex((x: any) => x.clue == cell.Vquestion);
+            this.checkNextCellVertical(Vindex, cell.rowNumber, cell.cellnumber);
+
+          }
+        } else {
+          if (cell.Hquestion) {
+            cell.showQH = true;
+            let index = this.clues['across'].findIndex((x: any) => x.clue == cell.Hquestion);
+
+            this.checkNextCellHorizonatal(index, cell.rowNumber, cell.cellnumber);
+
+          }
+          if (cell.Vquestion) {
+            cell.showQH = false;
+            let Vindex = this.clues['down'].findIndex((x: any) => x.clue == cell.Vquestion);
+            this.checkNextCellVertical(Vindex, cell.rowNumber, cell.cellnumber);
+          }
+
+        }
+      }
       if ((cell.isCompleteCell == false)) {
         if (cell.Hquestion && cell.Vquestion) {
           cell.showQH = !cell.showQH;
@@ -113,15 +148,39 @@ export class CrossWordAppComponent {
           }
 
         }
+        let currentQ;
+        if (this.selectedCell && this.selectedCell.showQH) {
+          currentQ = this.selectedCell.Hquestion
+        }
+        if (this.selectedCell && !this.selectedCell.showQH) {
+          currentQ = this.selectedCell.Vquestion
+        }
+        if (this.previousQ != currentQ) {
+          this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
+          let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
 
-        this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
+          this.getRandomValues(this.barakhadi, answerlist, 24)
+        }
+        // this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
       }
     } else {
-      console.log(key)
       cell.showQH = key;
       this.selectedCell = cell;
-      this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
+      let currentQ;
+      if (this.selectedCell && this.selectedCell.showQH) {
+        currentQ = this.selectedCell.Hquestion
+      }
+      if (this.selectedCell && !this.selectedCell.showQH) {
+        currentQ = this.selectedCell.Vquestion
+      }
+      if (this.previousQ != currentQ) {
+        this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
+        let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
+
+        this.getRandomValues(this.barakhadi, answerlist, 24)
+      }
     }
+
 
   }
 
@@ -241,10 +300,13 @@ export class CrossWordAppComponent {
     let nexCellIndex = this.clues['across'][index]['allCellList'].findIndex((f: any) => f == nextCellaPath);
     if (nexCellIndex != -1) {
       let cellItem = this.grid[row][col + 1];
+      let cellItemold = this.grid[row][col];
+      cellItem['showQH'] = cellItemold.showQH;
+
       if (cellItem.isCompleteCell) {
         this.checkNextCellHorizonatal(index, row, col + 1)
       } else {
-        this.clickonCell(cellItem, this.selectedCell.showQH);
+        this.clickonCell(cellItem, cellItemold.showQH);
       }
     }
   }
@@ -253,17 +315,18 @@ export class CrossWordAppComponent {
     let nexCellIndex = this.clues['down'][Vindex]['allCellList'].findIndex((f: any) => f == nextCellaPath);
     if (nexCellIndex != -1) {
       let cellItem = this.grid[row + 1][col]
+      let cellItemOld = this.grid[row][col]
+      cellItem['showQH'] = cellItemOld.showQH;
       if (cellItem.isCompleteCell) {
         this.checkNextCellVertical(Vindex, row + 1, col);
       } else {
-        this.clickonCell(cellItem, this.selectedCell.showQH);
+        this.clickonCell(cellItem, cellItemOld.showQH);
       }
     }
   }
 
 
   saveAnswer(data: any) {
-    console.log(data)
     let obj = {
       user_id: this.userId,
       game_master_id: data.game_master_id,
@@ -282,13 +345,12 @@ export class CrossWordAppComponent {
   }
 
   formatTime(): string {
-    const minutes = Math.floor(this.timeRemaining / 60);
-    const seconds = this.timeRemaining % 60;
-    let time: any = this.timeRemaining;
+    const totalSeconds = Math.floor(this.timeRemaining); // Discard milliseconds
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
-
   destroyComponent(): void {
     this.vcr.clear(); // This will destroy the component by clearing the ViewContainerRef
   }

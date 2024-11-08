@@ -1,16 +1,21 @@
 import { Component, Input, output, ViewContainerRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimerService } from '../../services/timer.service';
 import { SocketService } from '../../services/socket.service';
 import { Subscription } from 'rxjs';
 const alphabetArray: string[] = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ', ','
+];
+const alphabetArray2: string[] = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
 @Component({
   selector: 'app-alphabet-game',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './alphabet-game.component.html',
   styleUrl: './alphabet-game.component.css'
 })
@@ -21,6 +26,7 @@ export class AlphabetGameComponent {
   selecteQuestion: any;
   currentIndex: any;
   alphabetArray: any = alphabetArray;
+  alphabetArray2: any = alphabetArray2;
   @Input() timer!: any;
   isCompletd = output<Boolean>();
   timeRemaining: number = 0; // In seconds
@@ -39,18 +45,14 @@ export class AlphabetGameComponent {
       this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
         this.timeRemaining = remainingTime;
         let time: any = remainingTime
-
-        if (this.timeRemaining < 1) {
+        if (this.timeRemaining != -1 && this.timeRemaining < 1) {
           this.isCompletd.emit(true);
         }
-        console.log(this.timeRemaining, remainingTime)
       });
 
     }
 
-    console.log(this.alphabetQuestion);
     let index = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
-    console.log(index)
     if (index != -1) {
       this.currentIndex = index;
       this.selecteQuestion = this.alphabetQuestion[index];
@@ -58,6 +60,8 @@ export class AlphabetGameComponent {
     } else {
       this.completed = true;
     }
+
+    console.log(' this.alphabetQuestion', this.alphabetQuestion)
   }
 
 
@@ -73,7 +77,6 @@ export class AlphabetGameComponent {
   }
 
   onSubmit() {
-    console.log(this.selecteQuestion);
     if (this.selecteQuestion && this.selecteQuestion.value) {
       let answerIndex = this.selecteQuestion.answerArray.findIndex((f: any) => f.toLowerCase() == this.selecteQuestion.value.toLowerCase())
       if (answerIndex != -1) {
@@ -131,17 +134,22 @@ export class AlphabetGameComponent {
 
   onKeywordClick(value: any) {
     if (value == 'cross') {
-      this.selecteQuestion.value = '';
+      if (this.selecteQuestion.value) {
+        this.selecteQuestion.value = this.selecteQuestion.value.slice(0, -1);
+
+      }
     } else {
-      this.selecteQuestion.value = (this.selecteQuestion.value ? this.selecteQuestion.value : '') + value
+      let odlValue = (this.selecteQuestion.value != undefined && this.selecteQuestion.value != null) ? this.selecteQuestion.value : '';
+      this.selecteQuestion.value = odlValue + value;
     }
   }
 
   formatTime(): string {
-    console.log(this.timeRemaining)
-    const minutes = Math.floor(this.timeRemaining / 60);
-    const seconds = this.timeRemaining % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    const totalSeconds = Math.floor(this.timeRemaining); // Discard milliseconds
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
   checkAllValueSave() {
@@ -167,6 +175,16 @@ export class AlphabetGameComponent {
   }
   destroyComponent(): void {
     this.vcr.clear(); // This will destroy the component by clearing the ViewContainerRef
+  }
+
+  onClickAlphabet(item: any, index: any) {
+    if (item.isComplete) {
+      return false
+    }
+
+    this.currentIndex = index;
+    this.selecteQuestion = this.alphabetQuestion[index];
+    return
   }
 }
 

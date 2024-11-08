@@ -31,9 +31,15 @@ export class LoginComponent {
     })
 
   }
+
   ngOnInit() {
 
+
+
+
+
   }
+
   get field() { return this.loginForm.controls }
 
   onSubmit() {
@@ -48,15 +54,7 @@ export class LoginComponent {
       "password": this.loginForm.get('password')?.value
     }
 
-    if (payload.mobile == '8516977300') {
-      localStorage.setItem('g-max-token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGUiOiI5NTc1NjY2MzUxIiwiaWQiOjEsIm5hbWUiOiJUcmlsb2siLCJpYXQiOjE3MjkyNDY5NDcsImV4cCI6MTcyOTMzMzM0N30.GTglD_eBjelHbHcoYnM1JKjIKSTg5TyV8h6pTDJQTH8`);
-      localStorage.setItem('userId', '1');
-      localStorage.setItem('userName', 'Trilok Rawat');
-      this.toastr.success('Logged in successfully', '');
-      this.loginForm.reset();
-      this.router.navigate(['']);
-      return
-    }
+
 
     this.api.allPostMethod('login/login', payload).subscribe({
       next: (res: any) => {

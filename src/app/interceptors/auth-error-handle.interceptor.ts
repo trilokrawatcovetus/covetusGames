@@ -13,16 +13,16 @@ export const authErrorHandleInterceptor: HttpInterceptorFn = (req, next) => {
   console.log(req.url)
 
   let authReq = req.clone({
-    // setHeaders: {
-    //   'x-access-token': `${authToken}`,
-    //   'Content-Type': 'application/json;',
-    // }
+    setHeaders: {
+      // 'x-access-token': `${authToken}`,
+      // 'Content-Type': 'application/json;',
+    }
   });
   if (!req.url.includes('login/login')) {
     authReq = req.clone({
       setHeaders: {
         'x-access-token': `${authToken}`,
-        'Content-Type': 'application/json;',
+        // 'Content-Type': 'application/json;',
       }
     });
   }

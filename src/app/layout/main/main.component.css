@@ -1,0 +1,67 @@
+p.text-game {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Container for the home page */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* justify-content: space-between; */
+}
+
+/* User header at the top */
+.user-header {
+    background-color: #6200ee;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* User info styling */
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Centered text styling */
+.centered-text {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+}
+
+a.card-link-test.active {
+    background: grey;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 600px) {
+    .user-name {
+        font-size: 16px;
+    }
+
+    .centered-text {
+        font-size: 20px;
+    }
+}

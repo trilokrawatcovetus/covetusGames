@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class SocketService {
   constructor() {
     // Replace with your server's URL (e.g., http://localhost:3000)
     // this.socket = io.connect('http://localhost:3000');
-    this.socket = io('http://localhost:3000', { transports: ['websocket'] });
-    console.log(this.socket)
+    this.socket = io(environment.soket_url, { transports: ['websocket'] });
+    // this.socket = io('http://localhost:3000', { transports: ['websocket'] });
     this.sendMessage('message')
     this.socket.on('connect', () => {
       console.log('Connected to the server');
@@ -21,6 +22,23 @@ export class SocketService {
 
   }
 
+  // Send a message to the server
+  startGame(obj: any): void {
+    this.socket.emit('startGameOwnerevent', obj);
+  }
+
+  // Send a message to the server
+  activeGame(obj: any): void {
+    this.socket.emit('activeGame', obj);
+  }
+  // Send a message to the server
+  inActiveGame(obj: any): void {
+    this.socket.emit('inactiveGame', obj);
+  }
+  // Send a obj to the server
+  endGame(obj: any): void {
+    this.socket.emit('stopGameOwnerevent', obj);
+  }
   // Send a message to the server
   sendMessage(message: string): void {
     this.socket.emit('message', message);
@@ -42,6 +60,30 @@ export class SocketService {
   getMessage(): Observable<string> {
     return new Observable<string>((observer) => {
       this.socket.on('message', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  gameActivated(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('gameActivated', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  gameInActivated(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('gameInActivated', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  getGameEndMessageByOwner(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('gameEndByOwer', (data: string) => {
         observer.next(data);
       });
     });

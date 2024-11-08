@@ -7,7 +7,7 @@ import { map, take } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class TimerService {
-    private timer$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    private timer$: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
     private subscription: Subscription | null = null;
 
     constructor() { }

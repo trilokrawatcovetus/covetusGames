@@ -1,9 +1,51 @@
+.main-qustion-section {
+  position: relative;
+}
+
+#countdown {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#countdown-number {
+  color: rgb(12, 12, 12);
+  display: inline-block;
+  line-height: 40px;
+}
+
+.countdown svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+.countdown svg circle {
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: rgb(97, 97, 97);
+  fill: none;
+  animation: countdown 60s linear infinite forwards;
+}
+
 .row.crossword-board {
   width: 100%;
 }
 
 .cell.crossword-board__item.activeCell {
   background: #FFFF74;
+}
+
+.cell.crossword-board__item.c_activeCell {
+  background: #a7a700;
 }
 
 .cell.crossword-board__item.cmpleteCell {
@@ -16,22 +58,22 @@
   padding: 5px 10px;
 }
 
-.line3 span:first-of-type{
+.line3 span:first-of-type {
   width: 45px;
   height: 45px;
 }
 
-.line3 span:last-of-type{
+.line3 span:last-of-type {
   width: 45px;
   height: 45px;
 }
 
-.line3 span:first-of-type svg{
+.line3 span:first-of-type svg {
   width: 25px !important;
   height: 25px !important;
 }
 
-.line3 span:last-of-type svg{
+.line3 span:last-of-type svg {
   width: 25px !important;
   height: 25px !important;
 }
@@ -212,7 +254,7 @@ div[class*='line'] span:active {
   fill: #71D4FE;
   width: 35px;
   height: 35px;
-  -webkit-filter: drop-shadow(0px 2px 20px #71D4FE); 
+  -webkit-filter: drop-shadow(0px 2px 20px #71D4FE);
   filter: drop-shadow(0px 2px 20px #71D4FE)
 }
 
@@ -220,11 +262,11 @@ div[class*='line'] span:active {
 #backspace:hover,
 #smile:hover,
 #mic:hover {
-  -webkit-filter: drop-shadow(0px 2px 15px #71D4FE); 
+  -webkit-filter: drop-shadow(0px 2px 15px #71D4FE);
   filter: drop-shadow(0px 2px 15px #71D4FE)
 }
 
-@media only screen and (min-width: 2400px){
+@media only screen and (min-width: 2400px) {
   .cell-box {
     width: 50px;
     height: 33px;
@@ -237,30 +279,30 @@ div[class*='line'] span:active {
   padding: 10px 5px;
 }
 
-@media only screen and (max-width: 1199px){
-  .que-hint-wrapper{
+@media only screen and (max-width: 1199px) {
+  .que-hint-wrapper {
     width: 87%;
   }
 }
 
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 992px) {
 
-  .line3 span:first-of-type{
+  .line3 span:first-of-type {
     width: 45px;
     height: 45px;
   }
-  
-  .line3 span:last-of-type{
+
+  .line3 span:last-of-type {
     width: 45px;
     height: 45px;
   }
-  
-  .line3 span:first-of-type svg{
+
+  .line3 span:first-of-type svg {
     width: 25px !important;
     height: 25px !important;
   }
-  
-  .line3 span:last-of-type svg{
+
+  .line3 span:last-of-type svg {
     width: 25px !important;
     height: 25px !important;
   }
@@ -269,121 +311,124 @@ div[class*='line'] span:active {
     width: 45px;
     height: 45px;
     font-size: 20px;
-}
+  }
 
-  .que-hint-wrapper{
+  .que-hint-wrapper {
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 880px){
+@media only screen and (max-width: 880px) {
   .que-hint-wrapper {
     width: 100%;
-}
-.cell-box {
-  width: 50px;
-  height: 33px;
-  padding: 3px 10px;
-  font-size: 17px !important;
+  }
+
+  .cell-box {
+    width: 50px;
+    height: 33px;
+    padding: 3px 10px;
+    font-size: 17px !important;
+  }
+
+  .base {
+    padding: 10px 5px;
+  }
 }
 
-.base {
-  padding: 10px 5px;
-}
-}
-
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .crossword-board__item {
     font-size: 15px;
   }
-  .cell-box{
+
+  .cell-box {
     width: 50px;
     height: 45px;
     padding: 10px 10px;
   }
 }
 
-@media only screen and (max-width: 577px){
+@media only screen and (max-width: 577px) {
   .que-hint-wrapper {
     width: 100%;
+  }
+
+  .cell-box {
+    width: 50px;
+    height: 45px;
+    padding: 10px 10px;
+  }
 }
 
-.cell-box{
-  width: 50px;
-  height: 45px;
-  padding: 10px 10px;
-}
-}
 
-
-@media only screen and (max-width: 576px){
+@media only screen and (max-width: 576px) {
 
   div[class*=line] span {
     width: 30px;
     height: 30px;
     font-size: 13px;
-}
+  }
 
-.line3 span:first-of-type{
-  width: 30px;
-  height: 30px;
-}
+  .line3 span:first-of-type {
+    width: 30px;
+    height: 30px;
+  }
 
-.line3 span:last-of-type{
-  width: 30px;
-  height: 30px;
-}
+  .line3 span:last-of-type {
+    width: 30px;
+    height: 30px;
+  }
 
-.line3 span:first-of-type svg{
-  width: 20px !important;
-  height: 20px !important;
-}
+  .line3 span:first-of-type svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
 
-.line3 span:last-of-type svg{
-  width: 20px !important;
-  height: 20px !important;
-}
+  .line3 span:last-of-type svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
 
-.line1 {
+  .line1 {
     padding: 0 1px;
-}
+  }
 
-.line2 {
-  padding: 0 1px;
-}
+  .line2 {
+    padding: 0 1px;
+  }
 
-.line3 {
-  padding: 0 1px;
-}
+  .line3 {
+    padding: 0 1px;
+  }
 
-p.que-hint-text span {
-  font-size: 15px;
-  font-weight: 500;
-}
+  p.que-hint-text span {
+    font-size: 15px;
+    font-weight: 500;
+  }
 
-.cell-box {
-  width: 33px;
-  height: 33px;
-}
+  .cell-box {
+    width: 33px;
+    height: 33px;
+  }
 
-.crossword-board__item {
-  font-size: 14px;;
-  padding: 5px 0px;
-}
+  .crossword-board__item {
+    font-size: 14px;
+    ;
+    padding: 5px 0px;
+  }
 
-.crossword-grid {
-  margin-top: 15px;
-}
+  .crossword-grid {
+    margin-top: 15px;
+  }
 
-.base {
-  padding: 20px 10px;
-}
+  .base {
+    padding: 20px 10px;
+  }
 
 }
 
 /* keyboard section ends  */
 
-.cell.crossword-board__item > span {
+.cell.crossword-board__item>span {
   position: absolute;
   top: -1px;
   font-size: 10px;
