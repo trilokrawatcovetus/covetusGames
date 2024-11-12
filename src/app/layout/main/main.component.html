@@ -8,11 +8,77 @@
         <div class="user-info">
             <i class="fa fa-user" aria-hidden="true"></i>
             <span class="user-name">{{userName}}</span>
+
         </div>
     </header>
+    @if(userId != 2) {
+    <div class="owner-container">
+        <div class="row">
+            @for (item of gameList; track item; let i = $index) {
+            @if(item['active'] == 1) {
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{item.name}}</h6>
+                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+
+
+                        @if(item.type == 'crossword'){
+                        <div class="row">
+                            <h2 class="mb-4">Rules</h2>
+                            <!-- List Group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
+                                    नीचे दिए गए है ।
+                                </li>
+                                <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
+                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
+                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
+                                    ग़लत जवाब को edit किया जा सकता है ।</li>
+                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
+                                    कोई भी परिवर्तन असंभव है ।</li>
+                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
+                                    विनर होगा ।</li>
+                            </ul>
+                        </div>
+                        }
+                        @if(item.type == 'alphabet'){
+                        <div class="row">
+                            <h2 class="mb-4">Rules</h2>
+                            <!-- List Group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
+                                </li>
+                                <li class="list-group-item">२. आप को photo देख कर यह बताना है की मूवी में इस किरदार का
+                                    क्या नाम था ।</li>
+                                <li class="list-group-item">३. Clew के तौर पर नाम का पहला लेटर स्क्रीन पर दिया गया है ।
+                                </li>
+                                <li class="list-group-item">४. Puzzle को Solve करने के लिए 10 मिनट का समय है ।</li>
+                                <li class="list-group-item">५. एक बार Next बटन दबाने के बाद back नहीं किया जा सकता ।
+                                </li>
+                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर जो कम समय में देगा वो
+                                    विजेता होगा ।</li>
+                            </ul>
+                        </div>
+                        }
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            }
+            }
+        </div>
+
+    </div>
+    }
 
     }
     @if(userId == 2) {
+
     <div class="owner-container">
         <div class="row">
             @for (item of gameList; track item; let i = $index) {
@@ -85,6 +151,7 @@
 
 
 
+
     @if(startAlphbetgame) {
     <app-alphabet-game [alphabetQuestion]="alphabetQuestion" [timer]="gameTime"
         (isCompletd)="onCompleteAlphabetGame($event)"></app-alphabet-game>
@@ -94,5 +161,13 @@
     <app-cross-word-app [grid]="grid" [clues]="clues" [timer]="gameTime"
         (isCompletd)="onComplete($event)"></app-cross-word-app>
     }
+    @if(startRapidFirgame){
+    <!-- <app-cross-word-app ></app-cross-word-app> -->
+    <app-rapidfire-game [rapidFireQuestion]="rapidFireQuestion"
+        (isCompletd)="onCompleteRapidfiregame($event)"></app-rapidfire-game>
 
+    }
+
+
+    <!-- selector: 'app-rapidfire-game', -->
 </div>

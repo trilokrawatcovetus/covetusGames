@@ -44,6 +44,14 @@ export class SocketService {
     this.socket.emit('message', message);
   }
   // Send a message to the server
+  userJoinThirdGame(obj: any): void {
+    this.socket.emit('userJoinThirdGame', obj);
+  }
+  // Send a message to the server
+  thirdGameStartEvent(message: string): void {
+    this.socket.emit('thirGameStart', message);
+  }
+  // Send a message to the server
   saveCrossWordAns(obj: any): void {
     this.socket.emit('saveAnswer', obj);
   }
@@ -52,14 +60,62 @@ export class SocketService {
     this.socket.emit('saveAlphabetAnswer', obj);
   }
   // Send a message to the server
+  saverapidFire(obj: any): void {
+    this.socket.emit('saverapidFire', obj);
+  }
+  // Send a message to the server
   completeGame(obj: any): void {
     this.socket.emit('completeGame', obj);
   }
+  // Send a message to the server
+  ThirdgameOverByadmin(obj: any): void {
+    this.socket.emit('ThirdgameOverByadmin', obj);
+  }
 
+  // Listen for incoming messages from the server
+  timerfor2games(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('timerfor2games', (data: any) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  getThirdGameOverEventBytime(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('gameOver', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
   // Listen for incoming messages from the server
   getMessage(): Observable<string> {
     return new Observable<string>((observer) => {
       this.socket.on('message', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  updateQuestionThirdgame(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('updateQuestion', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  updateQuestionThirdgame2(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('updateQuestion2', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
+  ThirdgameupdateTimer(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('updateTimer', (data: string) => {
         observer.next(data);
       });
     });

@@ -33,24 +33,42 @@ export class AlphabetGameComponent {
   timerSubscription!: Subscription;
   completed: boolean = false;
   userId: any = localStorage.getItem('userId');
+  remainingTime: any;
   constructor(private timerService: TimerService, private soketService: SocketService, private vcr: ViewContainerRef) {
 
   }
   ngOnInit() {
     // this.keys = Object.keys(this.alphabetQuestion);
-    if (this.timer) {
-      this.timerService.startTimer(this.timer);
+    // if (this.timer) {
+    //   this.timerService.startTimer(this.timer);
 
-      // Subscribe to the timer value
-      this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
-        this.timeRemaining = remainingTime;
-        let time: any = remainingTime
-        if (this.timeRemaining != -1 && this.timeRemaining < 1) {
+    //   // Subscribe to the timer value
+    //   this.timerSubscription = this.timerService.getTimerValue().subscribe((remainingTime) => {
+    //     this.timeRemaining = remainingTime;
+    //     let time: any = remainingTime
+    //     if (this.timeRemaining != -1 && this.timeRemaining < 1) {
+    //       this.isCompletd.emit(true);
+    //     }
+    //   });
+
+    // }
+
+    this.soketService.timerfor2games().pipe().subscribe({
+      next: (data: any) => {
+        this.remainingTime = data.timeresult;
+        if (data.timeresult == 0) {
           this.isCompletd.emit(true);
-        }
-      });
 
-    }
+        }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
 
     let index = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
     if (index != -1) {

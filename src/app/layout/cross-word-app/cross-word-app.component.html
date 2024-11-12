@@ -1,10 +1,13 @@
 <div class="container main-qustion-section">
 
     <div id="countdown" class="countdown">
-        <div id="countdown-number">{{formatTime()}}</div>
+        <div id="countdown-number">{{remainingTime}}</div>
         <svg>
             <circle r="18" cx="20" cy="20"></circle>
         </svg>
+    </div>
+    <div>
+        <button type="button" class=" btn btn-primary" (click)="finsh()">Finish</button>
     </div>
 
     <div class="crossword-grid">

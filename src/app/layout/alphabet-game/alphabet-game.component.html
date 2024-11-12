@@ -1,6 +1,6 @@
 <section class="main-qustion-section">
 
-    <div class="keyboard-section-wrapper">
+    <!-- <div class="keyboard-section-wrapper">
         <div class="base">
             <div class="line1">
                 @for (entry of alphabetQuestion; track entry; let i = $index) {
@@ -18,22 +18,12 @@
                 }
                 }
             </div>
-            <!-- <div class="line3">
-
-                @for (entry of alphabetQuestion; track entry; let i = $index) {
-                @if(i >= 18) {
-                <span>{{entry.lable | uppercase}} {{i}}</span>
-                }
-
-                }
-
-
-            </div> -->
-        </div>
+          
     </div>
+    </div> -->
     @if(selecteQuestion) {
     <div id="countdown" class="countdown">
-        <div id="countdown-number">{{formatTime()}}</div>
+        <div id="countdown-number">{{remainingTime}}</div>
         <svg>
             <circle r="18" cx="20" cy="20"></circle>
         </svg>
