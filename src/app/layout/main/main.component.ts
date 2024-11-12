@@ -81,13 +81,13 @@ export class MainComponent {
         if (data['type'] == "crossword") {
           this.startCrossWord = false
           this.gameList[0]['start'] = 0;
-          this.stopGame(this.gameList[0]);
+          // this.stopGame(this.gameList[0]);
 
         }
         if (data['type'] == "alphabet") {
           this.startAlphbetgame = false;
           this.gameList[1]['start'] = 0;
-          this.stopGame(this.gameList[1]);
+          // this.stopGame(this.gameList[1]);
 
         }
         if (data['type'] == "rapidfire") {
