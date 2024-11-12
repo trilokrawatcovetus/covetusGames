@@ -27,7 +27,7 @@ export class LoginComponent {
     console.log(activeRoute.snapshot.data)
     this.loginForm = this.fb.group({
       mobile: ['', [Validators.required, Validators.pattern(/^[6789]\d{9}$/)]],
-      password: ['', [Validators.required]]
+      // password: ['', [Validators.required]]
     })
 
   }
@@ -51,7 +51,7 @@ export class LoginComponent {
     this.loader.startLoader('login')
     let payload = {
       "mobile": this.loginForm.get('mobile')?.value,
-      "password": this.loginForm.get('password')?.value
+      // "password": this.loginForm.get('password')?.value
     }
 
 

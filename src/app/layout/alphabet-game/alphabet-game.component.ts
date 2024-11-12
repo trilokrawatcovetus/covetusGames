@@ -52,12 +52,12 @@ export class AlphabetGameComponent {
     //   });
 
     // }
-
+    console.log(this.alphabetQuestion)
     this.soketService.timerfor2games().pipe().subscribe({
       next: (data: any) => {
         this.remainingTime = data.timeresult;
-        if (data.timeresult == 0) {
-          this.finsh()
+        if (data.timeresult == false) {
+          this.finsh();
 
         }
 
@@ -74,7 +74,7 @@ export class AlphabetGameComponent {
     if (index != -1) {
       this.currentIndex = index;
       this.selecteQuestion = this.alphabetQuestion[index];
-
+      this.selecteQuestion.value = this.selecteQuestion.lable.toUpperCase();;
     } else {
       this.completed = true;
     }
@@ -90,32 +90,33 @@ export class AlphabetGameComponent {
     }
     // console.log(this.selecteQuestion && this.selecteQuestion.isComplete)
     this.selecteQuestion = key;
+    this.selecteQuestion.value = this.selecteQuestion.lable.toUpperCase();
     this.currentIndex = i;
     return true;
   }
 
   onSubmit() {
     if (this.selecteQuestion && this.selecteQuestion.value) {
-      let answerIndex = this.selecteQuestion.answerArray.findIndex((f: any) => f.toLowerCase() == this.selecteQuestion.value.toLowerCase())
+      let answerIndex = this.selecteQuestion.answerArray.findIndex((f: any) => f.toLowerCase() == this.selecteQuestion.value.toLowerCase());
+      let ans = false;
       if (answerIndex != -1) {
-        this.selecteQuestion.isComplete = true;
-        let obj = {
-          user_id: this.userId,
-          game_master_id: this.selecteQuestion.game_master_id,
-          question_id: this.selecteQuestion.id,
-          answer: this.selecteQuestion.value,
-
-        }
-        this.soketService.saveAlphabetAns(obj);
-        let index = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
-        console.log(index)
-        if (index != -1) {
-          this.goToNextKey(this.currentIndex);
-        } else {
-          this.checkAllValueSave()
-        }
+        ans = true;
+      }
+      this.selecteQuestion.isComplete = true;
+      let obj = {
+        user_id: this.userId,
+        game_master_id: this.selecteQuestion.game_master_id,
+        question_id: this.selecteQuestion.id,
+        answer: this.selecteQuestion.value,
+        ans: ans
+      }
+      this.soketService.saveAlphabetAns(obj);
+      let index = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
+      console.log(index)
+      if (index != -1) {
+        this.goToNextKey(this.currentIndex);
       } else {
-        this.selecteQuestion.value == null;
+        this.checkAllValueSave()
       }
     }
   }
@@ -172,10 +173,10 @@ export class AlphabetGameComponent {
 
   checkAllValueSave() {
     let x = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
-    if (x == -1) {
-      this.completed = true;
-      this.finsh()
-    }
+    // if (x == -1) {
+    //   this.completed = true;
+    //   this.finsh()
+    // }
 
   }
 

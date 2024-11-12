@@ -104,10 +104,15 @@
                     <div class="card-body">
                         <h5 class="card-title">{{item.name}}</h5>
                         <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        @if(item['active'] ==1) {
                         <a href="javascript:void(0)" class="card-link card-link-test"
                             [ngClass]="{'active': item['start'] ==1}" (click)="startGame(item)">Start</a>
+                        }
+                        @if(item['start'] ==1) {
                         <a href="javascript:void(0)" class="card-link card-link-test"
                             [ngClass]="{'active': item['start'] ==0}" (click)="stopGame(item)">Stop</a>
+                        }
+
 
                         <a href="javascript:void(0)" class="card-link card-link-test"
                             [ngClass]="{'active': item['active'] ==1}"
@@ -184,7 +189,7 @@
     </div>
     }
 
-    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame) {
+    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2) {
     <div class="main-video">
         <video width="320" height="240" controls autoplay loop>
             <source src="assets/video/startScreenVideo.mp4" type="video/mp4">

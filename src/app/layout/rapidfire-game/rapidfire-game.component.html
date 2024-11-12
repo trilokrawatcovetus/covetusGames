@@ -37,14 +37,17 @@
         </div>
 
         <div class="options row">
+            @if(totalTime/2 >= timervalue ) {
+
             @for (item of selectedQuestion.answerArray; track item; let i = $index) {
 
             <div class="option col-lg-6" (click)="selectAnswer(item)"
-                [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item }">
+                [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item, 'isWrong': selectedQuestion.isWrong &&  selectedQuestion['userAnswer'] == item}">
                 {{item}}</div>
             }
             <button type="button" class="btn btn-primary option col-lg-6" (click)="saveAnswer( selectedQuestion)"
                 [disabled]="!selectedQuestion['userAnswer']">lock</button>
+            }
         </div>
 
 

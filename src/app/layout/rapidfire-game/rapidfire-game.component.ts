@@ -28,6 +28,7 @@ export class RapidfireGameComponent {
   updatedQustion: any;
   selectedQuestion: any;
   audio: any;
+  totalTime = 10
   constructor(private timerService: TimerService, private sokect: SocketService, private vcr: ViewContainerRef) {
     this.sokect.updateQuestionThirdgame().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
@@ -69,9 +70,9 @@ export class RapidfireGameComponent {
           }
           // document.getElementById('playAudiopause')?.click();
           setTimeout(() => {
-            const audioElement = new Audio(this.selectedQuestion.audiofile);
-            audioElement.play();
-          }, 200);
+            this.audio = new Audio(this.selectedQuestion.audiofile);
+            this.audio.play();
+          }, 100);
 
         }
       },
@@ -94,6 +95,24 @@ export class RapidfireGameComponent {
         console.log('Observable completed.');
       }
     })
+    this.sokect.getGameEndMessageByOwner().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        if (this.audio) {
+          this.audio.pause();
+          this.audio = null;
+        }
+        // if (data['type'] == "rapidfire") {
+
+        // }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
   }
   ngOnDestroy(): void {
     // this.timerSubscription.unsubscribe();
@@ -101,7 +120,11 @@ export class RapidfireGameComponent {
     // }\
     this.selecteQuestion = undefined;
     this.rapidFireQuestion = undefined;
-    this.audio?.pause();
+    // destroy audio here
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = null;
+    }
 
   }
 
@@ -112,19 +135,24 @@ export class RapidfireGameComponent {
       return
     }
     selectedQuestion.isComplete = true;
+    let ans = false;
     if (question.answer == result) {
       selectedQuestion.isRight = true;
-      let obj = {
-        user_id: this.userId,
-        game_master_id: question.game_master_id,
-        question_id: question.id,
-        answer: result,
-
-      }
-      this.sokect.saverapidFire(obj);
+      ans = true;
     } else {
-      selectedQuestion.isRight = false;
+      selectedQuestion.isWrong = true;
+
     }
+    let obj = {
+      user_id: this.userId,
+      game_master_id: question.game_master_id,
+      question_id: question.id,
+      answer: result,
+      ans: ans
+    }
+
+    this.sokect.saverapidFire(obj);
+
 
   }
 

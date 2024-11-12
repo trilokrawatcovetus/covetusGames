@@ -73,10 +73,22 @@ export class CrossWordAppComponent {
 
   ngOnInit() {
     setTimeout(() => {
-
-      console.log(JSON.stringify(this.clues))
-      console.log(JSON.stringify(this.grid))
-    }, 10000)
+      console.log(this.clues['across'])
+      console.log(this.clues['down'])
+      // console.log(JSON.stringify(this.clues))
+      // console.log(JSON.stringify(this.grid))
+      let x = this.clues['across'].findIndex((f: any) => f.completed == false);
+      if (x != -1) {
+        let id = this.clues['across'][x]['cell'];
+        document.getElementById(id)?.click()
+      } else {
+        let x = this.clues['down'].findIndex((f: any) => f.completed == false);
+        if (x != -1) {
+          let id = this.clues['down'][x]['cell'];
+          document.getElementById(id)?.click()
+        }
+      }
+    }, 1000);
 
     // if (this.timer) {
     //   this.timerService.startTimer(this.timer);
@@ -93,7 +105,7 @@ export class CrossWordAppComponent {
     this.socket.timerfor2games().pipe().subscribe({
       next: (data: any) => {
         this.remainingTime = data.timeresult;
-        if (data.timeresult == 0) {
+        if (data.timeresult == false) {
           // this.isCompletd.emit(true);
           this.finsh();
         }
@@ -299,10 +311,10 @@ export class CrossWordAppComponent {
       let index = this.clues['across'].findIndex((f: any) => f['completed'] == false);
       let index2 = this.clues['down'].findIndex((f: any) => f['completed'] == false);
       console.log(index, index2, this.clues['across'], this.clues['down'])
-      if (index == -1 && index2 == -1) {
-        this.completed = true;
-        this.finsh()
-      }
+      // if (index == -1 && index2 == -1) {
+      //   this.completed = true;
+      //   this.finsh()
+      // }
 
     }, 500)
   }
@@ -344,6 +356,7 @@ export class CrossWordAppComponent {
       game_master_id: data.game_master_id,
       question_id: data.id,
       answer: data.answer,
+      ans: true
 
     }
     this.socket.saveCrossWordAns(obj);

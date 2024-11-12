@@ -31,13 +31,13 @@
             </svg> -->
         </div>
         <div class="game-btn-wrapp">
-              <button class="rule-btn btn" type="button" (click)="goToNextKey(currentIndex)">next</button>
-        <button type="button" class="finish-btn btn" (click)="finsh()">Finish</button>
+            <!-- <button class="rule-btn btn" type="button" (click)="goToNextKey(currentIndex)">next</button> -->
+            <button type="button" class="finish-btn btn" (click)="finsh()">Finish</button>
         </div>
-      
+
     </div>
     @if(selecteQuestion) {
- 
+
 
     <div class="image-content-wrapper">
         <!-- <div class="pre-btn-wrapper left" (click)="goToPreKey(currentIndex)">
@@ -58,8 +58,8 @@
             <!-- <input type="text" class="form-control input-answer" id="formGroupExampleInput" name="answer" placeholder="Example input"
                 [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }"> -->
             <button class="button-74" [ngClass]="{'disabled': !selecteQuestion.value}" type="button"
-                [disabled]="!selecteQuestion.value" (click)="onSubmit()">Submit</button>
-          
+                [disabled]="!selecteQuestion.value" (click)="onSubmit()">Next</button>
+
         </div>
     </div>
 

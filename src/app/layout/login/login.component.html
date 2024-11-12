@@ -10,13 +10,13 @@
         <small *ngIf="field['mobile'].errors?.['required']">Mobile number is required.</small>
         <small *ngIf="field['mobile'].errors?.['pattern']">Invalid mobile number format.</small>
       </div>
-      <div class="input-field">
+      <!-- <div class="input-field">
         <input type="password" formControlName="password">
         <label>Enter your password</label>
       </div>
       <div *ngIf="field['password'].invalid && field['password'].touched" class="required-valid-wrapper">
         <small *ngIf="field['password'].errors?.['required']">password number is required.</small>
-      </div>
+      </div> -->
       <!-- <div class="forget">
             <label for="remember">
               <input type="checkbox" id="remember">

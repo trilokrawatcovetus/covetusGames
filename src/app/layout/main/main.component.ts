@@ -490,7 +490,11 @@ export class MainComponent {
                     if (ele.user_games_question_answers && ele.user_games_question_answers.length > 0) {
                       ele['isComplete'] = true;
                       // ele['isComplete'] = true;
-                      ele['isRight'] = true;
+                      if (ele.user_games_question_answers[0]['ans'] == true) {
+                        ele['isRight'] = true;
+                      } else {
+                        ele['isWrong'] = true;
+                      }
                       ele['userAnswer'] = ele.user_games_question_answers[0]['answer'];
                       ele['value'] = ele.user_games_question_answers[0]['answer']
                     }

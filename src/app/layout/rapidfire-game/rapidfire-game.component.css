@@ -468,3 +468,8 @@ span.line-selected.active {
     background: rgb(107, 250, 155);
     color: white;
 }
+
+.option.col-lg-6.isWrong {
+    background: rgb(223, 18, 18);
+    color: white;
+}
