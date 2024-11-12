@@ -16,17 +16,34 @@
         <div class="row">
             @for (item of gameList; track item; let i = $index) {
             @if(item['active'] == 1) {
-            <div class="col-4">
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{item.name}}</h6>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        <h5 class="card-title">{{item.name}}</h5>
 
 
                         @if(item.type == 'crossword'){
                         <div class="row">
-                            <h2 class="mb-4">Rules</h2>
+                            <h2 class="rules-text">Rules</h2>
+                            <!-- List Group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
+                                    नीचे दिए गए है ।
+                                </li>
+                                <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
+                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
+                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
+                                    ग़लत जवाब को edit किया जा सकता है ।</li>
+                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
+                                    कोई भी परिवर्तन असंभव है ।</li>
+                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
+                                    विनर होगा ।</li>
+                            </ul>
+                        </div>
+                        }
+                        @if(item.type == 'rapidfire'){
+                        <div class="row">
+                            <h2 class="rules-text">Rules</h2>
                             <!-- List Group -->
                             <ul class="list-group">
                                 <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
@@ -45,7 +62,7 @@
                         }
                         @if(item.type == 'alphabet'){
                         <div class="row">
-                            <h2 class="mb-4">Rules</h2>
+                            <h2 class="rules-text">Rules</h2>
                             <!-- List Group -->
                             <ul class="list-group">
                                 <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
@@ -82,11 +99,10 @@
     <div class="owner-container">
         <div class="row">
             @for (item of gameList; track item; let i = $index) {
-            <div class="col-4">
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{item.name}}</h6>
+                        <h5 class="card-title">{{item.name}}</h5>
                         <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                         <a href="javascript:void(0)" class="card-link card-link-test"
                             [ngClass]="{'active': item['start'] ==1}" (click)="startGame(item)">Start</a>
@@ -100,7 +116,26 @@
                         @if(item['active'] ==1) {
                         @if(item.type == 'crossword'){
                         <div class="row">
-                            <h2 class="mb-4">Rules</h2>
+                            <h2 class="rules-text">Rules</h2>
+                            <!-- List Group -->
+                            <ul class="list-group">
+                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
+                                    नीचे दिए गए है ।
+                                </li>
+                                <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
+                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
+                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
+                                    ग़लत जवाब को edit किया जा सकता है ।</li>
+                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
+                                    कोई भी परिवर्तन असंभव है ।</li>
+                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
+                                    विनर होगा ।</li>
+                            </ul>
+                        </div>
+                        }
+                        @if(item.type == 'rapidfire'){
+                        <div class="row">
+                            <h2 class="rules-text">Rules</h2>
                             <!-- List Group -->
                             <ul class="list-group">
                                 <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
@@ -119,7 +154,7 @@
                         }
                         @if(item.type == 'alphabet'){
                         <div class="row">
-                            <h2 class="mb-4">Rules</h2>
+                            <h2 class="rules-text">Rules</h2>
                             <!-- List Group -->
                             <ul class="list-group">
                                 <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
@@ -150,7 +185,12 @@
     }
 
     @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame) {
-
+    <div class="main-video">
+        <video width="320" height="240" controls autoplay loop>
+            <source src="assets/video/startScreenVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
     }
 
 

@@ -9,7 +9,8 @@ p.text-game {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    /* justify-content: space-between; */
+    width: 93%;
+    margin: 0 auto;
 }
 
 /* User header at the top */
@@ -27,6 +28,7 @@ p.text-game {
 .user-info {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .user-icon {
@@ -52,7 +54,51 @@ p.text-game {
 }
 
 a.card-link-test.active {
-    background: grey;
+    color: #444444;
+}
+
+.card-link.card-link-test {
+    text-decoration: none;
+    border: 1px solid #90cbc1;
+    padding: 1px 9px 3px;
+    border-radius: 70px;
+    background-color: #edfafd;
+    color: #dbdbdb;
+    font-weight: 500;
+}
+
+.card {
+    margin-top: 11px;
+}
+
+ul.list-group {
+    padding-right: 4px;
+}
+
+.rules-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main-video {
+    display: flex;
+    justify-content: center;
+}
+
+.main-video video {
+    margin-bottom: 10px;
+}
+
+header.user-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    left: 0;
+    right: auto;
+}
+
+.owner-container {
+    margin-top: 43px;
 }
 
 /* Responsive layout for smaller screens */
