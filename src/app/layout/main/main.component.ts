@@ -58,7 +58,9 @@ export class MainComponent {
           }
         }
         if (data['type'] == "alphabet") {
-          this.startAlphbetgame = true;
+          if (((this.gameList[1].user_game_relations && this.gameList[1].user_game_relations.length == 0) || !this.gameList[1].user_game_relations)) {
+            this.startAlphbetgame = true;
+          }
         }
         if (data['type'] == "rapidfire") {
           this.sokect.thirdGameStartEvent('gamestarted');
@@ -79,10 +81,14 @@ export class MainComponent {
         if (data['type'] == "crossword") {
           this.startCrossWord = false
           this.gameList[0]['start'] = 0;
+          this.stopGame(this.gameList[0]);
+
         }
         if (data['type'] == "alphabet") {
           this.startAlphbetgame = false;
           this.gameList[1]['start'] = 0;
+          this.stopGame(this.gameList[1]);
+
         }
         if (data['type'] == "rapidfire") {
           this.startRapidFirgame = false;
@@ -457,7 +463,7 @@ export class MainComponent {
                   this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
                   let ifGameStarted = gameDetail.start;
                   // let ifGameStarted = this.checkIfGameIsStarted(gameDetail.start_time, gameDetail.end_time)
-                  if (ifGameStarted) {
+                  if (ifGameStarted && ((gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) || !gameDetail.user_game_relations)) {
                     this.gameTime = this.calculateMinitesDiffrent(new Date(), gameDetail.end_time);
                     console.log('gametime', this.gameTime)
                     this.startAlphbetgame = true;

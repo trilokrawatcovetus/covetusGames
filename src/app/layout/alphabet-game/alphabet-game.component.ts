@@ -57,7 +57,7 @@ export class AlphabetGameComponent {
       next: (data: any) => {
         this.remainingTime = data.timeresult;
         if (data.timeresult == 0) {
-          this.isCompletd.emit(true);
+          this.finsh()
 
         }
 
@@ -124,7 +124,7 @@ export class AlphabetGameComponent {
     let nextIndex = index + 1;
     let length = this.alphabetQuestion.length;
     if (nextIndex >= length) {
-      this.goToNextKey(-1);
+      return;
     } else {
       if (this.alphabetQuestion[nextIndex].isComplete == true) {
         this.goToNextKey(nextIndex);
@@ -174,13 +174,7 @@ export class AlphabetGameComponent {
     let x = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
     if (x == -1) {
       this.completed = true;
-      let obj = {
-        user_id: this.userId,
-        game_master_id: this.alphabetQuestion[0]['game_master_id'],
-        completed: true
-      }
-      this.soketService.completeGame(obj);
-      this.isCompletd.emit(true);
+      this.finsh()
     }
 
   }
@@ -204,5 +198,17 @@ export class AlphabetGameComponent {
     this.selecteQuestion = this.alphabetQuestion[index];
     return
   }
+
+  finsh() {
+    let obj = {
+      user_id: this.userId,
+      game_master_id: this.alphabetQuestion[0]['game_master_id'],
+      completed: true,
+      time: this.remainingTime ? this.remainingTime : 0
+    }
+    this.soketService.completeGame(obj)
+    this.isCompletd.emit(true);
+  }
+
 }
 

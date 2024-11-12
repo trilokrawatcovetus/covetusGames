@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-app": "ng build --base-href https://games.covetus.com/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
