@@ -13,7 +13,10 @@ export class SocketService {
   constructor() {
     // Replace with your server's URL (e.g., http://localhost:3000)
     // this.socket = io.connect('http://localhost:3000');
-    this.socket = io(environment.soket_url, { transports: ['websocket'] });
+    this.socket = io(environment.soket_url, {
+      transports: ['websocket'],
+      // retries: 1000
+    });
     // this.socket = io('http://localhost:3000', { transports: ['websocket'] });
     this.sendMessage('message')
     this.socket.on('connect', () => {
