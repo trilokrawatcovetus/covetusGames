@@ -31,6 +31,7 @@ export class RapidfireGameComponent {
   totalTime = 60
   audiolist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // audioPlayers: any;
+  playername = localStorage.getItem("userName");
   @ViewChildren('audioPlayer') audioPlayers!: QueryList<ElementRef<HTMLAudioElement>>;
   constructor(private timerService: TimerService, private sokect: SocketService, private vcr: ViewContainerRef) {
 

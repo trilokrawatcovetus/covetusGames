@@ -66,7 +66,8 @@ export class CrossWordAppComponent {
   timeRemaining: number = 0; // In seconds
   timerSubscription!: Subscription;
   previousQ: any = null;
-  remainingTime: any
+  remainingTime: any;
+  playername = localStorage.getItem("userName");
   constructor(private socket: SocketService, private timerService: TimerService, private vcr: ViewContainerRef) {
 
   }

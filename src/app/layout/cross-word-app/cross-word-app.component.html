@@ -1,5 +1,7 @@
 <div class="container main-qustion-section">
-
+    <div class="game-name-wrapper">
+        <h3>Crossword</h3>
+    </div>
     <div class="topbar-wrapp">
         <div id="countdown" class="countdown">
             <div class="timer-box">
@@ -92,7 +94,13 @@
         </div>
 
     </div>
-</div>
+
+    <div class="playername-wrapper">
+        <p class="que-hint-text">
+            <span>Player : </span>
+            <span>{{playername}}</span>
+        </p>
+    </div>
 <!-- <div class="clues">
     <div class="clue" *ngFor="let clue of clues; let i = index">
         {{ clue }}

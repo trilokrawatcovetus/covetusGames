@@ -1,5 +1,9 @@
 <section class="main-qustion-section">
 
+    <div class="game-name-wrapper">
+        <h3>Bollywood भाषा A to Z</h3>
+    </div>
+
     <!-- <div class="keyboard-section-wrapper">
         <div class="base">
             <div class="line1">
@@ -26,9 +30,6 @@
             <div class="timer-box">
                 <div id="countdown-number">{{remainingTime}}</div>
             </div>
-            <!-- <svg>
-                <circle r="18" cx="20" cy="20"></circle>
-            </svg> -->
         </div>
         <div class="game-btn-wrapp">
             <!-- <button class="rule-btn btn" type="button" (click)="goToNextKey(currentIndex)">next</button> -->
@@ -99,6 +100,13 @@
         </div>
     </div>
     }
+
+    <div class="playername-wrapper">
+        <p class="que-hint-text">
+            <span>Player : </span>
+            <span>{{playername}}</span>
+        </p>
+</div>
 </section>
 
 <!-- Modal -->

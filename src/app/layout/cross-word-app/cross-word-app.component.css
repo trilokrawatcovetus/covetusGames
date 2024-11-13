@@ -5,11 +5,6 @@
 #countdown {
   height: 40px;
   width: 40px;
-  text-align: center;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  margin-left: 34px;
 }
 
 #countdown-number {
@@ -448,10 +443,10 @@ div[class*='line'] span:active {
 /* new css */
 .topbar-wrapp {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 15px;
-  align-items: end;
+  align-items: baseline;
 }
 
 .rule-btn {
@@ -490,7 +485,6 @@ div[class*='line'] span:active {
   background-color: #1a723f;
 }
 
-
 .finish-btn:focus{
   outline: none;
   box-shadow: none;
@@ -501,4 +495,17 @@ div[class*='line'] span:active {
   padding: 4px 6px;
   border-radius: 7px;
   background-color: #f7f7f7;
+}
+
+.game-name-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.playername-wrapper {
+  background-color: #e5e5e5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 0px 10px 10px;
 }

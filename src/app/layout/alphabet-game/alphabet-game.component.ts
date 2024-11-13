@@ -12,6 +12,7 @@ const alphabetArray2: string[] = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
   'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ];
+
 @Component({
   selector: 'app-alphabet-game',
   standalone: true,
@@ -34,6 +35,8 @@ export class AlphabetGameComponent {
   completed: boolean = false;
   userId: any = localStorage.getItem('userId');
   remainingTime: any;
+  playername = localStorage.getItem("userName");
+
   constructor(private timerService: TimerService, private soketService: SocketService, private vcr: ViewContainerRef) {
 
   }
