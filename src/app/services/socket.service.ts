@@ -148,6 +148,14 @@ export class SocketService {
     });
   }
   // Listen for incoming messages from the server
+  closeAudio(): Observable<string> {
+    return new Observable<string>((observer) => {
+      this.socket.on('closeAudio', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+  // Listen for incoming messages from the server
   getstartGameEvent(): Observable<any> {
     return new Observable<any>((observer) => {
       this.socket.on('gameStart', (data: any) => {

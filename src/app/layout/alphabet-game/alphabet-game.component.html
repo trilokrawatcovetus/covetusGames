@@ -32,6 +32,9 @@
         </div>
         <div class="game-btn-wrapp">
             <!-- <button class="rule-btn btn" type="button" (click)="goToNextKey(currentIndex)">next</button> -->
+            <button type="button" class="rule-btn btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Rule
+            </button>
             <button type="button" class="finish-btn btn" (click)="finsh()">Finish</button>
         </div>
 
@@ -97,3 +100,31 @@
     </div>
     }
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
+                    </li>
+                    <li class="list-group-item">२. आप को photo देख कर यह बताना है की मूवी में इस किरदार का
+                        क्या नाम था ।</li>
+                    <li class="list-group-item">३. Clew के तौर पर नाम का पहला लेटर स्क्रीन पर दिया गया है ।
+                    </li>
+                    <li class="list-group-item">४. Puzzle को Solve करने के लिए 10 मिनट का समय है ।</li>
+                    <li class="list-group-item">५. एक बार Next बटन दबाने के बाद back नहीं किया जा सकता ।
+                    </li>
+                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर जो कम समय में देगा वो
+                        विजेता होगा ।</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, output, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Input, output, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimerService } from '../../services/timer.service';
@@ -28,8 +28,12 @@ export class RapidfireGameComponent {
   updatedQustion: any;
   selectedQuestion: any;
   audio: any;
-  totalTime = 10
+  totalTime = 60
+  audiolist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // audioPlayers: any;
+  @ViewChildren('audioPlayer') audioPlayers!: QueryList<ElementRef<HTMLAudioElement>>;
   constructor(private timerService: TimerService, private sokect: SocketService, private vcr: ViewContainerRef) {
+
     this.sokect.updateQuestionThirdgame().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
         console.log('dfsdfsdf', data)
@@ -37,16 +41,22 @@ export class RapidfireGameComponent {
         this.selectedQuestion = this.rapidFireQuestion[data.question];
         this.updatedQustion = data.question;
         this.timervalue = data.remainingTime;
-        if (data.question % 2 == 0) {
-          this.selectedQuestion.audiofile = 'assets/audio/audio1.dat.wav';
-        } else {
-          this.selectedQuestion.audiofile = 'assets/audio/audio2.wav';
-        }
-        // document.getElementById('playAudiopause')?.click();
+        document.getElementById('stopButton')?.click();
         setTimeout(() => {
-          this.audio = new Audio(this.selectedQuestion.audiofile);
-          this.audio.play();
-        }, 200);
+          console.log('playButton' + data.question)
+          document.getElementById('playButton' + data.question)?.click();
+        }, 100)
+        // document.getElementById('playAudiopause')?.click();
+        // if (this.audio) {
+        //   this.audio.currentTime = 0;
+        //   this.audio.pause();
+        //   this.audio = null;
+        // }
+        // setTimeout(() => {
+        //   this.audio = new Audio(this.selectedQuestion.audiofile);
+        //   this.audio.load();
+        //   this.audio.play();
+        // }, 200);
       },
       error: (err) => {
         console.error('Error occurred:', err);
@@ -63,16 +73,12 @@ export class RapidfireGameComponent {
           this.selectedQuestion = this.rapidFireQuestion[data.question];
           this.updatedQustion = data.question;
           this.timervalue = data.remainingTime;
-          if (data.question % 2 == 0) {
-            this.selectedQuestion.audiofile = 'assets/audio/audio1.dat.wav';
-          } else {
-            this.selectedQuestion.audiofile = 'assets/audio/audio2.wav';
-          }
-          // document.getElementById('playAudiopause')?.click();
+          document.getElementById('stopButton')?.click();
           setTimeout(() => {
-            this.audio = new Audio(this.selectedQuestion.audiofile);
-            this.audio.play();
-          }, 100);
+            // debugger
+            document.getElementById('playButton' + data.question)?.click();
+          }, 100)
+
 
         }
       },
@@ -97,14 +103,25 @@ export class RapidfireGameComponent {
     })
     this.sokect.getGameEndMessageByOwner().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
-        if (this.audio) {
-          this.audio.pause();
-          this.audio = null;
-        }
-        // if (data['type'] == "rapidfire") {
-
+        // if (this.audio) {
+        //   this.audio.pause();
+        //   this.audio = null;
         // }
-
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+    this.sokect.closeAudio().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        // if (this.audio) {
+        //   this.audio.currentTime = 0;
+        //   this.audio.pause();
+        //   this.audio = null;
+        // }
       },
       error: (err) => {
         console.error('Error occurred:', err);
@@ -121,10 +138,11 @@ export class RapidfireGameComponent {
     this.selecteQuestion = undefined;
     this.rapidFireQuestion = undefined;
     // destroy audio here
-    if (this.audio) {
-      this.audio.pause();
-      this.audio = null;
-    }
+    // if (this.audio) {
+    //   this.audio.currentTime = 0;
+    //   this.audio.pause();
+    //   this.audio = null;
+    // }
 
   }
 
@@ -163,4 +181,8 @@ export class RapidfireGameComponent {
     this.selectedQuestion['userAnswer'] = item;
 
   }
+
+  // playAudio(video1: any): void {
+  // }
+
 }

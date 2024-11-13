@@ -2,7 +2,7 @@
 <!-- {{start_date }} -->
 <div class="home-container">
 
-    @if(!startAlphbetgame && !startCrossWord) {
+    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame) {
     <!-- Header with user icon and name -->
     <header class="user-header">
         <div class="user-info">
@@ -189,12 +189,12 @@
     </div>
     }
 
-    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2) {
+    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2 && gameList && gameList.length > 0) {
     <div class="main-video">
-        <video width="320" height="240" controls autoplay loop>
+        <!-- <video width="320" height="240" controls autoplay loop>
             <source src="assets/video/startScreenVideo.mp4" type="video/mp4">
             Your browser does not support the video tag.
-        </video>
+        </video> -->
     </div>
     }
 

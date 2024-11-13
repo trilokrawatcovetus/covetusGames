@@ -2,14 +2,84 @@
 <section class="main-qustion-section rapid-fire-round">
     @if(selectedQuestion) {
 
-    <div class="audio-controller" style="opacity: 0;">
-        <!-- <audio controls #ref id="audio_player">
+    <div class="audio-controller" style="opacity: 0;height: 0px;display: none;">
+        <!-- <audio controls id="audio_player" autoplay>
             <source [src]="selectedQuestion.audiofile" type="audio/wav">
             Your browser does not support the audio element.
         </audio> -->
 
         <!-- <button (click)="ref.play()" id="playAudio">▶️ play</button>
         <button (click)="ref.pause()" id="playAudiopause">⏸ pause</button> -->
+        <video controls #video1>
+            <source src="assets/video/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video2>
+            <source src="assets/video/2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video3>
+            <source src="assets/video/3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video4>
+            <source src="assets/video/4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video5>
+            <source src="assets/video/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video6>
+            <source src="assets/video/2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video7>
+            <source src="assets/video/3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video8>
+            <source src="assets/video/4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video9>
+            <source src="assets/video/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls #video10>
+            <source src="assets/video/2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Buttons for controlling the video -->
+        <button type="button" id="playButton1" (click)="video1.play()">Play 1</button>
+        <button type="button" id="stopButton" (click)="video1.pause(); video1.currentTime = 0;">Stop 1</button>
+
+        <button type="button" id="playButton2" (click)="video2.play()">Play 2</button>
+        <button type="button" id="stopButton" (click)="video2.pause(); video2.currentTime = 0;">Stop 2</button>
+
+        <button type="button" id="playButton3" (click)="video3.play()">Play 3</button>
+        <button type="button" id="stopButton" (click)="video3.pause(); video3.currentTime = 0;">Stop 3</button>
+
+        <button type="button" id="playButton4" (click)="video4.play()">Play 4</button>
+        <button type="button" id="stopButton" (click)="video4.pause(); video4.currentTime = 0;">Stop 4</button>
+
+        <button type="button" id="playButton5" (click)="video5.play()">Play 5</button>
+        <button type="button" id="stopButton" (click)="video5.pause(); video5.currentTime = 0;">Stop 5</button>
+
+        <button type="button" id="playButton6" (click)="video6.play()">Play 6</button>
+        <button type="button" id="stopButton" (click)="video6.pause(); video6.currentTime = 0;">Stop 6</button>
+
+        <button type="button" id="playButton7" (click)="video7.play()">Play 7</button>
+        <button type="button" id="stopButton" (click)="video7.pause(); video7.currentTime = 0;">Stop 7</button>
+
+        <button type="button" id="playButton8" (click)="video8.play()">Play 8</button>
+        <button type="button" id="stopButton" (click)="video8.pause(); video8.currentTime = 0;">Stop 8</button>
+
+        <button type="button" id="playButton9" (click)="video9.play()">Play 9</button>
+        <button type="button" id="stopButton" (click)="video9.pause(); video9.currentTime = 0;">Stop 9</button>
+
+        <button type="button" id="playButton10" (click)="video10.play()">Play 10</button>
+        <button type="button" id="stopButton0" (click)="video10.pause(); video10.currentTime = 0;">Stop 10</button>
 
     </div>
 
@@ -22,7 +92,7 @@
     </div>
     <div class="form-group">
         <div class="button-group-wrapper">
-            <!-- <div class="pre-btn-wrapper" (click)="goToPreKey(currentIndex)">
+            <!-- <div class="pre-btn-wrapper" (click)="goToPreKey(currentIn dex)">
                     <i class="fa-solid fa-chevron-left"></i>
                 </div> -->
             <label for="formGroupExampleInput">{{selectedQuestion.clue}} <div id="countdown" class="countdown">
@@ -31,13 +101,17 @@
                         <circle r="18" cx="20" cy="20"> </circle>
                     </svg>
                 </div></label>
+
+            <button type="button" class="rule-btn btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Rule
+            </button>
             <!-- <div class="pre-btn-wrapper" (click)="goToNextKey(currentIndex)">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div> -->
         </div>
 
         <div class="options row">
-            @if(totalTime/2 >= timervalue ) {
+            @if(30 >= timervalue ) {
 
             @for (item of selectedQuestion.answerArray; track item; let i = $index) {
 
@@ -55,3 +129,33 @@
     }
 
 </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
+                        नीचे दिए गए है ।
+                    </li>
+                    <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
+                    <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
+                    <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
+                        ग़लत जवाब को edit किया जा सकता है ।</li>
+                    <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
+                        कोई भी परिवर्तन असंभव है ।</li>
+                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
+                        विनर होगा ।</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
