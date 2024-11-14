@@ -66,7 +66,9 @@ export class MainComponent {
           }
         }
         if (data['type'] == "rapidfire") {
-          this.sokect.thirdGameStartEvent('gamestarted');
+          if (this.userId == 2) {
+            this.sokect.thirdGameStartEvent('gamestarted');
+          }
           this.startRapidFirgame = true;
           // setTimeout(() => {
           //   document.getElementById('mute0')?.click();

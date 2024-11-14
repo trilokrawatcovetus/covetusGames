@@ -212,7 +212,7 @@ div[class*='line'] span:active {
 .button-group-wrapper {
     display: flex;
     justify-content: center;
-    background-color: #0d6efd6b;
+    background-color: #0d6efda1;
     border: 1px solid #ffff;
     padding: 10px 2px;
     margin: 0 5px;
@@ -321,14 +321,17 @@ span.line-selected.active {
 }
 
 .option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0d6efd6b;
-  border: 1px solid #ffff;
-  padding: 10px 2px;
-  margin: 0 5px;
-  border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d6efda1;
+    border: 1px solid #ffff;
+    padding: 8px 2px;
+    margin: 0 5px;
+    border-radius: 60px;
+    color: #fff;
+    margin-top: 10px;
+    width: 200px;
 }
 
 .option.col-lg-6.active {
@@ -352,7 +355,7 @@ span.line-selected.active {
     margin-top: 6px;
 }
 
-.game-name-wrapper > h3 {
+.game-name-wrapper>h3 {
     color: #fff;
 }
 
