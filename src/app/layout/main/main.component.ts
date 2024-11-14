@@ -68,9 +68,10 @@ export class MainComponent {
         if (data['type'] == "rapidfire") {
           this.sokect.thirdGameStartEvent('gamestarted');
           this.startRapidFirgame = true;
-          setTimeout(() => {
-            document.getElementById('A6')?.click();
-          }, 3000)
+          // setTimeout(() => {
+          //   document.getElementById('mute0')?.click();
+          //   document.getElementById('A6')?.click();
+          // }, 3000)
         }
 
       },

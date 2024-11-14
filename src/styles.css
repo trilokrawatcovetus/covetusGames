@@ -23,10 +23,3 @@ input:-webkit-autofill:focus {
 .clue {
     margin-bottom: 10px;
 }
-
-
-.main-qustion-section {
-    background-image: url('assets/images/image.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}

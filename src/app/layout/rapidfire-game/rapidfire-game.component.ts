@@ -39,26 +39,34 @@ export class RapidfireGameComponent {
 
     this.sokect.updateQuestionThirdgame().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
-        console.log('dfsdfsdf', data)
+        // console.log('dfsdfsdf', this.rapidFireQuestion)
         if (data.question) {
           this.selectedQuestion = undefined;
           this.selectedQuestion = this.rapidFireQuestion[data.question - 1];
           this.updatedQustion = data.question;
 
           this.timervalue = data.remainingTime;
-          if (data.question != 1) {
-            for (let i = 0; i <= 29; i++) {
-              const buttonId = 'stopButton' + i;
-              const button = document.getElementById(buttonId);
-              if (button) {
-                button.click();
-              }
+          // if (data.question != 1) {
+          for (let i = 0; i <= 30; i++) {
+            const buttonId = 'stopButton' + i;
+            const button = document.getElementById(buttonId);
+            if (button) {
+              button.click();
             }
-            setTimeout(() => {
-              console.log('playButton', this.selectedQuestion.audiofile)
-              document.getElementById(this.selectedQuestion.audiofile)?.click();
-            }, 1000)
           }
+          for (let i = 0; i <= 30; i++) {
+
+            const buttonId = 'mute' + i;
+            const button = document.getElementById(buttonId);
+            if (button) {
+              button.click();
+            }
+          }
+          setTimeout(() => {
+            console.log('playButton', this.selectedQuestion.audiofile)
+            document.getElementById(this.selectedQuestion.audiofile)?.click();
+          }, 1000)
+          // }
         }
 
         // document.getElementById('playAudiopause')?.click();
