@@ -6,7 +6,7 @@
     </div>
 
     <div class="audio-controller" style="opacity: 0;height: 0px;display: none;">
-        <video controls #A6>
+        <video controls #A6 (loadeddata)="firstVideoLoaded()">
             <source src="assets/video/A6.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>

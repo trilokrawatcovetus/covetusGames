@@ -35,6 +35,7 @@ export class RapidfireGameComponent {
   @ViewChildren('audioPlayer') audioPlayers!: QueryList<ElementRef<HTMLAudioElement>>;
   constructor(private timerService: TimerService, private sokect: SocketService, private vcr: ViewContainerRef) {
 
+
     this.sokect.updateQuestionThirdgame().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
         console.log('dfsdfsdf', data)
@@ -42,12 +43,15 @@ export class RapidfireGameComponent {
           this.selectedQuestion = undefined;
           this.selectedQuestion = this.rapidFireQuestion[data.question - 1];
           this.updatedQustion = data.question;
+
           this.timervalue = data.remainingTime;
-          document.getElementById('stopButton')?.click();
-          setTimeout(() => {
-            console.log('playButton', this.selectedQuestion.audiofile)
-            document.getElementById(this.selectedQuestion.audiofile)?.click();
-          }, 100)
+          if (data.question != 1) {
+            document.getElementById('stopButton')?.click();
+            setTimeout(() => {
+              console.log('playButton', this.selectedQuestion.audiofile)
+              document.getElementById(this.selectedQuestion.audiofile)?.click();
+            }, 100)
+          }
         }
 
         // document.getElementById('playAudiopause')?.click();
@@ -138,6 +142,18 @@ export class RapidfireGameComponent {
         console.log('Observable completed.');
       }
     })
+  }
+
+  ngOnInit() {
+    // console.log(document.getElementById('A6'))
+    // document.getElementById('A6')?.click();
+  }
+
+  firstVideoLoaded() {
+    if (this.selectedQuestion.audiofile == 'A6') {
+      console.log(document.getElementById('A6'))
+      document.getElementById('A6')?.click();
+    }
   }
   ngOnDestroy(): void {
     // this.timerSubscription.unsubscribe();
