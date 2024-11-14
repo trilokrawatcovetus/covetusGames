@@ -39,6 +39,9 @@ export class MainComponent {
   gameList: any = [];
   userId: any = localStorage.getItem('userId');
   rapidFireQuestion: any = [];
+  game1: any
+  game2: any
+  game3: any
   ngOnInit(): void {
 
     this.getAllGamesDetail();
@@ -52,13 +55,13 @@ export class MainComponent {
         console.log('Game started with data:', data);
         if (data['type'] == "crossword") {
           // this.startCrossWord = true
-          if (((this.gameList[0].user_game_relations && this.gameList[0].user_game_relations.length == 0) || !this.gameList[0].user_game_relations)) {
-            // this.gameTime = this.calculateMinitesDiffrent(new Date(), this.gameList[0].end_time);
+          if (((this.game1.user_game_relations && this.game1.user_game_relations.length == 0) || !this.game1.user_game_relations)) {
+            // this.gameTime = this.calculateMinitesDiffrent(new Date(), this.game1.end_time);
             this.startCrossWord = true;
           }
         }
         if (data['type'] == "alphabet") {
-          if (((this.gameList[1].user_game_relations && this.gameList[1].user_game_relations.length == 0) || !this.gameList[1].user_game_relations)) {
+          if (((this.game2.user_game_relations && this.game2.user_game_relations.length == 0) || !this.game2.user_game_relations)) {
             this.startAlphbetgame = true;
           }
         }
@@ -80,20 +83,20 @@ export class MainComponent {
       next: (data: any) => {
         if (data['type'] == "crossword") {
           this.startCrossWord = false
-          this.gameList[0]['start'] = 0;
-          // this.stopGame(this.gameList[0]);
+          this.game1['start'] = 0;
+          // this.stopGame(this.game1);
 
         }
         if (data['type'] == "alphabet") {
           this.startAlphbetgame = false;
-          this.gameList[1]['start'] = 0;
-          // this.stopGame(this.gameList[1]);
+          this.game2['start'] = 0;
+          // this.stopGame(this.game2);
 
         }
         if (data['type'] == "rapidfire") {
           this.startRapidFirgame = false;
-          this.gameList[2]['start'] = 0;
-          this.stopGame(this.gameList[2]);
+          this.game3['start'] = 0;
+          // this.stopGameManual(this.game3);
 
         }
 
@@ -108,8 +111,8 @@ export class MainComponent {
 
     this.sokect.getThirdGameOverEventBytime().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
-        this.stopGame(this.gameList[2]);
-        this.gameList[2]['start'] = 0;
+        // this.stopGameManual(this.game3);
+        this.game3['start'] = 0;
         this.startRapidFirgame = false;
 
       },
@@ -398,6 +401,7 @@ export class MainComponent {
             // let gameDetail = res.data[0];
             this.gameList.map((gameDetail: any) => {
               if (gameDetail && gameDetail.games_questions && gameDetail.type == 'crossword') {
+                this.game1 = gameDetail;
                 this.start_date = gameDetail.start_time
                 if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
                   this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
@@ -458,6 +462,7 @@ export class MainComponent {
                 }
               }
               if (gameDetail && gameDetail.games_questions && gameDetail.type == 'alphabet') {
+                this.game2 = gameDetail;
                 this.start_date = gameDetail.start_time
                 if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
                   this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
@@ -483,6 +488,7 @@ export class MainComponent {
                 }
               }
               if (gameDetail && gameDetail.games_questions && gameDetail.type == 'rapidfire') {
+                this.game3 = gameDetail;
                 this.start_date = gameDetail.start_time
                 if (gameDetail.user_game_relations && gameDetail.user_game_relations.length == 0) {
                   // this.gameTime = this.calculateMinitesDiffrent(gameDetail.start_time, gameDetail.end_time);
@@ -580,6 +586,34 @@ export class MainComponent {
           this.sokect.endGame(item);
           if (item['type'] == "rapidfire") {
             this.sokect.ThirdgameOverByadmin(item)
+          }
+        }
+        else {
+          this.toastr.error(res.message || res.error, '');
+        }
+      },
+      error: (err: any) => {
+        console.log(err)
+        this.loader.stopLoader('login');
+        if (err.error && err.error.error == true) {
+          this.toastr.error(err.error['message'], '');
+
+        } else {
+          this.toastr.error(err['message'], '');
+        }
+      },
+    });
+  }
+
+  stopGameManual(item: any) {
+    this.api.allPostMethod('user/stopGame', { id: item.id }).subscribe({
+      next: (res: any) => {
+        this.loader.stopLoader('login');
+        if (res['error'] != true) {
+          item['start'] = 0;
+          // this.sokect.endGame(item);
+          if (item['type'] == "rapidfire") {
+            // this.sokect.ThirdgameOverByadmin(item)
           }
         }
         else {

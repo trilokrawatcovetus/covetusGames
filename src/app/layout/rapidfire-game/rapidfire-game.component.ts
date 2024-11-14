@@ -29,7 +29,7 @@ export class RapidfireGameComponent {
   selectedQuestion: any;
   audio: any;
   totalTime = 60
-  audiolist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // audiolist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
   // audioPlayers: any;
   playername = localStorage.getItem("userName");
   @ViewChildren('audioPlayer') audioPlayers!: QueryList<ElementRef<HTMLAudioElement>>;
@@ -38,15 +38,18 @@ export class RapidfireGameComponent {
     this.sokect.updateQuestionThirdgame().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
         console.log('dfsdfsdf', data)
-        this.selectedQuestion = undefined;
-        this.selectedQuestion = this.rapidFireQuestion[data.question];
-        this.updatedQustion = data.question;
-        this.timervalue = data.remainingTime;
-        document.getElementById('stopButton')?.click();
-        setTimeout(() => {
-          console.log('playButton' + data.question)
-          document.getElementById('playButton' + data.question)?.click();
-        }, 100)
+        if (data.question) {
+          this.selectedQuestion = undefined;
+          this.selectedQuestion = this.rapidFireQuestion[data.question - 1];
+          this.updatedQustion = data.question;
+          this.timervalue = data.remainingTime;
+          document.getElementById('stopButton')?.click();
+          setTimeout(() => {
+            console.log('playButton', this.selectedQuestion.audiofile)
+            document.getElementById(this.selectedQuestion.audiofile)?.click();
+          }, 100)
+        }
+
         // document.getElementById('playAudiopause')?.click();
         // if (this.audio) {
         //   this.audio.currentTime = 0;
@@ -70,15 +73,19 @@ export class RapidfireGameComponent {
       next: (data: any) => {
         if (data.userId == this.userId) {
           console.log('dfsdfsdf', data)
-          this.selectedQuestion = undefined;
-          this.selectedQuestion = this.rapidFireQuestion[data.question];
-          this.updatedQustion = data.question;
-          this.timervalue = data.remainingTime;
-          document.getElementById('stopButton')?.click();
-          setTimeout(() => {
-            // debugger
-            document.getElementById('playButton' + data.question)?.click();
-          }, 100)
+          if (data.question) {
+            this.selectedQuestion = undefined;
+            this.selectedQuestion = this.rapidFireQuestion[data.question - 1];
+            this.updatedQustion = data.question;
+            this.timervalue = data.remainingTime;
+
+            document.getElementById('stopButton')?.click();
+            setTimeout(() => {
+              console.log('playButton', this.selectedQuestion.audiofile)
+              document.getElementById(this.selectedQuestion.audiofile)?.click();
+            }, 100)
+
+          }
 
 
         }
