@@ -5,8 +5,6 @@
         <h3>KBC</h3>
     </div>
 
-    @if(selectedQuestion) {
-
     <div class="audio-controller" style="opacity: 0;height: 0px;display: none;">
         <video controls #A6>
             <source src="assets/video/A6.mp4" type="video/mp4">
@@ -79,7 +77,7 @@
         <button type="button" id="stopButton0" (click)="A3333.pause(); A3333.currentTime = 0;">Stop 3333</button>
 
         <video controls #A333>
-            <source src="assets/video/3333.mp4" type="video/mp4">
+            <source src="assets/video/333.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A333" (click)="A333.play()">Play 3333</button>
@@ -220,6 +218,10 @@
 
     </div>
 
+    @if(selectedQuestion) {
+
+
+
     <div class="image-content-wrapper">
 
         <!-- <div class="center-container alpha-img-wrapper">
@@ -251,8 +253,8 @@
                 [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item, 'isWrong': selectedQuestion.isWrong &&  selectedQuestion['userAnswer'] == item}">
                 {{item}}</div>
             }
-            <button type="button" class="btn btn-primary option col-lg-6" (click)="saveAnswer( selectedQuestion)"
-                [disabled]="!selectedQuestion['userAnswer']">lock</button>
+            <button type="button" class="btn btn-primary option lock-btn col-lg-6"
+                (click)="saveAnswer( selectedQuestion)" [disabled]="!selectedQuestion['userAnswer']">lock</button>
             }
         </div>
 

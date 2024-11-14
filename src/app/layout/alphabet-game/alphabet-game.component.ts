@@ -55,23 +55,23 @@ export class AlphabetGameComponent {
     //   });
 
     // }
-    console.log(this.alphabetQuestion)
-    this.soketService.timerfor2games().pipe().subscribe({
-      next: (data: any) => {
-        this.remainingTime = data.timeresult;
-        if (data.timeresult == false) {
-          this.finsh();
+    // console.log(this.alphabetQuestion)
+    // this.soketService.timerfor2games().pipe().subscribe({
+    //   next: (data: any) => {
+    //     this.remainingTime = data.timeresult;
+    //     if (data.timeresult == false) {
+    //       this.finsh();
 
-        }
+    //     }
 
-      },
-      error: (err) => {
-        console.error('Error occurred:', err);
-      },
-      complete: () => {
-        console.log('Observable completed.');
-      }
-    })
+    //   },
+    //   error: (err) => {
+    //     console.error('Error occurred:', err);
+    //   },
+    //   complete: () => {
+    //     console.log('Observable completed.');
+    //   }
+    // })
 
     let index = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
     if (index != -1) {
@@ -176,10 +176,10 @@ export class AlphabetGameComponent {
 
   checkAllValueSave() {
     let x = this.alphabetQuestion.findIndex((f: any) => f.isComplete != true);
-    // if (x == -1) {
-    //   this.completed = true;
-    //   this.finsh()
-    // }
+    if (x == -1) {
+      this.completed = true;
+      this.finsh()
+    }
 
   }
 
@@ -208,7 +208,7 @@ export class AlphabetGameComponent {
       user_id: this.userId,
       game_master_id: this.alphabetQuestion[0]['game_master_id'],
       completed: true,
-      time: this.remainingTime ? this.remainingTime : 0
+      time: 0
     }
     this.soketService.completeGame(obj)
     this.isCompletd.emit(true);

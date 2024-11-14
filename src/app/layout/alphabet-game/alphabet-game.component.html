@@ -27,9 +27,9 @@
     </div> -->
     <div class="topbar-wrapp">
         <div id="countdown" class="countdown">
-            <div class="timer-box">
+            <!-- <div class="timer-box" >
                 <div id="countdown-number">{{remainingTime}}</div>
-            </div>
+            </div> -->
         </div>
         <div class="game-btn-wrapp">
             <!-- <button class="rule-btn btn" type="button" (click)="goToNextKey(currentIndex)">next</button> -->
@@ -58,16 +58,17 @@
 
 
         <div class="input-wrapper">
-            <div class="input-answer typed">{{selecteQuestion.value}}</div>
-            <!-- <input type="text" class="form-control input-answer" id="formGroupExampleInput" name="answer" placeholder="Example input"
-                [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }"> -->
+            <!-- <div class="input-answer typed">{{selecteQuestion.value}}</div> -->
+            <input type="text" class="form-control input-answer" id="formGroupExampleInput" name="answer"
+                placeholder="Example input" [(ngModel)]="selecteQuestion.value" [ngModelOptions]="{ standalone: true }">
             <button class="button-74" [ngClass]="{'disabled': !selecteQuestion.value}" type="button"
-                [disabled]="!selecteQuestion.value" (click)="onSubmit()">Next</button>
+                [disabled]="!selecteQuestion.value" (click)="onSubmit()">{{(currentIndex+1) == alphabetQuestion.length ?
+                'End' :'Next' }} </button>
 
         </div>
     </div>
 
-    <div class="keyboard-section-wrapper">
+    <!-- <div class="keyboard-section-wrapper">
         <div class="base">
             <div class="line1">
                 @for (entry of alphabetArray; track entry; let i = $index) {
@@ -98,7 +99,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
     }
 
     <div class="playername-wrapper">
@@ -106,7 +107,7 @@
             <span>Player : </span>
             <span>{{playername}}</span>
         </p>
-</div>
+    </div>
 </section>
 
 <!-- Modal -->

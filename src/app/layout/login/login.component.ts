@@ -26,17 +26,13 @@ export class LoginComponent {
     private toastr: ToastrService, private loader: NgxUiLoaderService) {
     console.log(activeRoute.snapshot.data)
     this.loginForm = this.fb.group({
-      mobile: ['', [Validators.required, Validators.pattern(/^[6789]\d{9}$/)]],
+      mobile: ['', [Validators.required]],
       // password: ['', [Validators.required]]
     })
 
   }
 
   ngOnInit() {
-
-
-
-
 
   }
 

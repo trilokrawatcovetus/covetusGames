@@ -5,7 +5,8 @@
     /* grid-gap: 10px; */
 }
 
-input:-webkit-autofill, input:-webkit-autofill:focus {
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
     transition: background-color 0s 600000s, color 0s 600000s !important;
 }
 
@@ -21,4 +22,11 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 .clue {
     margin-bottom: 10px;
+}
+
+
+.main-qustion-section {
+    background-image: url('assets/images/image.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }

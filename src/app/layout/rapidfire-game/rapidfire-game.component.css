@@ -315,6 +315,8 @@ span.line-selected.active {
     margin-top: 20px;
     padding: 5px;
     border-radius: 90px;
+    background-color: #ffffff;
+    border: 1px solid #fff6ad;
 }
 
 .option.col-lg-6.active {
@@ -336,16 +338,16 @@ span.line-selected.active {
     display: flex;
     justify-content: center;
     margin-top: 6px;
-  }
-  
-  .playername-wrapper {
+}
+
+.playername-wrapper {
     background-color: #e5e5e5;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px 0px 10px 10px;
-  }
+}
 
-  p.que-hint-text {
+p.que-hint-text {
     margin: 0;
 }
 
@@ -357,17 +359,18 @@ span.line-selected.active {
     color: rgb(255, 255, 255);
     background-color: #1652F0;
     border: none;
-  }
-  
-  .rule-btn:hover {
+}
+
+.rule-btn:hover {
     background-color: #1652F0;
-  }
-  .rule-btn:focus{
+}
+
+.rule-btn:focus {
     outline: none;
     box-shadow: none;
-  } 
+}
 
-  .game-btn-wrapp {
+.game-btn-wrapp {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -380,7 +383,17 @@ span.line-selected.active {
     padding: 4px 6px;
     border-radius: 7px;
     background-color: #f7f7f7;
-  }
+}
+
+button.option.lock-btn {
+    background-color: #0d6efd;
+    opacity: 1;
+    border: 2px solid #fff;
+}
+
+button.rule-btn {
+    margin-right: 10px;
+}
 
 @keyframes blink {
 
@@ -454,13 +467,14 @@ span.line-selected.active {
 }
 
 @media only screen and (max-width: 576px) {
-    #countdown{
+    #countdown {
         padding: 0px 10px;
     }
 
-    .timer-box{
+    .timer-box {
         padding: 0px 10px;
     }
+
     .base {
         padding: 20px 0px !important;
         width: 440px;
