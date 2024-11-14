@@ -2,9 +2,16 @@
     position: relative;
 }
 
+.main-qustion-section {
+    background-image: url('/assets/images/image.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #countdown {
     height: auto;
     width: 40px;
+    margin-left: 10px;
 }
 
 #countdown-number {
@@ -205,8 +212,11 @@ div[class*='line'] span:active {
 .button-group-wrapper {
     display: flex;
     justify-content: center;
-    background-color: #ffdfe7;
-    padding: 10px 0;
+    background-color: #0d6efd6b;
+    border: 1px solid #ffff;
+    padding: 10px 2px;
+    margin: 0 5px;
+    border-radius: 10px;
 }
 
 .input-wrapper {
@@ -218,9 +228,9 @@ div[class*='line'] span:active {
 
 .button-group-wrapper label {
     font-size: 16px;
-    font-weight: 500;
-    color: #595959;
+    font-weight: 600;
     padding: 0 5px;
+    color: #fff;
 }
 
 .input-answer {
@@ -311,13 +321,14 @@ span.line-selected.active {
 }
 
 .option {
-    width: 200px;
-    margin-right: 40px;
-    margin-top: 20px;
-    padding: 5px;
-    border-radius: 90px;
-    background-color: #ffffff;
-    border: 1px solid #fff6ad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d6efd6b;
+  border: 1px solid #ffff;
+  padding: 10px 2px;
+  margin: 0 5px;
+  border-radius: 10px;
 }
 
 .option.col-lg-6.active {
@@ -341,6 +352,10 @@ span.line-selected.active {
     margin-top: 6px;
 }
 
+.game-name-wrapper > h3 {
+    color: #fff;
+}
+
 .playername-wrapper {
     background-color: #e5e5e5;
     margin-top: 10px;
@@ -350,6 +365,10 @@ span.line-selected.active {
 
 p.que-hint-text {
     margin: 0;
+}
+
+.option-row-wrapper {
+    min-height: 180px !important;
 }
 
 .rule-btn {
@@ -394,6 +413,11 @@ button.option.lock-btn {
 
 button.rule-btn {
     margin-right: 10px;
+}
+
+.audio-controller {
+    display: flex;
+    justify-content: center;
 }
 
 @keyframes blink {
