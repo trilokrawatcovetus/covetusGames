@@ -28,7 +28,8 @@ export class RapidfireGameComponent {
   updatedQustion: any;
   selectedQuestion: any;
   audio: any;
-  totalTime = 60
+  totalTime = 60;
+  firstVideoloadedflag: boolean = false;
   // audiolist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
   // audioPlayers: any;
   playername = localStorage.getItem("userName");
@@ -46,11 +47,17 @@ export class RapidfireGameComponent {
 
           this.timervalue = data.remainingTime;
           if (data.question != 1) {
-            document.getElementById('stopButton')?.click();
+            for (let i = 0; i <= 29; i++) {
+              const buttonId = 'stopButton' + i;
+              const button = document.getElementById(buttonId);
+              if (button) {
+                button.click();
+              }
+            }
             setTimeout(() => {
               console.log('playButton', this.selectedQuestion.audiofile)
               document.getElementById(this.selectedQuestion.audiofile)?.click();
-            }, 100)
+            }, 1000)
           }
         }
 
@@ -150,6 +157,7 @@ export class RapidfireGameComponent {
   }
 
   firstVideoLoaded() {
+    this.firstVideoloadedflag = true
     if (this.selectedQuestion.audiofile == 'A6') {
       console.log(document.getElementById('A6'))
       document.getElementById('A6')?.click();

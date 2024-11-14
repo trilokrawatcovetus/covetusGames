@@ -6,215 +6,212 @@
     </div>
 
     <div class="audio-controller" style="opacity: 0;height: 0px;display: none;">
-        <video controls #A6 (loadeddata)="firstVideoLoaded()">
-            <source src="assets/video/A6.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <button type="button" id="A6" (click)="A6.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A6.pause(); A6.currentTime = 0;">Stop 10</button>
 
-        <video controls #A10>
+        <!-- @if(firstVideoloadedflag) { -->
+
+        <video controls playsinline #A10>
             <source src="assets/video/A10.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A10" (click)="A10.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A10.pause(); A10.currentTime = 0;">Stop 10</button>
+        <button type="button" id="stopButton1" (click)="A10.pause(); A10.currentTime = 0;">Stop 10</button>
 
-        <video controls #A9999>
+        <video controls playsinline #A9999>
             <source src="assets/video/9999.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A9999" (click)="A9999.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A9999.pause(); A9999.currentTime = 0;">Stop 10</button>
+        <button type="button" id="stopButton2" (click)="A9999.pause(); A9999.currentTime = 0;">Stop 10</button>
 
-        <video controls #A3>
+        <video controls playsinline #A3>
             <source src="assets/video/A3.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A3" (click)="A3.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A3.pause(); A3.currentTime = 0;">Stop 10</button>
+        <button type="button" id="stopButton3" (click)="A3.pause(); A3.currentTime = 0;">Stop 10</button>
 
-        <video controls #A6666>
+        <video controls playsinline #A6666>
             <source src="assets/video/6666.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A6666" (click)="A6666.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A6666.pause(); A6666.currentTime = 0;">Stop 10</button>
-        <video controls #A777>
+        <button type="button" id="stopButton4" (click)="A6666.pause(); A6666.currentTime = 0;">Stop 10</button>
+        <video controls playsinline #A777>
             <source src="assets/video/777.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A777" (click)="A777.play()">Play 10</button>
-        <button type="button" id="stopButton0" (click)="A777.pause(); A777.currentTime = 0;">Stop 10</button>
+        <button type="button" id="stopButton5" (click)="A777.pause(); A777.currentTime = 0;">Stop 10</button>
 
         <!-- Added new video tags for the list -->
-        <video controls #A12>
+        <video controls playsinline #A12>
             <source src="assets/video/A12.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A12" (click)="A12.play()">Play 12</button>
-        <button type="button" id="stopButton0" (click)="A12.pause(); A12.currentTime = 0;">Stop 12</button>
+        <button type="button" id="stopButton6" (click)="A12.pause(); A12.currentTime = 0;">Stop 12</button>
 
-        <video controls #A7>
+        <video controls playsinline #A7>
             <source src="assets/video/A7.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A7" (click)="A7.play()">Play 7</button>
-        <button type="button" id="stopButton0" (click)="A7.pause(); A7.currentTime = 0;">Stop 7</button>
+        <button type="button" id="stopButton7" (click)="A7.pause(); A7.currentTime = 0;">Stop 7</button>
 
-        <video controls #A22>
+        <video controls playsinline #A22>
             <source src="assets/video/22.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A22" (click)="A22.play()">Play 22</button>
-        <button type="button" id="stopButton0" (click)="A22.pause(); A22.currentTime = 0;">Stop 22</button>
+        <button type="button" id="stopButton8" (click)="A22.pause(); A22.currentTime = 0;">Stop 22</button>
 
-        <video controls #A3333>
+        <video controls playsinline #A3333>
             <source src="assets/video/3333.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A3333" (click)="A3333.play()">Play 3333</button>
-        <button type="button" id="stopButton0" (click)="A3333.pause(); A3333.currentTime = 0;">Stop 3333</button>
+        <button type="button" id="stopButton9" (click)="A3333.pause(); A3333.currentTime = 0;">Stop 3333</button>
 
-        <video controls #A333>
+        <video controls playsinline #A333>
             <source src="assets/video/333.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A333" (click)="A333.play()">Play 3333</button>
-        <button type="button" id="stopButton0" (click)="A333.pause(); A333.currentTime = 0;">Stop 3333</button>
+        <button type="button" id="stopButton10" (click)="A333.pause(); A333.currentTime = 0;">Stop 3333</button>
 
-        <video controls #A1>
+        <video controls playsinline #A1>
             <source src="assets/video/A1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A1" (click)="A1.play()">Play 1</button>
-        <button type="button" id="stopButton0" (click)="A1.pause(); A1.currentTime = 0;">Stop 1</button>
+        <button type="button" id="stopButton11" (click)="A1.pause(); A1.currentTime = 0;">Stop 1</button>
 
-        <video controls #A5>
+        <video controls playsinline #A5>
             <source src="assets/video/A5.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A5" (click)="A5.play()">Play 5</button>
-        <button type="button" id="stopButton0" (click)="A5.pause(); A5.currentTime = 0;">Stop 5</button>
+        <button type="button" id="stopButton12" (click)="A5.pause(); A5.currentTime = 0;">Stop 5</button>
 
-        <video controls #A4>
+        <video controls playsinline #A4>
             <source src="assets/video/A4.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A4" (click)="A4.play()">Play 4</button>
-        <button type="button" id="stopButton0" (click)="A4.pause(); A4.currentTime = 0;">Stop 4</button>
+        <button type="button" id="stopButton13" (click)="A4.pause(); A4.currentTime = 0;">Stop 4</button>
 
-        <video controls #A11>
+        <video controls playsinline #A11>
             <source src="assets/video/A11.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A11" (click)="A11.play()">Play 11</button>
-        <button type="button" id="stopButton0" (click)="A11.pause(); A11.currentTime = 0;">Stop 11</button>
+        <button type="button" id="stopButton14" (click)="A11.pause(); A11.currentTime = 0;">Stop 11</button>
 
-        <video controls #A13>
+        <video controls playsinline #A13>
             <source src="assets/video/A13.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A13" (click)="A13.play()">Play 13</button>
-        <button type="button" id="stopButton0" (click)="A13.pause(); A13.currentTime = 0;">Stop 13</button>
+        <button type="button" id="stopButton15" (click)="A13.pause(); A13.currentTime = 0;">Stop 13</button>
 
-        <video controls #A5555>
+        <video controls playsinline #A5555>
             <source src="assets/video/5555.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A5555" (click)="A5555.play()">Play 5555</button>
-        <button type="button" id="stopButton0" (click)="A5555.pause(); A5555.currentTime = 0;">Stop 5555</button>
+        <button type="button" id="stopButton16" (click)="A5555.pause(); A5555.currentTime = 0;">Stop 5555</button>
 
-        <video controls #A9>
+        <video controls playsinline #A9>
             <source src="assets/video/A9.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A9" (click)="A9.play()">Play 9</button>
-        <button type="button" id="stopButton0" (click)="A9.pause(); A9.currentTime = 0;">Stop 9</button>
+        <button type="button" id="stopButton17" (click)="A9.pause(); A9.currentTime = 0;">Stop 9</button>
 
-        <video controls #A33>
+        <video controls playsinline #A33>
             <source src="assets/video/33.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A33" (click)="A33.play()">Play 33</button>
-        <button type="button" id="stopButton0" (click)="A33.pause(); A33.currentTime = 0;">Stop 33</button>
+        <button type="button" id="stopButton18" (click)="A33.pause(); A33.currentTime = 0;">Stop 33</button>
 
-        <video controls #A2222>
+        <video controls playsinline #A2222>
             <source src="assets/video/2222.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A2222" (click)="A2222.play()">Play 2222</button>
-        <button type="button" id="stopButton0" (click)="A2222.pause(); A2222.currentTime = 0;">Stop 2222</button>
+        <button type="button" id="stopButton19" (click)="A2222.pause(); A2222.currentTime = 0;">Stop 2222</button>
 
-        <video controls #A8888>
+        <video controls playsinline #A8888>
             <source src="assets/video/8888.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A8888" (click)="A8888.play()">Play 8888</button>
-        <button type="button" id="stopButton0" (click)="A8888.pause(); A8888.currentTime = 0;">Stop 8888</button>
+        <button type="button" id="stopButton20" (click)="A8888.pause(); A8888.currentTime = 0;">Stop 8888</button>
 
-        <video controls #A2>
+        <video controls playsinline #A2>
             <source src="assets/video/A2.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A2" (click)="A2.play()">Play 2</button>
-        <button type="button" id="stopButton0" (click)="A2.pause(); A2.currentTime = 0;">Stop 2</button>
+        <button type="button" id="stopButton21" (click)="A2.pause(); A2.currentTime = 0;">Stop 2</button>
 
-        <video controls #A15>
+        <video controls playsinline #A15>
             <source src="assets/video/A15.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A15" (click)="A15.play()">Play 15</button>
-        <button type="button" id="stopButton0" (click)="A15.pause(); A15.currentTime = 0;">Stop 15</button>
+        <button type="button" id="stopButton22" (click)="A15.pause(); A15.currentTime = 0;">Stop 15</button>
 
-        <video controls #A7777>
+        <video controls playsinline #A7777>
             <source src="assets/video/7777.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A7777" (click)="A7777.play()">Play 7777</button>
-        <button type="button" id="stopButton0" (click)="A7777.pause(); A7777.currentTime = 0;">Stop 7777</button>
+        <button type="button" id="stopButton23" (click)="A7777.pause(); A7777.currentTime = 0;">Stop 7777</button>
 
-        <video controls #A77>
+        <video controls playsinline #A77>
             <source src="assets/video/77.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A77" (click)="A77.play()">Play 77</button>
-        <button type="button" id="stopButton0" (click)="A77.pause(); A77.currentTime = 0;">Stop 77</button>
+        <button type="button" id="stopButton24" (click)="A77.pause(); A77.currentTime = 0;">Stop 77</button>
 
-        <video controls #A4444>
+        <video controls playsinline #A4444>
             <source src="assets/video/4444.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A4444" (click)="A4444.play()">Play 4444</button>
-        <button type="button" id="stopButton0" (click)="A4444.pause(); A4444.currentTime = 0;">Stop 4444</button>
+        <button type="button" id="stopButton25" (click)="A4444.pause(); A4444.currentTime = 0;">Stop 4444</button>
 
-        <video controls #A44>
+        <video controls playsinline #A44>
             <source src="assets/video/44.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A44" (click)="A44.play()">Play 44</button>
-        <button type="button" id="stopButton0" (click)="A44.pause(); A44.currentTime = 0;">Stop 44</button>
+        <button type="button" id="stopButton26" (click)="A44.pause(); A44.currentTime = 0;">Stop 44</button>
 
-        <video controls #A14>
+        <video controls playsinline #A14>
             <source src="assets/video/A14.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A14" (click)="A14.play()">Play 14</button>
-        <button type="button" id="stopButton0" (click)="A14.pause(); A14.currentTime = 0;">Stop 14</button>
+        <button type="button" id="stopButton27" (click)="A14.pause(); A14.currentTime = 0;">Stop 14</button>
 
-        <video controls #A8>
+        <video controls playsinline #A8>
             <source src="assets/video/A8.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A8" (click)="A8.play()">Play 8</button>
-        <button type="button" id="stopButton0" (click)="A8.pause(); A8.currentTime = 0;">Stop 8</button>
+        <button type="button" id="stopButton28" (click)="A8.pause(); A8.currentTime = 0;">Stop 8</button>
 
-        <video controls #A444>
+        <video controls playsinline #A444>
             <source src="assets/video/444.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button type="button" id="A444" (click)="A444.play()">Play 444</button>
-        <button type="button" id="stopButton0" (click)="A444.pause(); A444.currentTime = 0;">Stop 444</button>
+        <button type="button" id="stopButton29" (click)="A444.pause(); A444.currentTime = 0;">Stop 444</button>
+        <!-- } -->
 
     </div>
 
@@ -245,17 +242,19 @@
         </div>
 
         <div class="options row">
-            @if(30 >= timervalue ) {
+            <!-- @if(30 >= timervalue ) { -->
+            <div [hidden]="30 < timervalue">
+                @for (item of selectedQuestion.answerArray; track item; let i = $index) {
+                <div class="option col-lg-6" (click)="selectAnswer(item)"
+                    [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item, 'isWrong': selectedQuestion.isWrong &&  selectedQuestion['userAnswer'] == item}">
+                    {{item}}</div>
+                }
+                <button type="button" class="btn btn-primary option lock-btn col-lg-6"
+                    (click)="saveAnswer( selectedQuestion)" [disabled]="!selectedQuestion['userAnswer']">lock</button>
 
-            @for (item of selectedQuestion.answerArray; track item; let i = $index) {
+            </div>
 
-            <div class="option col-lg-6" (click)="selectAnswer(item)"
-                [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item, 'isWrong': selectedQuestion.isWrong &&  selectedQuestion['userAnswer'] == item}">
-                {{item}}</div>
-            }
-            <button type="button" class="btn btn-primary option lock-btn col-lg-6"
-                (click)="saveAnswer( selectedQuestion)" [disabled]="!selectedQuestion['userAnswer']">lock</button>
-            }
+            <!-- } -->
         </div>
 
 

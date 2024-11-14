@@ -1,13 +1,13 @@
 <div class="main-login" style="position: relative;">
   <div class="logowrapper">
-    <img src="assets/images/logo.png" alt="logo">
+    <img src="assets/images/logo.jpeg" alt="logo">
   </div>
   <div class="wrapper">
     <form autocomplete="off" [formGroup]="loginForm">
       <h2>Login</h2>
       <div class="input-field">
         <input type="text" formControlName="mobile">
-        <label>Enter your moible</label>
+        <label>Enter your mobile</label>
       </div>
       <div *ngIf="field['mobile'].invalid && field['mobile'].touched" class="required-valid-wrapper">
         <small *ngIf="field['mobile'].errors?.['required']">Mobile number is required.</small>

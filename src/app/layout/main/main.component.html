@@ -91,6 +91,7 @@
         </div>
 
     </div>
+
     }
 
     }
@@ -191,7 +192,7 @@
 
     @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2 && gameList && gameList.length > 0) {
     <div class="main-video">
-        <video width="320" height="240" controls autoplay loop>
+        <video width="320" height="240" controls autoplay loop playsinline>
             <source src="assets/video/startScreenVideo.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -209,12 +210,21 @@
         (isCompletd)="onComplete($event)"></app-cross-word-app>
     }
     @if(startRapidFirgame){
+
     <!-- <app-cross-word-app ></app-cross-word-app> -->
     <app-rapidfire-game [rapidFireQuestion]="rapidFireQuestion"
         (isCompletd)="onCompleteRapidfiregame($event)"></app-rapidfire-game>
 
     }
 
+    <div style="display: none;">
+        <video controls #A6 style="display: none;" playsinline>
+            <source src="assets/video/A6.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button type="button" id="A6" (click)="A6.play()">Play 10</button>
+        <button type="button" id="stopButton0" (click)="A6.pause(); A6.currentTime = 0;">Stop 10</button>
 
+    </div>
     <!-- selector: 'app-rapidfire-game', -->
 </div>

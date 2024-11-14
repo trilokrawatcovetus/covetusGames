@@ -68,6 +68,9 @@ export class MainComponent {
         if (data['type'] == "rapidfire") {
           this.sokect.thirdGameStartEvent('gamestarted');
           this.startRapidFirgame = true;
+          setTimeout(() => {
+            document.getElementById('A6')?.click();
+          }, 3000)
         }
 
       },
@@ -96,6 +99,13 @@ export class MainComponent {
         if (data['type'] == "rapidfire") {
           this.startRapidFirgame = false;
           this.game3['start'] = 0;
+          for (let i = 0; i <= 29; i++) {
+            const buttonId = 'stopButton' + i;
+            const button = document.getElementById(buttonId);
+            if (button) {
+              button.click();
+            }
+          }
           // this.stopGameManual(this.game3);
 
         }
@@ -559,6 +569,9 @@ export class MainComponent {
           }
           this.sokect.startGame(obj);
           item['start'] = 1;
+          // setTimeout(() => {
+          //   document.getElementById('A6')?.click();
+          // }, 3000)
         }
         else {
           this.toastr.error(res.message || res.error, '');

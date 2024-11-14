@@ -301,6 +301,7 @@ span.line-selected.active {
     justify-content: center;
     width: 500px;
     margin: 0 auto;
+    min-height: 180px !important;
 }
 
 .option {
