@@ -9,6 +9,7 @@
 
 .main-login {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -24,6 +25,24 @@
   background: url("/assets/images/login-img.jpeg"), #000;
   background-position: center;
   background-size: cover;
+}
+
+.logowrapper > img {
+  width: 200px;
+  height: auto;
+  position: relative;
+}
+
+p.developed {
+  color: #fff;
+}
+
+.text-wrapper {
+  margin-top: 20px;
+}
+
+.wrapper {
+  padding-bottom: 20px !important;
 }
 
 .wrapper {
@@ -151,4 +170,10 @@ button:hover {
 
 .login-btn {
   margin-top: 10px;
+}
+
+@media only screen and (max-width: 450px){
+  .wrapper {
+    width: 330px;
+  }
 }
