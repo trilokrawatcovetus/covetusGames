@@ -61,25 +61,25 @@
         <div class="base">
             <div class="line1">
                 @for (item of keyWord; track item; let i = $index) {
-                @if(i < 9){ <span (click)="onCLickvalue(item)">{{item}}</span>
+                @if(i < 6){ <span (click)="onCLickvalue(item)">{{item}}</span>
                     }
                     }
             </div>
             <div class="line2">
                 @for (item of keyWord; track item;let i = $index ) {
-                @if(i >= 9 && i < 17) { <span (click)="onCLickvalue(item)">{{item}}</span>
+                @if(i >= 6 && i < 11) { <span (click)="onCLickvalue(item)">{{item}}</span>
                     }
                     }
             </div>
             <div class="line3">
-                <span><svg enable-background="new 0 0 500 500" id="arrow" version="1.1" viewBox="0 0 500 500"
+                <!-- <span><svg enable-background="new 0 0 500 500" id="arrow" version="1.1" viewBox="0 0 500 500"
                         xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <path clip-rule="evenodd"
                             d="M433.704,237.465c4.456,6.086,7.092,13.539,7.092,21.622  c0,20.079-16.266,36.341-36.344,36.341h-36.341c-9.991,0-18.173,8.18-18.173,18.172v109.025c0,20.079-16.262,36.341-36.341,36.341  H186.4c-20.079,0-36.34-16.262-36.34-36.341V313.6c0-9.992-8.181-18.172-18.172-18.172H95.547  c-20.079,0-36.342-16.262-36.342-36.341c0-8.083,2.635-15.536,7.08-21.622L217.747,54.388c17.807-17.808,46.695-17.808,64.505,0  L433.704,237.465z" />
-                    </svg></span>
+                    </svg></span> -->
                 @for (item of keyWord; track item; let i = $index) {
-                @if(i >= 17) {
+                @if(i >= 11) {
                 <span (click)="onCLickvalue(item)">{{item}}</span>
                 }
 
@@ -101,37 +101,37 @@
             <span>{{playername}}</span>
         </p>
     </div>
-<!-- <div class="clues">
+    <!-- <div class="clues">
     <div class="clue" *ngFor="let clue of clues; let i = index">
         {{ clue }}
     </div>
 </div> -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
-                        नीचे दिए गए है ।
-                    </li>
-                    <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
-                    <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
-                    <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
-                        ग़लत जवाब को edit किया जा सकता है ।</li>
-                    <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
-                        कोई भी परिवर्तन असंभव है ।</li>
-                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
-                        विनर होगा ।</li>
-                </ul>
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
+                            नीचे दिए गए है ।
+                        </li>
+                        <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
+                        <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
+                        <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
+                            ग़लत जवाब को edit किया जा सकता है ।</li>
+                        <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
+                            कोई भी परिवर्तन असंभव है ।</li>
+                        <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
+                            विनर होगा ।</li>
+                    </ul>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>

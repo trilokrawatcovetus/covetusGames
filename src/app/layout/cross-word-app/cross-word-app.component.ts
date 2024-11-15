@@ -74,8 +74,7 @@ export class CrossWordAppComponent {
 
   ngOnInit() {
     setTimeout(() => {
-      console.log(this.clues['across'])
-      console.log(this.clues['down'])
+
       // console.log(JSON.stringify(this.clues))
       // console.log(JSON.stringify(this.grid))
       let x = this.clues['across'].findIndex((f: any) => f.completed == false);
@@ -190,7 +189,7 @@ export class CrossWordAppComponent {
           this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
           let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
 
-          this.getRandomValues(this.barakhadi, answerlist, 24)
+          this.getRandomValues(this.barakhadi, answerlist, 16)
         }
         // this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
       }
@@ -208,7 +207,7 @@ export class CrossWordAppComponent {
         this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
         let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
 
-        this.getRandomValues(this.barakhadi, answerlist, 24)
+        this.getRandomValues(this.barakhadi, answerlist, 16)
       }
     }
 

@@ -53,19 +53,25 @@ export class RapidfireGameComponent {
             if (button) {
               button.click();
             }
-          }
-          for (let i = 0; i <= 30; i++) {
-
-            const buttonId = 'mute' + i;
-            const button = document.getElementById(buttonId);
-            if (button) {
-              button.click();
+            if (i == 30) {
+              setTimeout(() => {
+                console.log('playButton', this.selectedQuestion.audiofile)
+                document.getElementById(this.selectedQuestion.audiofile)?.click();
+              }, 1000)
             }
           }
-          setTimeout(() => {
-            console.log('playButton', this.selectedQuestion.audiofile)
-            document.getElementById(this.selectedQuestion.audiofile)?.click();
-          }, 1000)
+          // for (let i = 0; i <= 30; i++) {
+
+          //   const buttonId = 'mute' + i;
+          //   const button = document.getElementById(buttonId);
+          //   if (button) {
+          //     button.click();
+          //   }
+          // }
+          // setTimeout(() => {
+          //   console.log('playButton', this.selectedQuestion.audiofile)
+          //   document.getElementById(this.selectedQuestion.audiofile)?.click();
+          // }, 1000)
           // }
         }
 

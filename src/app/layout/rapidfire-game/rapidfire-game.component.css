@@ -212,7 +212,7 @@ div[class*='line'] span:active {
 .button-group-wrapper {
     display: flex;
     justify-content: center;
-    background-color: #0d6efd6b;
+    background-color: #0d6efda1;
     border: 1px solid #ffff;
     padding: 10px 2px;
     margin: 0 5px;
@@ -356,7 +356,7 @@ span.line-selected.active {
     margin-top: 6px;
 }
 
-.game-name-wrapper > h3 {
+.game-name-wrapper>h3 {
     color: #fff;
 }
 
