@@ -121,6 +121,7 @@ export class CrossWordAppComponent {
 
   }
   clickonCell(cell: any, key: any) {
+    console.log(cell)
     if (cell && cell.isBlanckdCell == true) {
       return;
     }

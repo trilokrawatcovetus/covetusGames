@@ -42,7 +42,7 @@
         <p class="que-hint-text">
             <!-- {{completed}} -->
             @if(selectedCell && selectedCell.showQH) {
-            <span>बाएँ से दाएँ: {{selectedCell.Hquestion}}</span>
+            <span>बाएँ से दाएँ: {{selectedCell.hhnumber}} - {{selectedCell.Hquestion}}</span>
             }
 
 
@@ -50,7 +50,7 @@
         </p>
         <p class="que-hint-text">
             @if(selectedCell && !selectedCell.showQH) {
-            <span> ऊपर से नीचे: {{selectedCell.Vquestion}}</span>
+            <span> ऊपर से नीचे: {{selectedCell.vvnumber}} {{selectedCell.Vquestion}}</span>
             }
 
 

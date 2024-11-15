@@ -251,10 +251,12 @@ export class MainComponent {
             this.grid[i][k + x]['answer'] = this.clues.across[index]['answerArray'][x]
             this.grid[i][k + x]['isBlanckdCell'] = false;
             // this.grid[i][k + x]['Vquestion'] = false;
+            this.grid[i][k + x]['hhnumber'] = this.clues.across[index]['number'];
             this.grid[i][k + x]['Hquestion'] = this.clues.across[index]['clue'];
             this.grid[i][k + x]['HanswerArray'] = this.clues.across[index]['answerArray'];
             this.grid[i][k + x]['nextHCell'] = (x == length - 1) ? null : x + 1;
             j['qnumber'] = this.clues.across[index]['number']
+            j['hhnumber'] = this.clues.across[index]['number']
           }
 
         }
@@ -269,10 +271,12 @@ export class MainComponent {
             }
             this.grid[i + x][k]['answer'] = this.clues.down[index2]['answerArray'][x]
             this.grid[i + x][k]['isBlanckdCell'] = false;
+            this.grid[i + x][k]['vvnumber'] = this.clues.down[index2]['number'];
             this.grid[i + x][k]['Vquestion'] = this.clues.down[index2]['clue'];
             this.grid[i + x][k]['VanswerArray'] = this.clues.down[index2]['answerArray'];
             this.grid[i + x][k]['nextVCell'] = (x == length - 1) ? null : x + 1;
             j['qnumber'] = this.clues.down[index2]['number'];
+            j['vvnumber'] = this.clues.down[index2]['number'];
 
           }
 
