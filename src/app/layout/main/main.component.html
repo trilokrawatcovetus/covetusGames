@@ -11,12 +11,12 @@
         </div>
         @if(userId == 2) {
         <div class="result-btn-wrapper">
+            @if(activeuser) {
+                <p class="active-user"> activeUsers: - {{activeuser}}</p>
+                }
             <button type="button" class="btn btn-primary rule-btn btn" data-bs-toggle="modal"
                 data-bs-target="#exampleModal-result">
                 result </button>
-            @if(activeuser) {
-            <p class="active-user"> activeUsers: - {{activeuser}}</p>
-            }
         </div>
         }
     </header>
@@ -268,7 +268,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModal-resultLabel">Result</h5>
 
-                <button type="button" class="btn-primary" (click)="getALLresult()">Refresh</button>
+                <button type="button" class="btn-primary Refresh" (click)="getALLresult()">Refresh</button>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

@@ -6,8 +6,12 @@ p.text-game {
 
 .result-btn-wrapper {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 5px;
+}
+
+.Refresh {
+    margin-left: 10px;
 }
 
 /* Container for the home page */
@@ -27,8 +31,9 @@ p.text-game {
     display: flex;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
     justify-content: space-between;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .result-btn-wrapper button {
@@ -36,8 +41,16 @@ p.text-game {
     color: #fff;
     font-weight: 500;
     border-radius: 5px;
-    padding: 5px 20px;
+    padding: 5px 15px;
     border: 2px solid #c082fb;
+    text-transform: capitalize;
+}
+
+p.active-user {
+    border: 2px solid #fff;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-bottom: 0;
 }
 
 /* User info styling */
