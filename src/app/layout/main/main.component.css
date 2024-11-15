@@ -19,9 +19,19 @@ p.text-game {
     color: white;
     padding: 10px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.result-btn-wrapper button{
+    background-color: #a855f7;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 5px 20px;
+    border: 2px solid #c082fb;
 }
 
 /* User info styling */
@@ -98,7 +108,7 @@ header.user-header {
 }
 
 .owner-container {
-    margin-top: 43px;
+    margin-top: 60px;
 }
 
 /* Responsive layout for smaller screens */

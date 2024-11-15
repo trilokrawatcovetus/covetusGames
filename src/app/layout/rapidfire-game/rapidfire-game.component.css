@@ -324,11 +324,15 @@ span.line-selected.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0d6efd6b;
-  border: 1px solid #ffff;
-  padding: 10px 2px;
-  margin: 0 5px;
-  border-radius: 10px;
+  background-color: #0d6efda1;
+  border: 2px solid #ffff;
+  padding: 4px 2px;
+  margin: 5px 5px;
+  border-radius: 60px;
+  width: 200px;
+  height: fit-content;
+  color: #fff;
+  font-weight: 600;
 }
 
 .option.col-lg-6.active {

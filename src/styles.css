@@ -23,3 +23,8 @@ input:-webkit-autofill:focus {
 .clue {
     margin-bottom: 10px;
 }
+
+.maingame-wrapper {
+    display: flex;
+    justify-content: center;
+}

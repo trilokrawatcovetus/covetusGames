@@ -172,6 +172,16 @@ button:hover {
   margin-top: 10px;
 }
 
+.loginall-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media only screen and (max-width: 450px){
   .wrapper {
     width: 330px;

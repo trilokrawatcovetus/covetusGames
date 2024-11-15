@@ -8,12 +8,20 @@
         <div class="user-info">
             <i class="fa fa-user" aria-hidden="true"></i>
             <span class="user-name">{{userName}}</span>
-
         </div>
+        <div class="result-btn-wrapper">
+            <button type="button" class="btn btn-primary rule-btn btn" data-bs-toggle="modal"
+            data-bs-target="#exampleModal-result">
+            result </button>
+        @if(activeuser) {
+        <p class="active-user"> activeUsers: - {{activeuser}}</p>
+        }
+        </div>
+
     </header>
     @if(userId != 2) {
     <div class="owner-container">
-        <div class="row">
+        <div class="row maingame-wrapper">
             @for (item of gameList; track item; let i = $index) {
             @if(item['active'] == 1) {
             <div class="col-lg-4 col-md-4 col-sm-12">
@@ -98,7 +106,7 @@
     @if(userId == 2) {
 
     <div class="owner-container">
-        <div class="row">
+        <div class="row maingame-wrapper">
             @for (item of gameList; track item; let i = $index) {
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card">

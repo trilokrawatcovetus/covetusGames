@@ -1,39 +1,24 @@
 <div class="main-login" style="position: relative;">
-  <div class="logowrapper">
-    <img src="assets/images/Rhythm.png" alt="logo">
-  </div>
-  <div class="wrapper">
-    <form autocomplete="off" [formGroup]="loginForm">
-      <h2>Login</h2>
-      <div class="input-field">
-        <input type="text" formControlName="mobile">
-        <label>Enter your mobile</label>
+  <div class="loginall-wrapper">
+    <div class="logowrapper">
+      <img src="assets/images/Rhythm.png" alt="logo">
+    </div>
+    <div class="wrapper">
+      <form autocomplete="off" [formGroup]="loginForm">
+        <h2>Login</h2>
+        <div class="input-field">
+          <input type="text" formControlName="mobile">
+          <label>Enter your mobile</label>
+        </div>
+        <div *ngIf="field['mobile'].invalid && field['mobile'].touched" class="required-valid-wrapper">
+          <small *ngIf="field['mobile'].errors?.['required']">Mobile number is required.</small>
+          <small *ngIf="field['mobile'].errors?.['pattern']">Invalid mobile number format.</small>
+        </div>
+        <button type="submit" (click)="onSubmit()" class="login-btn">Log In</button>
+      </form>
+      <div class="text-wrapper">
+        <p class="developed">Developed by: <a href="https://www.covetus.com/" target="_blank">Covetus</a></p>
       </div>
-      <div *ngIf="field['mobile'].invalid && field['mobile'].touched" class="required-valid-wrapper">
-        <small *ngIf="field['mobile'].errors?.['required']">Mobile number is required.</small>
-        <small *ngIf="field['mobile'].errors?.['pattern']">Invalid mobile number format.</small>
-      </div>
-      <!-- <div class="input-field">
-        <input type="password" formControlName="password">
-        <label>Enter your password</label>
-      </div>
-      <div *ngIf="field['password'].invalid && field['password'].touched" class="required-valid-wrapper">
-        <small *ngIf="field['password'].errors?.['required']">password number is required.</small>
-      </div> -->
-      <!-- <div class="forget">
-            <label for="remember">
-              <input type="checkbox" id="remember">
-              <p>Remember me</p>
-            </label>
-            <a href="#">Forgot password?</a>
-          </div> -->
-      <button type="submit" (click)="onSubmit()" class="login-btn">Log In</button>
-      <!-- <div class="register">
-            <p>Don't have an account? <a href="#">Register</a></p>
-          </div> -->
-    </form>
-    <div class="text-wrapper">
-      <p class="developed">Developed by: Covetus</p>
     </div>
   </div>
   <ngx-ui-loader fgsColor="#104cb0" fgsType="fading-circle" [loaderId]="'login'" [hasProgressBar]="false"
