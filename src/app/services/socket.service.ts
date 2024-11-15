@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class SocketService {
 
   private socket: Socket;
 
-  constructor() {
+  constructor(private router: Router) {
     // Replace with your server's URL (e.g., http://localhost:3000)
     // this.socket = io.connect('http://localhost:3000');
     this.socket = io(environment.soket_url, {
@@ -184,4 +185,47 @@ export class SocketService {
       });
     });
   }
+
+  login(obj: any): void {
+    this.socket.emit('login', obj.user_id);
+  }
+
+  // Socket.emit('login', 1); // Replace `1` with the dynamic user ID
+
+  // Listen for custom events from the server
+  listenLoginSucess(): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.socket.on('loginSuccess', (data: any) => {
+        observer.next(data);
+      });
+    });
+  }
+  listenLogout(): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.socket.on('logout', (data: any) => {
+        debugger;
+        observer.next(data);
+        localStorage.clear()
+        this.router.navigate(['/login']);
+      });
+    });
+  }
+
+  // Handle successful login and display user data
+  // socket.on('loginSuccess', (data) => {
+  //   console.log(data.message);  // 'You are now logged in.'
+  //   console.log('User Details:', data.userDetails);
+  //   console.log('Active Users Count:', data.activeUsersCount);
+  //   console.log('Deactivated Users Count:', data.deactivatedUsersCount);
+  // });
+
+  // Handle deactivation notice
+  // socket.on('deactivationNotice', (message) => {
+  //   console.log(message);  // 'Your account is deactivated.'
+  // });
+
+  // Handle forced logout due to new login
+  // socket.on('logout', (message) => {
+  //   console.log(message);  // 'You have been logged out due to a new login.'
+  // });
 }

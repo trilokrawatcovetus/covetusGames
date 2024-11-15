@@ -189,7 +189,7 @@ export class CrossWordAppComponent {
           this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
           let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
 
-          this.getRandomValues(this.barakhadi, answerlist, 16)
+          this.getRandomValues(this.barakhadi, answerlist, 18)
         }
         // this.getRandomValues(this.barakhadi, [this.selectedCell.answer], 24)
       }
@@ -207,7 +207,7 @@ export class CrossWordAppComponent {
         this.previousQ = this.selectedCell.showQH ? this.selectedCell.Hquestion : this.selectedCell.Vquestion;
         let answerlist = this.selectedCell.showQH ? this.selectedCell.HanswerArray : this.selectedCell.VanswerArray;
 
-        this.getRandomValues(this.barakhadi, answerlist, 16)
+        this.getRandomValues(this.barakhadi, answerlist, 18)
       }
     }
 

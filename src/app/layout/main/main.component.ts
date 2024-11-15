@@ -43,6 +43,7 @@ export class MainComponent {
   game2: any
   game3: any
   userResult: any;
+  activeuser: any;
   ngOnInit(): void {
 
     this.getAllGamesDetail();
@@ -77,6 +78,30 @@ export class MainComponent {
           //   document.getElementById('A6')?.click();
           // }, 3000)
         }
+
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+
+    this.sokect.listenLoginSucess().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
+        console.log('Game started with data:', data);
+        this.activeuser = data.activeUsersCount
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Observable completed.');
+      }
+    })
+    this.sokect.listenLogout().pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: (data: any) => {
 
       },
       error: (err) => {
@@ -410,6 +435,10 @@ export class MainComponent {
     this.api.allgetMethod('user/getAllGamesDetail').subscribe({
       next: (res: any) => {
         this.loader.stopLoader('login');
+        // if (!this.activeuser) {
+        this.sokect.login({ user_id: this.userId })
+        // }
+
         if (res['error'] != true) {
           if (res.data && res.data.length > 0) {
             this.gameList = res.data;

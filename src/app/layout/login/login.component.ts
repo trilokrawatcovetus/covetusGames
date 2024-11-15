@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
   isMailValid = signal<boolean>(false);
 
   constructor(private fb: FormBuilder, private router: Router, private activeRoute: ActivatedRoute, private api: CommonApiService,
-    private toastr: ToastrService, private loader: NgxUiLoaderService) {
+    private toastr: ToastrService, private loader: NgxUiLoaderService, private socket: SocketService) {
     console.log(activeRoute.snapshot.data)
     this.loginForm = this.fb.group({
       mobile: ['', [Validators.required]],
@@ -60,6 +61,7 @@ export class LoginComponent {
           localStorage.setItem('userId', res['data']['id']);
           localStorage.setItem('userName', res['data']['full_name']);
           this.toastr.success('Logged in successfully', '');
+          // this.socket.login({ user_id: res['data']['id'] })
           this.loginForm.reset();
           this.router.navigate(['']);
         }

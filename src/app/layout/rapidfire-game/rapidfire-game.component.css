@@ -253,6 +253,11 @@ div[class*='line'] span:active {
     cursor: pointer;
 }
 
+.audio-controller video {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
 .button-74 {
     background-color: #fbeee0;
     border: 2px solid #422800;
@@ -321,18 +326,18 @@ span.line-selected.active {
 }
 
 .option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0d6efda1;
-  border: 2px solid #ffff;
-  padding: 4px 2px;
-  margin: 5px 5px;
-  border-radius: 60px;
-  width: 200px;
-  height: fit-content;
-  color: #fff;
-  font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d6efda1;
+    border: 2px solid #ffff;
+    padding: 4px 2px;
+    margin: 5px 5px;
+    border-radius: 60px;
+    width: 200px;
+    height: fit-content;
+    color: #fff;
+    font-weight: 600;
 }
 
 .option.col-lg-6.active {
@@ -421,7 +426,9 @@ button.rule-btn {
 
 .audio-controller {
     display: flex;
-    justify-content: center;
+    margin-left: 14px;
+
+    /* justify-content: center; */
 }
 
 @keyframes blink {

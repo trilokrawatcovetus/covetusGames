@@ -9,15 +9,16 @@
             <i class="fa fa-user" aria-hidden="true"></i>
             <span class="user-name">{{userName}}</span>
         </div>
+        @if(userId == 2) {
         <div class="result-btn-wrapper">
             <button type="button" class="btn btn-primary rule-btn btn" data-bs-toggle="modal"
-            data-bs-target="#exampleModal-result">
-            result </button>
-        @if(activeuser) {
-        <p class="active-user"> activeUsers: - {{activeuser}}</p>
-        }
+                data-bs-target="#exampleModal-result">
+                result </button>
+            @if(activeuser) {
+            <p class="active-user"> activeUsers: - {{activeuser}}</p>
+            }
         </div>
-
+        }
     </header>
     @if(userId != 2) {
     <div class="owner-container">
@@ -107,102 +108,118 @@
 
     <div class="owner-container">
         <div class="row maingame-wrapper">
-        <div class="row">
-           
-        </div>
-        <div class="row">
-            @for (item of gameList; track item; let i = $index) {
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.name}}</h5>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                        @if(item['active'] ==1) {
-                        <a href="javascript:void(0)" class="card-link card-link-test"
-                            [ngClass]="{'active': item['start'] ==1}" (click)="startGame(item)">Start</a>
-                        }
-                        @if(item['start'] ==1) {
-                        <a href="javascript:void(0)" class="card-link card-link-test"
-                            [ngClass]="{'active': item['start'] ==0}" (click)="stopGame(item)">Stop</a>
-                        }
+
+            <div class="row">
+                @for (item of gameList; track item; let i = $index) {
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                            @if(item['active'] ==1) {
+                            <a href="javascript:void(0)" class="card-link card-link-test"
+                                [ngClass]="{'active': item['start'] ==1}" (click)="startGame(item)">Start</a>
+                            }
+                            @if(item['start'] ==1) {
+                            <a href="javascript:void(0)" class="card-link card-link-test"
+                                [ngClass]="{'active': item['start'] ==0}" (click)="stopGame(item)">Stop</a>
+                            }
 
 
-                        <a href="javascript:void(0)" class="card-link card-link-test"
-                            [ngClass]="{'active': item['active'] ==1}"
-                            (click)="ActiveInActiveGame(item,!item.active)">Active</a>
+                            <a href="javascript:void(0)" class="card-link card-link-test"
+                                [ngClass]="{'active': item['active'] ==1}"
+                                (click)="ActiveInActiveGame(item,!item.active)">Active</a>
 
-                        @if(item['active'] ==1) {
-                        @if(item.type == 'crossword'){
-                        <div class="row">
-                            <h2 class="rules-text">Rules</h2>
-                            <!-- List Group -->
-                            <ul class="list-group">
-                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
-                                    नीचे दिए गए है ।
-                                </li>
-                                <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
-                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
-                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
-                                    ग़लत जवाब को edit किया जा सकता है ।</li>
-                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
-                                    कोई भी परिवर्तन असंभव है ।</li>
-                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
-                                    विनर होगा ।</li>
-                            </ul>
+                            @if(item['active'] ==1) {
+                            @if(item.type == 'crossword'){
+                            <div class="row">
+                                <h2 class="rules-text">Rules</h2>
+                                <!-- List Group -->
+                                <ul class="list-group">
+                                    <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर
+                                        से
+                                        नीचे दिए गए है ।
+                                    </li>
+                                    <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।
+                                    </li>
+                                    <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।
+                                    </li>
+                                    <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो
+                                        जाएँगे ।
+                                        ग़लत जवाब को edit किया जा सकता है ।</li>
+                                    <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके
+                                        बाद
+                                        कोई भी परिवर्तन असंभव है ।</li>
+                                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में
+                                        देगा वो
+                                        विनर होगा ।</li>
+                                </ul>
+                            </div>
+                            }
+                            @if(item.type == 'rapidfire'){
+                            <div class="row">
+                                <h2 class="rules-text">Rules</h2>
+                                <!-- List Group -->
+                                <ul class="list-group">
+                                    <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर
+                                        से
+                                        नीचे दिए गए है ।
+                                    </li>
+                                    <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।
+                                    </li>
+                                    <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।
+                                    </li>
+                                    <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो
+                                        जाएँगे ।
+                                        ग़लत जवाब को edit किया जा सकता है ।</li>
+                                    <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके
+                                        बाद
+                                        कोई भी परिवर्तन असंभव है ।</li>
+                                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में
+                                        देगा वो
+                                        विनर होगा ।</li>
+                                </ul>
+                            </div>
+                            }
+                            @if(item.type == 'alphabet'){
+                            <div class="row">
+                                <h2 class="rules-text">Rules</h2>
+                                <!-- List Group -->
+                                <ul class="list-group">
+                                    <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
+                                    </li>
+                                    <li class="list-group-item">२. आप को photo देख कर यह बताना है की मूवी में इस किरदार
+                                        का
+                                        क्या नाम था ।</li>
+                                    <li class="list-group-item">३. Clew के तौर पर नाम का पहला लेटर स्क्रीन पर दिया गया
+                                        है ।
+                                    </li>
+                                    <li class="list-group-item">४. Puzzle को Solve करने के लिए 10 मिनट का समय है ।</li>
+                                    <li class="list-group-item">५. एक बार Next बटन दबाने के बाद back नहीं किया जा सकता ।
+                                    </li>
+                                    <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर जो कम समय में देगा
+                                        वो
+                                        विजेता होगा ।</li>
+                                </ul>
+                            </div>
+                            }
+
+
+                            }
                         </div>
-                        }
-                        @if(item.type == 'rapidfire'){
-                        <div class="row">
-                            <h2 class="rules-text">Rules</h2>
-                            <!-- List Group -->
-                            <ul class="list-group">
-                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
-                                    नीचे दिए गए है ।
-                                </li>
-                                <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।</li>
-                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
-                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
-                                    ग़लत जवाब को edit किया जा सकता है ।</li>
-                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
-                                    कोई भी परिवर्तन असंभव है ।</li>
-                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
-                                    विनर होगा ।</li>
-                            </ul>
-                        </div>
-                        }
-                        @if(item.type == 'alphabet'){
-                        <div class="row">
-                            <h2 class="rules-text">Rules</h2>
-                            <!-- List Group -->
-                            <ul class="list-group">
-                                <li class="list-group-item">१. Screen पर आप को एक photo दिखाया जाएगा ।
-                                </li>
-                                <li class="list-group-item">२. आप को photo देख कर यह बताना है की मूवी में इस किरदार का
-                                    क्या नाम था ।</li>
-                                <li class="list-group-item">३. Clew के तौर पर नाम का पहला लेटर स्क्रीन पर दिया गया है ।
-                                </li>
-                                <li class="list-group-item">४. Puzzle को Solve करने के लिए 10 मिनट का समय है ।</li>
-                                <li class="list-group-item">५. एक बार Next बटन दबाने के बाद back नहीं किया जा सकता ।
-                                </li>
-                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर जो कम समय में देगा वो
-                                    विजेता होगा ।</li>
-                            </ul>
-                        </div>
-                        }
-
-
-                        }
                     </div>
+
                 </div>
-
+                }
             </div>
-            }
-        </div>
 
+        </div>
     </div>
     }
 
-    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2 && gameList && gameList.length > 0) {
+
+    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame && userId != 2 && gameList && gameList.length >0)
+    {
     <div class="main-video">
         <video width="320" height="240" controls autoplay loop muted playsinline>
             <source src="assets/video/startScreenVideo.mp4" type="video/mp4">

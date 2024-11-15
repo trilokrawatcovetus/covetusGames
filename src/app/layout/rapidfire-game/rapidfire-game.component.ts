@@ -104,11 +104,19 @@ export class RapidfireGameComponent {
             this.updatedQustion = data.question;
             this.timervalue = data.remainingTime;
 
-            document.getElementById('stopButton')?.click();
-            setTimeout(() => {
-              console.log('playButton', this.selectedQuestion.audiofile)
-              document.getElementById(this.selectedQuestion.audiofile)?.click();
-            }, 100)
+            for (let i = 0; i <= 30; i++) {
+              const buttonId = 'stopButton' + i;
+              const button = document.getElementById(buttonId);
+              if (button) {
+                button.click();
+              }
+              if (i == 30) {
+                setTimeout(() => {
+                  console.log('playButton', this.selectedQuestion.audiofile)
+                  document.getElementById(this.selectedQuestion.audiofile)?.click();
+                }, 1000)
+              }
+            }
 
           }
 

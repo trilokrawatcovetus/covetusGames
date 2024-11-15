@@ -61,13 +61,13 @@
         <div class="base">
             <div class="line1">
                 @for (item of keyWord; track item; let i = $index) {
-                @if(i < 6){ <span (click)="onCLickvalue(item)">{{item}}</span>
+                @if(i < 7){ <span (click)="onCLickvalue(item)">{{item}}</span>
                     }
                     }
             </div>
             <div class="line2">
                 @for (item of keyWord; track item;let i = $index ) {
-                @if(i >= 6 && i < 11) { <span (click)="onCLickvalue(item)">{{item}}</span>
+                @if(i >= 7 && i < 13) { <span (click)="onCLickvalue(item)">{{item}}</span>
                     }
                     }
             </div>
@@ -79,7 +79,7 @@
                             d="M433.704,237.465c4.456,6.086,7.092,13.539,7.092,21.622  c0,20.079-16.266,36.341-36.344,36.341h-36.341c-9.991,0-18.173,8.18-18.173,18.172v109.025c0,20.079-16.262,36.341-36.341,36.341  H186.4c-20.079,0-36.34-16.262-36.34-36.341V313.6c0-9.992-8.181-18.172-18.172-18.172H95.547  c-20.079,0-36.342-16.262-36.342-36.341c0-8.083,2.635-15.536,7.08-21.622L217.747,54.388c17.807-17.808,46.695-17.808,64.505,0  L433.704,237.465z" />
                     </svg></span> -->
                 @for (item of keyWord; track item; let i = $index) {
-                @if(i >= 11) {
+                @if(i >= 13) {
                 <span (click)="onCLickvalue(item)">{{item}}</span>
                 }
 

@@ -4,6 +4,12 @@ p.text-game {
     font-weight: 600;
 }
 
+.result-btn-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
 /* Container for the home page */
 .home-container {
     display: flex;
@@ -25,7 +31,7 @@ p.text-game {
     justify-content: space-between;
 }
 
-.result-btn-wrapper button{
+.result-btn-wrapper button {
     background-color: #a855f7;
     color: #fff;
     font-weight: 500;
