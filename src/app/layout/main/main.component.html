@@ -99,6 +99,13 @@
 
     <div class="owner-container">
         <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <button type="button" class="btn btn-primary rule-btn btn" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal-result">
+                    result</button>
+            </div>
+        </div>
+        <div class="row">
             @for (item of gameList; track item; let i = $index) {
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card">
@@ -227,4 +234,54 @@
 
     </div>
     <!-- selector: 'app-rapidfire-game', -->
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal-result" tabindex="-1" aria-labelledby="exampleModal-resultLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal-resultLabel">Result</h5>
+
+                <button type="button" class="btn-primary" (click)="getALLresult()">Refresh</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Crossword - Score</th>
+                            <th scope="col">Bolliwood - Score</th>
+                            <th scope="col">KBC - Score</th>
+                            <th scope="col">Crossword - Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(userResult && userResult.length > 0){
+                        @for (item of userResult; track item; let i = $index) {
+
+                        <tr>
+                            <th scope="row">{{item.user_name}}</th>
+                            <td>{{item.user_mobile}}</td>
+                            <td>{{item.game1_solved}}</td>
+                            <td>{{item.game2_solved}}</td>
+                            <td>{{item.game3_solved}}</td>
+                            <td>{{item.game1_time}}</td>
+
+                        </tr>
+                        }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
 </div>

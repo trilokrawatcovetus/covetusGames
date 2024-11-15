@@ -42,9 +42,11 @@ export class MainComponent {
   game1: any
   game2: any
   game3: any
+  userResult: any;
   ngOnInit(): void {
 
     this.getAllGamesDetail();
+    this.getALLresult();
     // this.getGamesDetail();
     // this.initializeGrid();
     // this.populateGrid();
@@ -705,5 +707,26 @@ export class MainComponent {
   onCompleteRapidfiregame(event: any) {
     this.startRapidFirgame = false;
 
+  }
+
+  getALLresult() {
+    this.userResult = undefined;
+    this.api.allPostMethod('user/getAllUserResult', {}).subscribe({
+      next: (res: any) => {
+        this.loader.stopLoader('login');
+        if (res['error'] == false) {
+          console.log(res['data'])
+
+          this.userResult = res['data'];
+        }
+        else {
+          this.toastr.error(res.message || res.error, '');
+        }
+      },
+      error: (err: any) => {
+        this.loader.stopLoader('login');
+        this.toastr.error(err['message'], '');
+      },
+    });
   }
 }
