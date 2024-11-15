@@ -117,18 +117,21 @@ export class MainComponent {
         if (data['type'] == "crossword") {
           this.startCrossWord = false
           this.game1['start'] = 0;
+          this.game1['active'] = 0;
           // this.stopGame(this.game1);
 
         }
         if (data['type'] == "alphabet") {
           this.startAlphbetgame = false;
           this.game2['start'] = 0;
+          this.game2['active'] = 0;
           // this.stopGame(this.game2);
 
         }
         if (data['type'] == "rapidfire") {
           this.startRapidFirgame = false;
           this.game3['start'] = 0;
+          this.game3['active'] = 0;
           for (let i = 0; i <= 29; i++) {
             const buttonId = 'stopButton' + i;
             const button = document.getElementById(buttonId);

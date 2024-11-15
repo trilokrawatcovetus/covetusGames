@@ -2,7 +2,7 @@
 <!-- {{start_date }} -->
 <div class="home-container">
 
-    @if(!startAlphbetgame && !startCrossWord && !startRapidFirgame) {
+    @if((!startAlphbetgame && !startCrossWord && !startRapidFirgame) || (userId == 2)) {
     <!-- Header with user icon and name -->
     <header class="user-header">
         <div class="user-info">
@@ -12,8 +12,8 @@
         @if(userId == 2) {
         <div class="result-btn-wrapper">
             @if(activeuser) {
-                <p class="active-user"> activeUsers: - {{activeuser}}</p>
-                }
+            <p class="active-user"> activeUsers: - {{activeuser}}</p>
+            }
             <button type="button" class="btn btn-primary rule-btn btn" data-bs-toggle="modal"
                 data-bs-target="#exampleModal-result">
                 result </button>
