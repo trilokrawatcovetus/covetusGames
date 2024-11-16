@@ -114,12 +114,12 @@ export class MainComponent {
 
     this.sokect.getGameEndMessageByOwner().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (data: any) => {
+        document.getElementById('open_thankks_pop')?.click()
         if (data['type'] == "crossword") {
           this.startCrossWord = false
           this.game1['start'] = 0;
           this.game1['active'] = 0;
           // this.stopGame(this.game1);
-
         }
         if (data['type'] == "alphabet") {
           this.startAlphbetgame = false;

@@ -36,17 +36,21 @@
                             <h2 class="rules-text">Rules</h2>
                             <!-- List Group -->
                             <ul class="list-group">
-                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर से
-                                    नीचे दिए गए है ।
+                                <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर
+                                    से नीचे दिए गए है ।
                                 </li>
-                                <li class="list-group-item">२. इस पहेली को भरने के लिए ४० मिनट का समय दिया जाएगा ।</li>
-                                <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।</li>
-                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो जाएँगे ।
-                                    ग़लत जवाब को edit किया जा सकता है ।</li>
-                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके बाद
-                                    कोई भी परिवर्तन असंभव है ।</li>
-                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में देगा वो
-                                    विनर होगा ।</li>
+                                <li class="list-group-item">२. इस पहेली को भरने के लिए अधिकतम 40 मिनट का समय दिया
+                                    जाएगा। जैसे ही आप की पहेली पूरी भर जाए आप End Game का बटन दबाये|
+                                </li>
+                                <li class="list-group-item">३. किसी भी cell के नंबर पर क्लिक करके उसका क्लू देख सकते
+                                    है।
+                                </li>
+                                <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो
+                                    जाएँगे। ग़लत जवाब को edit किया जा सकता है।</li>
+                                <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके
+                                    बाद कोई भी परिवर्तन असंभव है।</li>
+                                <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में
+                                    देगा वो विनर होगा।</li>
                             </ul>
                         </div>
                         }
@@ -137,22 +141,20 @@
                                 <!-- List Group -->
                                 <ul class="list-group">
                                     <li class="list-group-item">१. यह एक वर्ग पहेली है, जिसके क्लू दाये से बाये और ऊपर
-                                        से
-                                        नीचे दिए गए है ।
+                                        से नीचे दिए गए है ।
                                     </li>
-                                    <li class="list-group-item">२. इस पहेली को भरने के लिए २० मिनट का समय दिया जाएगा ।
+                                    <li class="list-group-item">२. इस पहेली को भरने के लिए अधिकतम 40 मिनट का समय दिया
+                                        जाएगा। जैसे ही आप की पहेली पूरी भर जाए आप End Game का बटन दबाये|
                                     </li>
-                                    <li class="list-group-item">३. किसी भी cell पर क्लिक करके उसका clew देख सकते है ।
+                                    <li class="list-group-item">३. किसी भी cell के नंबर पर क्लिक करके उसका क्लू देख सकते
+                                        है।
                                     </li>
                                     <li class="list-group-item">४. पूरा सही जवाब भरते ही वो नंबर के ब्लॉक्स लॉक हो
-                                        जाएँगे ।
-                                        ग़लत जवाब को edit किया जा सकता है ।</li>
+                                        जाएँगे। ग़लत जवाब को edit किया जा सकता है।</li>
                                     <li class="list-group-item">५. End Game बटन को दबाते ही गेम समाप्त हो जाएगा, उसके
-                                        बाद
-                                        कोई भी परिवर्तन असंभव है ।</li>
+                                        बाद कोई भी परिवर्तन असंभव है।</li>
                                     <li class="list-group-item">६. सबसे ज़्यादा प्रश्नों के सही उत्तर, जो कम समय में
-                                        देगा वो
-                                        विनर होगा ।</li>
+                                        देगा वो विनर होगा।</li>
                                 </ul>
                             </div>
                             }
@@ -304,6 +306,39 @@
                 </table>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalpp" [hidden]="true"
+    id="open_thankks_pop">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModalpp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content cut-model">
+            <div class="cross-btn-pop">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card col-md-12 bg-white shadow-md p-2">
+                    <div class="mb-4 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+                            fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <h1>Thank You !</h1>
+                        <p> </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

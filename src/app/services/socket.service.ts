@@ -203,7 +203,6 @@ export class SocketService {
   listenLogout(): Observable<any> {
     return new Observable<any>((observer) => {
       this.socket.on('logout', (data: any) => {
-        debugger;
         observer.next(data);
         localStorage.clear()
         this.router.navigate(['/login']);

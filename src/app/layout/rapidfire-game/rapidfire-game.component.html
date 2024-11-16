@@ -351,11 +351,11 @@
             </button>
         </div>
         <div class="button-group-wrapper">
-            <label for="formGroupExampleInput">{{selectedQuestion.clue}} </label>
+            <label for="formGroupExampleInput">{{updatedQustion}}-{{selectedQuestion.clue}} </label>
         </div>
 
         <div class="option-row-wrapper">
-            <div class="options row" [hidden]="20 < timervalue">
+            <div class="options row" [hidden]="30 < timervalue">
                 @for (item of selectedQuestion.answerArray; track item; let i = $index) {
                 <div class="option col-lg-6" (click)="selectAnswer(item)"
                     [ngClass]="{'active': selectedQuestion['userAnswer'] == item, 'isWrite': selectedQuestion.isRight &&  selectedQuestion['userAnswer'] == item, 'isWrong': selectedQuestion.isWrong &&  selectedQuestion['userAnswer'] == item}">

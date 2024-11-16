@@ -4,10 +4,31 @@ p.text-game {
     font-weight: 600;
 }
 
+.cross-btn-pop {
+    display: flex;
+    justify-content: end;
+}
+
+.cut-model .modal-body {
+    padding-top: 0;
+}
+
+.cut-model button.btn-close {
+    background-color: #fffdec;
+    padding: 10px;
+    opacity: 1;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
 .result-btn-wrapper {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.modal-content.cut-model svg.bi {
+    color: #27b127;
 }
 
 .Refresh {
